@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>School Sync</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://cdn-icons-png.freepik.com/512/3735/3735388.png"/>
+    <meta name="keywords" content="media, calcola, ossas, registro">
+    <meta name="description" content="Calcola la tua media con vari pesi dei voti">
+    <meta name="author" content="Ossas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-duo">
+        <div class="box">
+            <h4>Media totale</h4>
+            <div id="media-tot"></div>
+        </div>
+        <div class="box" onclick="orario()">
+            <h4>Visualizza orario</h4>
+            <i class="fa-regular fa-file" style="font-size: 50px;opacity:.7;margin-top:10px;"></i>
+            <img id="day-img"></img>
+        </div>
+    </div>
+    <div class="scroll" id="news-container scroll-1">
+        <div class="news first column" id="element-1" onclick="show(1)">
+            <h4>News</h4>
+            <i class="fa-solid fa-circle-chevron-right"></i>
+        </div>
+    </div>
+    <div class="grade-container scroll">
+    </div>
+    <div class="calendar scroll" id="calendar scroll-2">
+        <div class="event first column" id="element-2" onclick="show(2)">
+            <h4>Calendar</h4>
+            <i class="fa-solid fa-circle-chevron-right"></i>
+        </div>
+    </div>
+    <div class="add">
+        <div class="grid-trio">
+            <input type="text" placeholder="News..." id="nomeNews">
+            <select id="colorNews">
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="orange">Orange</option>
+                <option value="#28293D">Purple</option>
+            </select>
+            <button type="submit" onclick="news()" class="add"></button>
+        </div>
+        <div class="grid-trio">
+            <input type="text" id="nomeProva" name="nomeProva" placeholder="Materia...">
+            <input type="date" id="dataProva" name="dataProva">
+            <button type="submit" onclick="verifica()" class="add"></button>
+        </div>
+        <div class="grid-trio">
+            <select id="voto">
+                <option value="10">10</option>
+                <option value="9.75">10-</option>
+                <option value="9.5">9.5</option>
+                <option value="9.25">9+</option>
+                <option value="9">9</option>
+                <option value="8.75">9-</option>
+                <option value="8.5">8.5</option>
+                <option value="8.25">8+</option>
+                <option value="8">8</option>
+                <option value="7.75">8-</option>
+                <option value="7.5" selected>7.5</option>
+                <option value="7.25">7+</option>
+                <option value="7">7</option>
+                <option value="6.75">7-</option>
+                <option value="6.5">6.5</option>
+                <option value="6.25">6+</option>
+                <option value="6">6</option>
+                <option value="5.75">6-</option>
+                <option value="5.5">5.5</option>
+                <option value="5.25">5+</option>
+                <option value="5">5</option>
+                <option value="4.75">5-</option>
+                <option value="4.5">4.5</option>
+                <option value="4.25">4+</option>
+                <option value="4">4</option>
+                <option value="3.75">4-</option>
+                <option value="3.5">3.5</option>
+                <option value="3.25">3+</option>
+                <option value="3">3</option>
+                <option value="2.75">3-</option>
+                <option value="2.5">2.5</option>
+                <option value="2.25">2+</option>
+                <option value="2">2</option>
+            </select>
+            <input type="text" placeholder="Peso..." value="100" id="peso">
+            <button type="submit" onclick="add()" class="add"></button>
+        </div>
+    </div>
+</body>
