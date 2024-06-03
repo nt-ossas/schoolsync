@@ -211,3 +211,48 @@ h5.avviso{
     border-bottom-left-radius: 0px;
     border-top-left-radius: 10px;
 }
+nav{
+    margin-bottom: 30px;
+    margin-inline: 3px;
+    background-color: #393A50;
+    padding: 10px;
+    padding-inline: 25px;
+    border-radius: 25px;
+    display: flex;
+    gap: 35%;
+    padding-top: 12px;
+}
+nav a i{
+    color: cornsilk;
+    font-size: 20px !important;
+}
+nav a i.on{
+    color: #1E1E2E;
+    background-color: cornsilk;
+    padding: 7px;
+    margin: -7px;
+    border-radius: 50%;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 89.8%;
+    text-align: center;
+    color: cornsilk;
+    opacity: .5;
+    background-color: #1E1E1E;
+    padding: 20px;
+}
+hr{
+    margin-block: 25px;
+}
+.description h5 a {
+    color: #4A90E2;
+}
+.description h4{
+    margin: 0 !important;
+}
+.description{
+    margin-inline: 5px;
+}
