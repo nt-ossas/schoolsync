@@ -18,31 +18,52 @@
 </head>
 <body>
     <div class="grid-duo">
+        <!--- media -->
         <div class="box">
             <h4>Media totale</h4>
             <div id="media-tot"></div>
         </div>
+        <!--- orario -->
         <div class="box" onclick="orario()">
             <h4>Visualizza orario</h4>
             <i class="fa-regular fa-file" style="font-size: 50px;opacity:.7;margin-top:10px;"></i>
-            <img id="day-img"></img>
+            <div class="moduli">
+                <div class="modulo hidden" id="modulo-1">
+                    <i class="fa-solid fa-x close-modulo" onclick="close()"></i>
+                    <h4 class="avviso">Lunedì</h4>
+                    <input type="text" placeholder="1 ora">
+                    <input type="text" placeholder="2 ora">
+                    <input type="text" placeholder="3 ora">
+                    <input type="text" placeholder="4 ora">
+                    <input type="text" placeholder="5 ora">
+                    <input type="text" placeholder="6 ora">
+                    <h4 class="avviso">Aggiorna la pagina per uscire </h4>
+                    <h6 class="avviso" style="margin-top: -25px;">(verrà sistemato a breve)</h6>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="scroll" id="news-container scroll-1">
+    <!--- news -->
+    <div class="scroll" id="scroll-1">
         <div class="news first column" id="element-1" onclick="show(1)">
             <h4>News</h4>
             <i class="fa-solid fa-circle-chevron-right"></i>
         </div>
     </div>
-    <div class="grade-container scroll">
-    </div>
-    <div class="calendar scroll" id="calendar scroll-2">
+    <!--- grade -->
+    <h3 class="presentation">Valutazioni</h3>
+    <h4 class="avviso" id="avviso">Ancora nessun valutazione...</h4>
+    <div class="grade-container scroll" id="grade-container"></div>
+    <!--- calendar -->
+    <div class="calendar scroll" id="scroll-2">
         <div class="event first column" id="element-2" onclick="show(2)">
             <h4>Calendar</h4>
             <i class="fa-solid fa-circle-chevron-right"></i>
         </div>
     </div>
+    <!--- input -->
     <div class="add">
+        <h5 class="avviso">Aggiungi News</h5>
         <div class="grid-trio">
             <input type="text" placeholder="News..." id="nomeNews">
             <select id="colorNews">
@@ -53,11 +74,13 @@
             </select>
             <button type="submit" onclick="news()" class="add"></button>
         </div>
+        <h5 class="avviso">Aggiungi evento</h5>
         <div class="grid-trio">
             <input type="text" id="nomeProva" name="nomeProva" placeholder="Materia...">
             <input type="date" id="dataProva" name="dataProva">
-            <button type="submit" onclick="verifica()" class="add"></button>
+            <button type="submit" onclick="verifica(2)" class="add"></button>
         </div>
+        <!--- 
         <div class="grid-trio">
             <select id="voto">
                 <option value="10">10</option>
@@ -96,6 +119,7 @@
             </select>
             <input type="text" placeholder="Peso..." value="100" id="peso">
             <button type="submit" onclick="add()" class="add"></button>
-        </div>
+        </div> -->
     </div>
 </body>
+</html>
