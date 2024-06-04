@@ -143,7 +143,7 @@ i{
     line-height: 40px;
     align-items: center;
     margin-right: -120px;
-    margin-top: -35px;
+    margin-top: 15px;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -242,7 +242,6 @@ footer{
     text-align: center;
     color: cornsilk;
     opacity: .5;
-    background-color: #1E1E1E;
     padding: 20px;
 }
 .description hr{

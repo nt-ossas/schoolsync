@@ -31,9 +31,9 @@ function add() {
     if (voto % 1 === 0.25) {
         votoText = Math.floor(voto) + "+";
     } else if (voto % 1 === 0.75) {
-        votoText = Math.floor(voto) + "-";
+        votoText = Math.floor(voto) + 1 + "-";
     } else if (voto % 1 === 0.5) {
-        votoText = (Math.floor(voto)+1) + "½";
+        votoText = Math.floor(voto) + "½";
     }
 
     var votoElement = document.createElement("div");
