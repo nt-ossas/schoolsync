@@ -142,6 +142,8 @@ function orario() {
     var moduloElements = document.querySelectorAll(".modulo"); 
     var orario = document.getElementById(`modulo-${dayOfWeek}`); 
 
+    console.log(dayOfWeek);
+
     moduloElements.forEach(element => {
         element.classList.add("hidden");
     });
@@ -159,3 +161,51 @@ function close() {
         element.classList.add("hidden");
     });
 }
+
+/*function saveModuli(){
+    var today = new Date();
+    var n = today.getDay(); 
+    for(let i = 0; i < 6; i++){
+        var moduli = document.querySelector(`#modulo-${n+1} #i-${i+1}`);
+        //salva moduli nel local storage e carica i dati dal local storage quando si carica la pagina
+    }
+}*/
+
+function saveModuli() {
+    var today = new Date();
+    var n = today.getDay();
+    var moduliData = {};
+
+    for (let i = 0; i < 6; i++) {
+        var moduli = document.querySelector(`#modulo-${n} #i-${i+1}`);
+        if (moduli) {
+            moduliData[`i-${i+1}`] = moduli.value;
+        }
+    }
+
+    localStorage.setItem(`moduli-${n}`, JSON.stringify(moduliData));
+    console.log("Saving...");
+}
+
+function loadModuli() {
+    var today = new Date();
+    var n = today.getDay();
+    var moduliData = JSON.parse(localStorage.getItem(`moduli-${n}`));
+
+    if (moduliData) {
+        for (let i = 0; i < 6; i++) {
+            var moduli = document.querySelector(`#modulo-${n} #i-${i+1}`);
+            if (moduli && moduliData[`i-${i+1}`] !== undefined) {
+                moduli.value = moduliData[`i-${i+1}`];
+            }
+        }
+    }
+}
+
+document.addEventListener('change', function(event) {
+    if (event.target && event.target.id.startsWith('i-')) {
+        saveModuli();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', loadModuli);
