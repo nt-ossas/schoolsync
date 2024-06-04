@@ -245,7 +245,7 @@ footer{
     background-color: #1E1E1E;
     padding: 20px;
 }
-hr{
+.description hr{
     margin-block: 25px;
 }
 .description h5 a {
