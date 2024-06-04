@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SchoolSync</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="TECHZONE_logo.png"/>
+    <meta name="keywords" content="media, calcola, ossas, registro">
+    <meta name="description" content="Calcola la tua media con vari pesi dei voti">
+    <meta name="author" content="Ossas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="https://nt-ossas.github.io/schoolsync"><i class="fa-solid fa-house"></i></a>
+        <a href="https://nt-ossas.github.io/schoolsync/materie"><i class="fa-solid fa-list on"></i></a>
+        <a href="https://nt-ossas.github.io/schoolsync/about"><i class="fa-regular fa-address-card"></i></a>
+    </nav>
+    <!--- media -->
+    <div class="box">
+        <h4>Media totale</h4>
+        <div id="media-tot">-</div>
+    </div>
+    <!--- grade -->
+    <h3 class="presentation">Valutazioni</h3>
+    <h4 class="avviso" id="avviso">Ancora nessun valutazione...</h4>
+    <div class="grade-container scroll" id="grade-container"></div>
+    <!--- materie -->
+    <div class="materia-container">
+        <button onclick="materia()">materia</button>
+    </div>
+</body>
+</html>
