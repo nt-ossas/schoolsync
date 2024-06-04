@@ -33,7 +33,7 @@ function add() {
     } else if (voto % 1 === 0.75) {
         votoText = Math.floor(voto) + "-";
     } else if (voto % 1 === 0.5) {
-        votoText = Math.floor(voto) + "½";
+        votoText = (Math.floor(voto)+1) + "½";
     }
 
     var votoElement = document.createElement("div");
