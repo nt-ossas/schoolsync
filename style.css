@@ -16,6 +16,13 @@ nav{
     background-color: #28293D;
     color: #4A90E2;
 }
+
+/* Per WebKit */
+button {
+    text-align: center;
+    -webkit-text-align: center;
+}
+
 .grid-duo{
     display: grid;
     grid-template-columns: 1fr 1fr;
