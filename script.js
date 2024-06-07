@@ -1,6 +1,10 @@
 var totalWeight = 0;
 var media = 0;
 
+window.onload = function(){
+    orario();
+}
+
 function add() {
     var voto = parseFloat(document.getElementById("voto").value);
     var peso = parseFloat(document.getElementById("peso").value);
@@ -154,12 +158,11 @@ function orario() {
 }
 
 function close() {
-    var moduloElements = document.querySelectorAll(".modulo"); 
+    var today = new Date();
+    var dayOfWeek = today.getDay(); 
+    var modulo = document.getElementById(`modulo-${dayOfWeek}`); 
     console.log("Closing...");
-
-    moduloElements.forEach(element => {
-        element.classList.add("hidden");
-    });
+    modulo.classList.add("hidden");
 }
 
 function saveModuli() {
@@ -200,3 +203,8 @@ document.addEventListener('change', function(event) {
 });
 
 document.addEventListener('DOMContentLoaded', loadModuli);
+
+//! alert pc
+if (window.innerWidth > 500) {
+    alert("Il sito non è stato ancora sviluppato per Computer, per favore usufruisci della versione per telefono. Grazie");
+}

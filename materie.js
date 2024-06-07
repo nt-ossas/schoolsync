@@ -341,3 +341,8 @@ function menu() {
     var aside = document.getElementById("aside");
     aside.classList.toggle("translate");
 }
+
+//! alert pc
+if (window.innerWidth > 500) {
+    alert("Il sito non è stato ancora sviluppato per Computer, per favore usufruisci della versione per telefono. Grazie");
+}
