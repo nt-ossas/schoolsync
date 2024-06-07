@@ -111,7 +111,7 @@
     </div>
     <!--- grade -->
     <h3 class="presentation">Valutazioni</h3>
-    <h4 class="avviso" id="avviso">Ancora nessun valutazione...</h4>
+    <h4 class="avviso" id="avviso">Ancora nessuna valutazione...</h4>
     <div class="grade-container scroll" id="grade-container"></div>
     <!--- calendar -->
     <div class="calendar scroll" id="scroll-2">
@@ -122,6 +122,7 @@
     </div>
     <!--- input -->
     <div class="add">
+        <!--news-->
         <h5 class="avviso">Aggiungi News</h5>
         <div class="grid-trio">
             <input type="text" placeholder="News..." id="nomeNews" value="News">
@@ -133,52 +134,12 @@
             </select>
             <button type="submit" onclick="news()" class="add"></button>
         </div>
+        <!--event-->
         <h5 class="avviso">Aggiungi evento</h5>
         <div class="grid-trio">
             <input type="text" id="nomeProva" name="nomeProva" placeholder="Materia..." value="Verifica">
             <input type="date" id="dataProva" name="dataProva">
             <button type="submit" onclick="verifica(2)" class="add"></button>
-        </div>
-        <!-- grades -->
-        <h5 class="avviso">Aggiungi valutazione</h5>
-        <div class="grid-trio">
-            <select id="voto">
-                <option value="10">10</option>
-                <option value="9.75">10-</option>
-                <option value="9.5">9.5</option>
-                <option value="9.25">9+</option>
-                <option value="9">9</option>
-                <option value="8.75">9-</option>
-                <option value="8.5">8.5</option>
-                <option value="8.25">8+</option>
-                <option value="8">8</option>
-                <option value="7.75">8-</option>
-                <option value="7.5" selected>7.5</option>
-                <option value="7.25">7+</option>
-                <option value="7">7</option>
-                <option value="6.75">7-</option>
-                <option value="6.5">6.5</option>
-                <option value="6.25">6+</option>
-                <option value="6">6</option>
-                <option value="5.75">6-</option>
-                <option value="5.5">5.5</option>
-                <option value="5.25">5+</option>
-                <option value="5">5</option>
-                <option value="4.75">5-</option>
-                <option value="4.5">4.5</option>
-                <option value="4.25">4+</option>
-                <option value="4">4</option>
-                <option value="3.75">4-</option>
-                <option value="3.5">3.5</option>
-                <option value="3.25">3+</option>
-                <option value="3">3</option>
-                <option value="2.75">3-</option>
-                <option value="2.5">2.5</option>
-                <option value="2.25">2+</option>
-                <option value="2">2</option>
-            </select>
-            <input type="text" placeholder="Peso..." value="100" id="peso">
-            <button type="submit" onclick="add()" class="add"></button>
         </div>
     </div>
 </body>
