@@ -184,7 +184,7 @@ i.mini{
     margin-left: 5px;
 }
 .avviso{
-    opacity: .5;
+    color: #8f8b85;
     text-align: center;
 }
 h5.avviso{
@@ -253,13 +253,13 @@ footer{
     width: 89.8%;
     text-align: center;
     color: cornsilk;
-    opacity: .5;
+    color: #8f8b85;
     padding: 20px;
 }
 .description hr{
     margin-block: 25px;
 }
-.description h5 a {
+a {
     color: #4A90E2;
 }
 .description h4{
@@ -270,4 +270,12 @@ footer{
 }
 hr{
     margin-block: 0px;
+}
+.notes{
+    background-color: #28293D;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 5px;
+    padding-inline: 15px;
+    color: #8f8b85;
 }

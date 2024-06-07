@@ -1,6 +1,33 @@
 var i = 0;
 var subjects = [];
 
+// Load subjects from local storage on page load
+window.onload = function() {
+    loadSubjects();
+}
+
+// Save subjects to local storage
+function saveSubjects() {
+    localStorage.setItem('subjects', JSON.stringify(subjects));
+}
+
+// Load subjects from local storage
+function loadSubjects() {
+    const storedSubjects = localStorage.getItem('subjects');
+    if (storedSubjects) {
+        subjects = JSON.parse(storedSubjects);
+        subjects.forEach((subject, index) => {
+            // Create UI elements for each subject and its votes
+            createSubject(index);
+            subject.voti.forEach((voto, votoIndex) => {
+                const peso = subject.pesi[votoIndex];
+                addVoteToUI(index, voto, peso);
+            });
+            calc(index);
+        });
+    }
+}
+
 function add(subjectIndex) {
     var voto = parseFloat(document.getElementById("voto-" + subjectIndex).value);
     var peso = parseFloat(document.getElementById("peso-" + subjectIndex).value);
@@ -18,7 +45,14 @@ function add(subjectIndex) {
 
     subjects[subjectIndex].voti.push(voto);
     subjects[subjectIndex].pesi.push(peso);
+    saveSubjects(); // Save to local storage
 
+    addVoteToUI(subjectIndex, voto, peso);
+    calc(subjectIndex);
+    calculateTotalAverage();
+}
+
+function addVoteToUI(subjectIndex, voto, peso) {
     var tbody = document.getElementById("media-" + subjectIndex);
     var tr = document.createElement("tr");
     var td = document.createElement("td");
@@ -33,21 +67,13 @@ function add(subjectIndex) {
     if (voto < 5) {
         td.style.backgroundColor = "rgba(238, 75, 43, .7)";
         td2.style.backgroundColor = "rgba(238, 75, 43, .7)";
-    } 
-    else if (voto < 6) {
+    } else if (voto < 6) {
         td.style.backgroundColor = "rgba(255, 165, 0, .7)";
         td2.style.backgroundColor = "rgba(255, 165, 0, .7)";
-    } 
-    else {
+    } else {
         td.style.backgroundColor = "rgba(34,139,34,.7)";
         td2.style.backgroundColor = "rgba(34,139,34,.7)";
     }
-
-    var to6 = document.getElementById("to6-" + subjectIndex);
-    to6.innerHTML = "";
-
-    calc(subjectIndex);
-    calculateTotalAverage();
 }
 
 function calc(subjectIndex) {
@@ -62,7 +88,6 @@ function calc(subjectIndex) {
     }
 
     if (somma_pesi === 0) {
-        alert("Devi inserire almeno un voto!");
         mediaf.textContent = "";
         comment.textContent = "";
         return;
@@ -100,7 +125,6 @@ function calculateNeededGrade(subjectIndex) {
     }
 
     if (somma_pesi === 0) {
-        alert("Devi inserire almeno un voto!");
         return;
     }
 
@@ -132,25 +156,33 @@ function materia() {
         pesi: []
     };
     subjects.push(newSubject);
+    saveSubjects(); // Save to local storage
 
+    createSubject(i);
+
+    i++;
+    location.reload();
+}
+
+function createSubject(index) {
     var materia = document.getElementById("materia");
     var materia2 = document.createElement("li");
     materia.appendChild(materia2);
     materia2.classList.add("sub");
-    materia2.innerHTML = `<button onclick="cambio(${i})" class="scegli">-</button><input type="text" placeholder="Materia..." id="i${i + 1}">`;
+    materia2.innerHTML = `<button onclick="cambio(${index})" class="scegli">-</button><input type="text" placeholder="Materia ${index+1}" id="i${index + 1}">`;
 
     var nuovaMateria = document.createElement("main");
     nuovaMateria.classList.add("materia");
-    nuovaMateria.classList.add("translate-off");
-    nuovaMateria.id = "materia-" + (i + 1);
+    nuovaMateria.classList.add("translate");
+    nuovaMateria.id = "materia-" + (index + 1);
 
     nuovaMateria.innerHTML = `
         <div class="main">
-            <i class="fa-solid fa-arrow-left back" onclick="cambio(${i})"></i>
+            <i class="fa-solid fa-list-ul back" onclick="cambio(${index})"></i>
             <div class="grid">
                 <label>Scegli il voto</label>
                 <label>Scegli il peso</label>
-                <select id="voto-${i}">
+                <select id="voto-${index}">
                     <option value="10">10</option>
                     <option value="9.75">10-</option>
                     <option value="9.5">9.5</option>
@@ -185,12 +217,12 @@ function materia() {
                     <option value="2.25">2+</option>
                     <option value="2">2</option>
                 </select>
-                <input type="text" placeholder="100%" value="100" id="peso-${i}">
+                <input type="text" placeholder="100%" value="100" id="peso-${index}">
             </div>
             <div class="flex-3">
-                <button onclick="add(${i})" class="add" id="add-${i}" title="Aggiungi un voto"></button>
-                <button onclick="calculateNeededGrade(${i})" class="calc-needed" id="calc-needed-${i}" title="Calcola che voti devi prendere per avere  la media del 6">6</button>
-                <button onclick="removeAllVotes(${i})" class="remove-all" id="remove-all-${i}" title="Rimuovi tutti i voti di questa materia">-</button>
+                <button onclick="add(${index})" class="add" id="add-${index}" title="Aggiungi un voto"></button>
+                <button onclick="calculateNeededGrade(${index})" class="calc-needed" id="calc-needed-${index}" title="Calcola che voti devi prendere per avere  la media del 6">6</button>
+                <button onclick="removeAllVotes(${index})" class="remove-all" id="remove-all-${index}" title="Rimuovi tutti i voti di questa materia">-</button>
             </div>
             <table class="media">
                 <thead>
@@ -199,22 +231,23 @@ function materia() {
                         <th>Pesi</th>
                     </tr>
                 </thead>
-                <tbody id="media-${i}">
+                <tbody id="media-${index}">
                 </tbody>
             </table>
-            <h1 class="mediaf" id="mediaf-${i}">-</h1>
-            <h5 class="comment" id="comment-${i}"></h5>
-            <h5 id="to6-${i}" style="text-align:center;"></h5>
+            <h1 class="mediaf" id="mediaf-${index}">-</h1>
+            <h5 class="comment" id="comment-${index}"></h5>
+            <h5 id="to6-${index}" style="text-align:center;"></h5>
         </div>
     `;
 
     document.body.appendChild(nuovaMateria);
-    i++;
 }
 
 function removeAllVotes(subjectIndex) {
     subjects[subjectIndex].voti = [];
     subjects[subjectIndex].pesi = [];
+    saveSubjects(); // Save to local storage
+
     const mediaf = document.getElementById("mediaf-" + subjectIndex);
     var to6 = document.getElementById("to6-" + subjectIndex);
     var button = document.querySelector("#materia button[onclick='cambio(" + subjectIndex + ")']");
@@ -240,7 +273,7 @@ function cambio(subjectIndex) {
     });
     var materiaSelezionata = document.querySelector("#materia-" + (subjectIndex + 1));
     materiaSelezionata.classList.toggle("off");
-    materiaSelezionata.classList.toggle("translate-off");
+    materiaSelezionata.classList.toggle("translate");
     console.log("cambio " + (subjectIndex + 1));
     menu();
 }
@@ -286,6 +319,7 @@ function mat() {
 
     var subjectIndex = subjects.length - 1;
     subjects.pop();
+    saveSubjects(); // Save to local storage
 
     var materia = document.getElementById("materia");
     var lastMateriaElement = materia.lastElementChild;
@@ -306,9 +340,4 @@ function mat() {
 function menu() {
     var aside = document.getElementById("aside");
     aside.classList.toggle("translate");
-}
-
-//!aggiungi materia al caricamento della pagina
-window.onload = function(){
-    materia();
 }

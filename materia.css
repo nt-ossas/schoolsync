@@ -148,11 +148,6 @@ input, select {
     transition:.3s;
 }
 
-.translate-off{
-    transform:translateX(500px);
-    transition:.3s;
-}
-
 table{
     margin-inline: 18%;
     width: 60%;
