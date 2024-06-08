@@ -185,6 +185,9 @@ tbody td:last-child{
 .comment{
     margin-inline: 25%;
 }
+.grade{
+    margin-right: -35px;
+}
 @media screen and (min-width:800px){
     body{
         margin-inline:35%;

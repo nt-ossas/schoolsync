@@ -55,6 +55,13 @@ button {
     margin-right: -15px;
     scrollbar-width: none; /* Nasconde la scrollbar nei browser che supportano questa proprietà */
 }
+.scroll-2{
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 30px;
+    margin-inline: -5px;
+    scrollbar-width: none; /* Nasconde la scrollbar nei browser che supportano questa proprietà */
+}
 .news {
     min-width: 250px; /* Larghezza minima di ciascun elemento .news */
     height: 150px; /* Altezza di ciascun elemento .news */
