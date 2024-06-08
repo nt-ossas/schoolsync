@@ -247,16 +247,6 @@ nav a i.on{
     margin: -7px;
     border-radius: 50%;
 }
-footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 89.8%;
-    text-align: center;
-    color: cornsilk;
-    color: #8f8b85;
-    padding: 20px;
-}
 .description hr{
     margin-block: 25px;
 }
@@ -267,12 +257,16 @@ a {
     margin: 0 !important;
 }
 .description{
-    margin-inline: 5px;
+    background-color: #28293D;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 5px;
+    padding-inline: 15px;
 }
 hr{
     margin-block: 0px;
 }
-.notes{
+footer{
     background-color: #28293D;
     margin-top: 20px;
     border-radius: 10px;

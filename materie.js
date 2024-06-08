@@ -23,6 +23,7 @@ function loadSubjects() {
                 const peso = subject.pesi[votoIndex];
                 addVoteToUI(index, voto, peso);
             });
+            document.getElementById(`i${index + 1}`).value = subject.name || `Materia ${index + 1}`;
             calc(index);
         });
     }
@@ -153,15 +154,14 @@ function calculateNeededGrade(subjectIndex) {
 function materia() {
     var newSubject = {
         voti: [],
-        pesi: []
+        pesi: [],
+        name: `Materia ${subjects.length + 1}`
     };
     subjects.push(newSubject);
     saveSubjects(); // Save to local storage
 
-    createSubject(i);
-
+    createSubject(subjects.length - 1);
     i++;
-    location.reload();
 }
 
 function createSubject(index) {
@@ -169,7 +169,7 @@ function createSubject(index) {
     var materia2 = document.createElement("li");
     materia.appendChild(materia2);
     materia2.classList.add("sub");
-    materia2.innerHTML = `<button onclick="cambio(${index})" class="scegli">-</button><input type="text" placeholder="Materia ${index+1}" id="i${index + 1}">`;
+    materia2.innerHTML = `<button onclick="cambio(${index})" class="scegli">-</button><input type="text" placeholder="Materia ${index+1}" id="i${index + 1}" onblur="updateSubjectName(${index})">`;
 
     var nuovaMateria = document.createElement("main");
     nuovaMateria.classList.add("materia");
@@ -241,6 +241,12 @@ function createSubject(index) {
     `;
 
     document.body.appendChild(nuovaMateria);
+}
+
+function updateSubjectName(index) {
+    var input = document.getElementById(`i${index + 1}`);
+    subjects[index].name = input.value || `Materia ${index + 1}`;
+    saveSubjects(); // Save to local storage
 }
 
 function removeAllVotes(subjectIndex) {
