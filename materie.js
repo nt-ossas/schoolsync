@@ -9,6 +9,7 @@ window.onload = function() {
 // Save subjects to local storage
 function saveSubjects() {
     localStorage.setItem('subjects', JSON.stringify(subjects));
+    calculateTotalAverage();
 }
 
 // Load subjects from local storage
@@ -27,8 +28,10 @@ function loadSubjects() {
             calc(index);
         });
     }
+    calculateTotalAverage();
 }
 
+// Aggiunta di un voto a una materia
 function add(subjectIndex) {
     var voto = parseFloat(document.getElementById("voto-" + subjectIndex).value);
     var peso = parseFloat(document.getElementById("peso-" + subjectIndex).value);
@@ -50,9 +53,9 @@ function add(subjectIndex) {
 
     addVoteToUI(subjectIndex, voto, peso);
     calc(subjectIndex);
-    calculateTotalAverage();
 }
 
+// Aggiunta del voto alla UI
 function addVoteToUI(subjectIndex, voto, peso) {
     var tbody = document.getElementById("media-" + subjectIndex);
     var tr = document.createElement("tr");
@@ -77,6 +80,7 @@ function addVoteToUI(subjectIndex, voto, peso) {
     }
 }
 
+// Calcolo della media di una materia
 function calc(subjectIndex) {
     var somma_voti = 0;
     var somma_pesi = 0;
@@ -111,10 +115,9 @@ function calc(subjectIndex) {
     mediaf.style.boxShadow = `0 0 25px 0 ${mediaf.style.backgroundColor}`;
     comment.style.color = `${mediaf.style.backgroundColor}`;
     mediaf.textContent = media.toFixed(2);
-
-    calculateTotalAverage();
 }
 
+// Calcolo dei voti necessari per raggiungere la media 6
 function calculateNeededGrade(subjectIndex) {
     var somma_voti = 0;
     var somma_pesi = 0;
@@ -151,6 +154,7 @@ function calculateNeededGrade(subjectIndex) {
     }
 }
 
+// Aggiunta di una nuova materia
 function materia() {
     var newSubject = {
         voti: [],
@@ -164,6 +168,7 @@ function materia() {
     i++;
 }
 
+// Creazione dell'interfaccia per una nuova materia
 function createSubject(index) {
     var materia = document.getElementById("materia");
     var materia2 = document.createElement("li");
@@ -243,12 +248,14 @@ function createSubject(index) {
     document.body.appendChild(nuovaMateria);
 }
 
+// Aggiornamento del nome di una materia
 function updateSubjectName(index) {
     var input = document.getElementById(`i${index + 1}`);
     subjects[index].name = input.value || `Materia ${index + 1}`;
     saveSubjects(); // Save to local storage
 }
 
+// Rimozione di tutti i voti di una materia
 function removeAllVotes(subjectIndex) {
     subjects[subjectIndex].voti = [];
     subjects[subjectIndex].pesi = [];
@@ -272,6 +279,7 @@ function removeAllVotes(subjectIndex) {
     calculateTotalAverage();
 }
 
+// Cambio di materia
 function cambio(subjectIndex) {
     var materias = document.querySelectorAll(".materia");
     materias.forEach(element => {
@@ -281,9 +289,9 @@ function cambio(subjectIndex) {
     materiaSelezionata.classList.toggle("off");
     materiaSelezionata.classList.toggle("translate");
     console.log("cambio " + (subjectIndex + 1));
-    menu();
 }
 
+// Calcolo della media totale
 function calculateTotalAverage() {
     var totalSommaVoti = 0;
     var totalSommaPesi = 0;
@@ -317,6 +325,7 @@ function calculateTotalAverage() {
     mediaTotElement.style.boxShadow = `0 0 25px 0 ${mediaTotElement.style.backgroundColor}`;
 }
 
+// Rimozione di una materia
 function mat() {
     if (subjects.length === 0) {
         alert("Non ci sono materie da rimuovere!");
@@ -343,12 +352,18 @@ function mat() {
     calculateTotalAverage();
 }
 
+// Apertura e chiusura del menu
 function menu() {
     var aside = document.getElementById("aside");
     aside.classList.toggle("translate");
 }
 
-//! alert pc
+//! alert pc version
 if (window.innerWidth > 500) {
     alert("Il sito non è stato ancora sviluppato per Computer, per favore usufruisci della versione per telefono. Grazie");
+}
+
+// Caricamento iniziale della media totale
+window.onload = function() {
+    calculateTotalAverage();
 }

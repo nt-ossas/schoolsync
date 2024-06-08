@@ -14,6 +14,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <script src="script.js"></script>
+    <script src="materie.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,7 +32,7 @@
         <!--- orario -->
         <div class="box">
             <h4>Visualizza orario</h4>
-            <a href="https://nt-ossas.github.io/schoolsync/orario"><i class="fa-regular fa-file" style="font-size: 55px;opacity:.7;margin-top:10px;" onclick="orario()"></i></a>
+            <a href="https://nt-ossas.github.io/schoolsync/orario" class="document"><i class="fa-regular fa-file" style="font-size: 55px;opacity:.7;margin-top:10px;" onclick="orario()"></i></a>
         </div>
     </div>
     <!--- news -->
@@ -44,7 +45,9 @@
     <!--- grade -->
     <h3 class="presentation">Valutazioni</h3>
     <h4 class="avviso" id="avviso">Ancora nessuna valutazione...</h4>
-    <div class="grade-container scroll" id="grade-container"></div>
+    <div class="grade-container scroll" id="grade-container">
+        
+    </div>
     <!--- calendar -->
     <div class="calendar scroll" id="scroll-2">
         <div class="event first column" id="element-2" onclick="show(2)">
