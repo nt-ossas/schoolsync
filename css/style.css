@@ -240,6 +240,7 @@ nav{
     padding-inline: 25px;
     border-radius: 25px;
     display: flex;
+    justify-content: center;
     gap: 40%;
     padding-top: 12px;
 }
@@ -283,4 +284,15 @@ footer{
 }
 .document{
     color: #8f8b85;
+}
+.e404{
+    text-align: center;
+    margin-top: 30%;
+}
+.e404 span{
+    font-size: 70px;
+}
+.e404 h3{
+    color: #8f8b85;
+    margin-inline: -20%;
 }

@@ -373,11 +373,6 @@ function menu() {
     aside.classList.toggle("translate");
 }
 
-//! alert pc version
-if (window.innerWidth > 500) {
-    alert("Il sito non è stato ancora sviluppato per Computer, per favore usufruisci della versione per telefono. Grazie");
-}
-
 // Load subjects from local storage of the materia.html file
 document.addEventListener("DOMContentLoaded", function() {
     const storedMateriaData = localStorage.getItem('materiaData');

@@ -145,8 +145,3 @@ document.addEventListener('change', function(event) {
 });
 
 document.addEventListener('DOMContentLoaded', loadModuli);
-
-//! alert pc version
-if (window.innerWidth > 500) {
-    alert("Il sito non è stato ancora sviluppato per Computer, per favore usufruisci della versione per telefono. Grazie");
-}

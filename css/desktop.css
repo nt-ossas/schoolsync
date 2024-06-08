@@ -1,0 +1,37 @@
+@media screen and (min-width:1200px){
+    body{
+        margin-inline: 30%;
+        align-items: center;
+        justify-content: center;
+    }
+    nav{
+        margin-inline: 30%;
+    }
+    .box{
+        scale: 1.5;
+        margin: 50px;
+    }
+    .grid-duo{
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+    .valutazioni{
+        height: 120px;
+        background-color: #28293D;
+        padding: 15px;
+        margin-bottom: 30px;
+        margin-right: 20px;
+        border-radius: 10px;
+    }
+    footer h4{
+        font-size: 25px;
+    }
+    footer h5{
+        font-size: 15px;
+    }
+    footer h6{
+        font-size: 14px;
+    }
+}
