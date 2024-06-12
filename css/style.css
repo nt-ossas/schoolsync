@@ -23,6 +23,26 @@ button {
     -webkit-text-align: center;
 }
 
+.animation-2{
+    width: 160px;
+    transition: .3s;
+}
+
+.animation-1{
+    width: 250px;
+    transition: .3s;
+}
+
+.animation-1 i,.animation-2 i{
+    transform: rotate(180deg);
+}
+
+.remove{
+    position: relative;
+    scale: 0.05;
+    transition: .3s;
+}
+
 .grid-duo{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -143,6 +163,7 @@ i{
 }
 .first{
     width: 94.5% !important;
+    transition: .3s;
 }
 .column{
     display: flex;

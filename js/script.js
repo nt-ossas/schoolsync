@@ -7,6 +7,7 @@ function show(n) {
     var scrollElements = document.querySelectorAll(`.event-element-${n}`);
 
     scroll.classList.toggle("first");
+    scroll.classList.toggle(`animation-${n}`);
     scrollElements.forEach(element => {
         element.classList.toggle("hidden");
     });
@@ -14,7 +15,7 @@ function show(n) {
     if (scroll.classList.contains("first")) {
         scroll.innerHTML = `<h4>${n === 2 ? 'Calendar' : 'News'}</h4><i class="fa-solid fa-circle-chevron-right" onclick="show(${n})"></i>`;
     } else {
-        scroll.innerHTML = `<h4>${n === 2 ? 'Calendar' : 'News'}</h4><i class="fa-solid fa-circle-chevron-left" onclick="show(${n})"></i>`;
+        scroll.innerHTML = `<h4>${n === 2 ? 'Calendar' : 'News'}</h4><i class="fa-solid fa-circle-chevron-right" onclick="show(${n})"></i>`;
     }
 }
 
@@ -24,6 +25,15 @@ function verifica() {
 
     if (nomeProva === "" || dataProva === "") {
         alert("Scrivi qualcosa porco dio");
+        return;
+    }
+
+    var today = new Date();
+    var provaDate = new Date(dataProva);
+    var maxDate = new Date('2026-12-31');
+
+    if (provaDate < today || provaDate > maxDate) {
+        alert("La data deve essere compresa tra oggi e l'anno prossimo!");
         return;
     }
 
@@ -38,7 +48,10 @@ function verifica() {
     evento.appendChild(deleteButton);
 
     deleteButton.addEventListener("click", function() {
-        evento.remove();
+        evento.classList.add("remove");
+        setTimeout(function() {
+            evento.remove();
+        }, 280);
     });
 
     var container = document.getElementById("scroll-2");
@@ -70,7 +83,10 @@ function news() {
     newsElement.appendChild(deleteButton);
 
     deleteButton.addEventListener("click", function() {
-        newsElement.remove();
+        newsElement.classList.add("remove");
+        setTimeout(function() {
+            newsElement.remove();
+        }, 280);
     });
 
     var container = document.getElementById("scroll-1");
