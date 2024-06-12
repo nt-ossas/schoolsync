@@ -188,6 +188,17 @@ tbody td:last-child{
 .grade{
     margin-right: -35px;
 }
+.sub input{
+    width: 120px !important;
+    margin-left: 5%;
+    text-align: left;
+    border-radius: 10px;
+    border-bottom: 2px solid #393A50;
+    box-shadow: 0px 0px 20px #393A50;
+    padding: 10px;
+    padding-left: 20px;
+    font-weight: normal;
+}
 @media screen and (min-width:800px){
     body{
         margin-inline:35%;

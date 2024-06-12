@@ -38,12 +38,16 @@ function verifica() {
     }
 
     var evento = document.createElement("div");
-    evento.classList.add("event-element-2", "event", "column");
+    evento.classList.add("event-element-2", "event", "column","small");
     evento.innerHTML = `<h4>${nomeProva} <hr> ${dataProva}</h4>`;
 
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
     deleteButton.classList.add("delete-button");
+
+    setTimeout(function() {
+        evento.classList.remove("small");
+    }, 1);
 
     evento.appendChild(deleteButton);
 
@@ -73,12 +77,16 @@ function news() {
     }
 
     var newsElement = document.createElement("div");
-    newsElement.classList.add("news", "column", "event-element-1");
+    newsElement.classList.add("news", "column", "event-element-1","small");
     newsElement.innerHTML = `<i class="fa-solid fa-file-invoice head" style="background-color:${colorNews};"></i><h4>${nomeNews}</h4>`;
 
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
     deleteButton.classList.add("delete-button_news");
+
+    setTimeout(function() {
+        newsElement.classList.remove("small");
+    }, 1);
 
     newsElement.appendChild(deleteButton);
 

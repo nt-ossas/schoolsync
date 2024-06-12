@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #1E1E2E;
     color: cornsilk;
     align-items: center;
@@ -7,57 +7,136 @@ body{
     margin-top: 30px;
     font-family: 'Poppins', sans-serif;
 }
-aside{
+
+aside {
     background-color: #28293D;
     transition: .3s;
     border-radius: 10px;
 }
-nav{
+
+nav {
     background-color: #28293D;
+    color: #4A90E2;
+    margin-bottom: 30px;
+    margin-inline: 3px;
+    padding: 10px;
+    padding-inline: 25px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 40%;
+    padding-top: 12px;
+}
+
+nav a i {
+    color: cornsilk;
+    font-size: 20px !important;
+}
+
+nav a i.on {
+    color: #1E1E2E;
+    background-color: cornsilk;
+    padding: 7px;
+    margin: -7px;
+    border-radius: 50%;
+}
+
+.description hr {
+    margin-block: 25px;
+}
+
+a {
     color: #4A90E2;
 }
 
-/* Per WebKit */
-button {
-    text-align: center;
-    -webkit-text-align: center;
+.description h4 {
+    margin: 0 !important;
 }
 
-.animation-2{
+.description {
+    background-color: #28293D;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 5px;
+    padding-inline: 15px;
+}
+
+hr {
+    margin-block: 0px;
+}
+
+footer {
+    background-color: #28293D;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 5px;
+    padding-inline: 15px;
+    color: #8f8b85;
+}
+
+.document {
+    color: #8f8b85;
+}
+
+.e404 {
+    text-align: center;
+    margin-top: 30%;
+}
+
+.e404 span {
+    font-size: 70px;
+}
+
+.e404 h3 {
+    color: #8f8b85;
+    margin-inline: -20%;
+}
+
+.small {
+    position: relative;
+    scale: .05;
+    transition: .3s;
+}
+
+.animation-2 {
     width: 160px;
     transition: .3s;
 }
 
-.animation-1{
+.animation-1 {
     width: 250px;
     transition: .3s;
 }
 
-.animation-1 i,.animation-2 i{
+.animation-1 i,
+.animation-2 i {
     transform: rotate(180deg);
 }
 
-.remove{
+.remove {
     position: relative;
     scale: 0.05;
     transition: .3s;
 }
 
-.grid-duo{
+.grid-duo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-bottom: 30px;
 }
-.grid-trio{
+
+.grid-trio {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
 }
-.grid-trio input{
+
+.grid-trio input {
     width: 60%;
 }
-.box{
+
+.box {
     width: 160px;
     height: 150px;
     background-color: #28293D;
@@ -65,67 +144,78 @@ button {
     border-radius: 10px;
     text-align: center;
 }
-.box h4{
+
+.box h4 {
     margin-top: 0em;
 }
+
 .scroll {
     display: flex;
     overflow-x: auto;
     margin-bottom: 30px;
     margin-right: -15px;
-    scrollbar-width: none; /* Nasconde la scrollbar nei browser che supportano questa proprietà */
+    scrollbar-width: none;
 }
-.scroll-2{
+
+.scroll-2 {
     display: flex;
     overflow-x: auto;
     margin-bottom: 30px;
     margin-inline: -5px;
-    scrollbar-width: none; /* Nasconde la scrollbar nei browser che supportano questa proprietà */
+    scrollbar-width: none;
 }
+
 .news {
-    min-width: 250px; /* Larghezza minima di ciascun elemento .news */
-    height: 150px; /* Altezza di ciascun elemento .news */
-    margin-right: 10px; /* Spaziatura tra gli elementi .news */
+    min-width: 250px;
+    height: 150px;
+    margin-right: 10px;
     margin-left: 2px;
-    background: #393A50; /* Colore di sfondo degli elementi .news */
-    color: cornsilk; /* Colore del testo degli elementi .news */
+    background: #393A50;
+    color: cornsilk;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    flex-shrink: 0; /* Impedisce il ridimensionamento degli elementi */
+    transition: .3s;
+    flex-shrink: 0;
 }
-.grade-container{
+
+.grade-container {
     display: flex;
     gap: 30px;
     margin-bottom: 30px;
 }
-.grade{
+
+.grade {
     width: 65px;
     height: 65px;
     border-radius: 50%;
     background-color: #28293D;
-    flex-shrink: 0; /* Impedisce il ridimensionamento degli elementi */
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     text-align: center;
     line-height: 65px;
     font-size: 30px;
 }
-.event{
-    min-width: 160px; /* Larghezza minima di ciascun elemento .news */
-    height: 150px; /* Altezza di ciascun elemento .news */
-    margin-right: 10px; /* Spaziatura tra gli elementi .news */
+
+.event {
+    min-width: 160px;
+    height: 150px;
+    margin-right: 10px;
     margin-left: 2px;
-    background: #393A50; /* Colore di sfondo degli elementi .news */
-    color: cornsilk; /* Colore del testo degli elementi .news */
+    background: #393A50;
+    color: cornsilk;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    flex-shrink: 0; /* Impedisce il ridimensionamento degli elementi */
+    transition: .3s;
+    flex-shrink: 0;
 }
-input,select{
+
+input,
+select {
     width: 225px;
     padding: 5px;
     border-radius: 10px;
@@ -136,20 +226,23 @@ input,select{
     font-weight: bold;
     appearance: none;
 }
-button.add{
+
+button.add {
     background-color: #393A50;
     border: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    flex-shrink: 0; /* Impedisce il ridimensionamento degli elementi */
+    flex-shrink: 0;
 }
-button.add::before{
+
+button.add::before {
     content: "+";
     font-size: 30px;
     color: cornsilk;
 }
-#media-tot{
+
+#media-tot {
     height: 85px;
     width: 85px;
     line-height: 85px;
@@ -158,24 +251,31 @@ button.add::before{
     margin-inline: 25%;
     margin-top: -10px;
 }
-i{
-    font-size:40px;
+
+i {
+    font-size: 40px;
 }
-.first{
+
+.first {
     width: 94.5% !important;
     transition: .3s;
 }
-.column{
+
+.column {
     display: flex;
     flex-direction: column;
 }
-.intro h4, .intro i{
+
+.intro h4,
+.intro i {
     margin-top: 0em;
 }
-.hidden{
+
+.hidden {
     display: none;
 }
-.delete-button{
+
+.delete-button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -189,7 +289,8 @@ i{
     border-bottom-left-radius: 0px;
     border-top-left-radius: 10px;
 }
-.delete-button_news{
+
+.delete-button_news {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -203,43 +304,51 @@ i{
     border-bottom-left-radius: 0px;
     border-top-left-radius: 10px;
 }
-i.mini{
+
+i.mini {
     font-size: 20px;
     margin-top: 5px;
     color: #28293D;
 }
-.presentation{
+
+.presentation {
     margin-left: 5px;
 }
-.avviso{
+
+.avviso {
     color: #8f8b85;
     text-align: center;
 }
-h5.avviso{
+
+h5.avviso {
     text-align: left;
     margin-left: 5px;
     margin-bottom: -5px;
 }
-.modulo input{
+
+.modulo input {
     margin-inline: 15%;
     width: 70%;
     border: 2px solid #1E1E2E;
     border-radius: 15px;
     padding: 5px;
 }
-.moduli{
+
+.moduli {
     background-color: #28293D;
     border-radius: 10px;
     padding-block: 30px;
 }
-.close-modulo{
+
+.close-modulo {
     position: absolute;
     top: 5%;
     right: 10%;
     border: 0;
     color: cornsilk;
 }
-.head{
+
+.head {
     background-color: #28293D;
     margin-top: -4px;
     margin-left: -200px;
@@ -253,7 +362,7 @@ h5.avviso{
     border-bottom-left-radius: 0px;
     border-top-left-radius: 10px;
 }
-nav{
+nav {
     margin-bottom: 30px;
     margin-inline: 3px;
     background-color: #393A50;
@@ -265,37 +374,45 @@ nav{
     gap: 40%;
     padding-top: 12px;
 }
-nav a i{
+
+nav a i {
     color: cornsilk;
     font-size: 20px !important;
 }
-nav a i.on{
+
+nav a i.on {
     color: #1E1E2E;
     background-color: cornsilk;
     padding: 7px;
     margin: -7px;
     border-radius: 50%;
 }
-.description hr{
+
+.description hr {
     margin-block: 25px;
 }
+
 a {
     color: #4A90E2;
 }
-.description h4{
+
+.description h4 {
     margin: 0 !important;
 }
-.description{
+
+.description {
     background-color: #28293D;
     border-radius: 10px;
     margin-top: 20px;
     padding: 5px;
     padding-inline: 15px;
 }
-hr{
+
+hr {
     margin-block: 0px;
 }
-footer{
+
+footer {
     background-color: #28293D;
     margin-top: 20px;
     border-radius: 10px;
@@ -303,17 +420,21 @@ footer{
     padding-inline: 15px;
     color: #8f8b85;
 }
-.document{
+
+.document {
     color: #8f8b85;
 }
-.e404{
+
+.e404 {
     text-align: center;
     margin-top: 30%;
 }
-.e404 span{
+
+.e404 span {
     font-size: 70px;
 }
-.e404 h3{
+
+.e404 h3 {
     color: #8f8b85;
     margin-inline: -20%;
 }

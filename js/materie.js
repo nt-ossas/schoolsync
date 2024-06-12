@@ -274,26 +274,24 @@ function updateSubjectName(index) {
 }
 
 function removeAllVotes(subjectIndex) {
-    subjects[subjectIndex].voti = [];
-    subjects[subjectIndex].pesi = [];
-    saveSubjects(); // Save to local storage
+    var votes = subjects[subjectIndex].voti;
+    var weights = subjects[subjectIndex].pesi;
 
-    const mediaf = document.getElementById("mediaf-" + subjectIndex);
-    var to6 = document.getElementById("to6-" + subjectIndex);
-    var button = document.querySelector("#materia button[onclick='cambio(" + subjectIndex + ")']");
+    if (votes.length === 0) {
+        alert("Non ci sono voti da rimuovere!");
+        return;
+    }
+
+    votes.pop();
+    weights.pop();
+    saveSubjects(); 
+
     var tbody = document.getElementById("media-" + subjectIndex);
-    tbody.innerHTML = '';
-    mediaf.style.backgroundColor = "#4A90E2";
-    mediaf.style.boxShadow = `0 0 25px 0 #4A90E2`;
-    mediaf.textContent = "-";
-    button.textContent = "-";
-    button.style.backgroundColor = `${mediaf.style.backgroundColor}`;
-    button.style.boxShadow = `0 0 10px 0 ${mediaf.style.backgroundColor}`;
-    to6.textContent = "Nessuna media calcolata";
-    to6.style.color = `${mediaf.style.backgroundColor}`;
-    to6.style.marginInline = "25%";
+    tbody.removeChild(tbody.lastChild);
 
+    calc(subjectIndex);
     calculateTotalAverage();
+    location.reload();
 }
 
 function cambio(subjectIndex) {
