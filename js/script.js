@@ -1,5 +1,7 @@
 window.onload = function(){
     orario();
+    loadNews();
+    loadEvents();
 }
 
 function show(n) {
@@ -38,7 +40,7 @@ function verifica() {
     }
 
     var evento = document.createElement("div");
-    evento.classList.add("event-element-2", "event", "column","small");
+    evento.classList.add("event-element-2", "event", "column", "small");
     evento.innerHTML = `<h4>${nomeProva} <hr> ${dataProva}</h4>`;
 
     var deleteButton = document.createElement("button");
@@ -55,6 +57,7 @@ function verifica() {
         evento.classList.add("remove");
         setTimeout(function() {
             evento.remove();
+            saveEvents();
         }, 280);
     });
 
@@ -65,6 +68,8 @@ function verifica() {
     if(calendar.classList.contains("first")){
         evento.classList.add("hidden");
     }
+
+    saveEvents();
 }
 
 function news() {
@@ -77,7 +82,7 @@ function news() {
     }
 
     var newsElement = document.createElement("div");
-    newsElement.classList.add("news", "column", "event-element-1","small");
+    newsElement.classList.add("news", "column", "event-element-1", "small");
     newsElement.innerHTML = `<i class="fa-solid fa-file-invoice head" style="background-color:${colorNews};"></i><h4>${nomeNews}</h4>`;
 
     var deleteButton = document.createElement("button");
@@ -94,6 +99,7 @@ function news() {
         newsElement.classList.add("remove");
         setTimeout(function() {
             newsElement.remove();
+            saveNews();
         }, 280);
     });
 
@@ -103,6 +109,89 @@ function news() {
     var newsSection = document.getElementById("element-1");
     if(newsSection.classList.contains("first")){
         newsElement.classList.add("hidden");
+    }
+
+    saveNews();
+}
+
+function saveNews() {
+    var newsElements = document.querySelectorAll(".event-element-1");
+    var newsData = [];
+
+    newsElements.forEach(element => {
+        var title = element.querySelector("h4").innerText;
+        var color = element.querySelector(".head").style.backgroundColor;
+        newsData.push({ title: title, color: color });
+    });
+
+    localStorage.setItem("news", JSON.stringify(newsData));
+}
+
+function loadNews() {
+    var newsData = JSON.parse(localStorage.getItem("news"));
+    if (newsData) {
+        newsData.forEach(news => {
+            var newsElement = document.createElement("div");
+            newsElement.classList.add("news", "column", "event-element-1");
+            newsElement.innerHTML = `<i class="fa-solid fa-file-invoice head" style="background-color:${news.color};"></i><h4>${news.title}</h4>`;
+
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
+            deleteButton.classList.add("delete-button_news");
+
+            newsElement.appendChild(deleteButton);
+
+            deleteButton.addEventListener("click", function() {
+                newsElement.classList.add("remove");
+                setTimeout(function() {
+                    newsElement.remove();
+                    saveNews();
+                }, 280);
+            });
+
+            var container = document.getElementById("scroll-1");
+            container.appendChild(newsElement);
+        });
+    }
+}
+
+function saveEvents() {
+    var eventElements = document.querySelectorAll(".event-element-2");
+    var eventData = [];
+
+    eventElements.forEach(element => {
+        var content = element.querySelector("h4").innerText;
+        eventData.push(content);
+    });
+
+    localStorage.setItem("events", JSON.stringify(eventData));
+}
+
+function loadEvents() {
+    var eventData = JSON.parse(localStorage.getItem("events"));
+    if (eventData) {
+        eventData.forEach(event => {
+            var evento = document.createElement("div");
+            evento.classList.add("event-element-2", "event", "column");
+            evento.innerHTML = `<h4>${event}</h4>`;
+
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
+            deleteButton.classList.add("delete-button");
+
+            evento.appendChild(deleteButton);
+
+            deleteButton.addEventListener("click", function() {
+                evento.classList.add("remove");
+                setTimeout(function() {
+                    evento.remove();
+                    saveEvents();
+                }, 280);
+            });
+
+            var container = document.getElementById("scroll-2");
+            container.appendChild(evento);
+        });
     }
 }
 
