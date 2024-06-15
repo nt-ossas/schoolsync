@@ -1,23 +1,19 @@
 var i = 0;
 var subjects = [];
 
-// Load subjects from local storage on page load
 window.onload = function() {
     loadSubjects();
 }
 
-// Save subjects to local storage
 function saveSubjects() {
     localStorage.setItem('subjects', JSON.stringify(subjects));
 }
 
-// Load subjects from local storage
 function loadSubjects() {
     const storedSubjects = localStorage.getItem('subjects');
     if (storedSubjects) {
         subjects = JSON.parse(storedSubjects);
         subjects.forEach((subject, index) => {
-            // Create UI elements for each subject and its votes
             createSubject(index);
             subject.voti.forEach((voto, votoIndex) => {
                 const peso = subject.pesi[votoIndex];
@@ -46,7 +42,7 @@ function add(subjectIndex) {
 
     subjects[subjectIndex].voti.push(voto);
     subjects[subjectIndex].pesi.push(peso);
-    saveSubjects(); // Save to local storage
+    saveSubjects();
 
     addVoteToUI(subjectIndex, voto, peso);
     calc(subjectIndex);
@@ -89,9 +85,11 @@ function calc(subjectIndex) {
     }
 
     if (somma_pesi === 0) {
-        mediaf.textContent = "";
+        mediaf.textContent = "-";
+        mediaf.style.backgroundColor = "";
+        mediaf.style.boxShadow = "";
         comment.textContent = "";
-        return;
+        return 0;
     }
 
     var media = somma_voti / somma_pesi;
@@ -100,32 +98,8 @@ function calc(subjectIndex) {
         mediaf.style.backgroundColor = "green";
     } else if (media < 5) {
         mediaf.style.backgroundColor = "red";
-        
-        const ins = document.getElementById("grade-container");
-        const avviso = document.getElementById("avviso");
-        var grade_ins = document.createElement("div");
-
-        grade_ins.classList.add("grade");
-        grade_ins.style.backgroundColor = "red";
-        grade_ins.style.boxShadow = "0 0 5px 0 red";
-        grade_ins.style.scale = ".75";
-        grade_ins.textContent = media.toFixed(1);
-        ins.insertBefore(grade_ins, ins.firstChild);
-        avviso.textContent = "";
     } else if (media < 6) {
         mediaf.style.backgroundColor = "orange";
-        
-        const ins = document.getElementById("grade-container");
-        const avviso = document.getElementById("avviso");
-        var grade_ins = document.createElement("div");
-
-        grade_ins.classList.add("grade");
-        grade_ins.style.backgroundColor = "orange";
-        grade_ins.style.boxShadow = "0 0 5px 0 orange";
-        grade_ins.style.scale = ".75";
-        grade_ins.textContent = media.toFixed(1);
-        ins.insertBefore(grade_ins, ins.firstChild);
-        avviso.textContent = "";
     }
 
     var button = document.querySelector("#materia button[onclick='cambio(" + subjectIndex + ")']");
@@ -137,6 +111,41 @@ function calc(subjectIndex) {
     mediaf.textContent = media.toFixed(2);
 
     calculateTotalAverage();
+    ins(subjectIndex, media);
+
+    return media;
+}
+
+function ins(subjectIndex, media) {
+    const gradeContainer = document.getElementById("grade-container");
+    const avviso = document.getElementById("avviso");
+    const existingGrade = document.getElementById(`ins-${subjectIndex}`);
+    
+    if (existingGrade) {
+        existingGrade.remove();
+    }
+    if (media >= 6 || media === 0 || isNaN(media)) {
+        return;
+    } else {
+        const gradeIns = document.createElement("div");
+        gradeIns.id = `ins-${subjectIndex}`;
+        
+        if (media < 6) {
+            gradeIns.style.backgroundColor = "orange";
+            gradeIns.style.boxShadow = "0 0 5px 0 orange";
+        }
+        if (media < 5){
+            gradeIns.style.backgroundColor = "red";
+            gradeIns.style.boxShadow = "0 0 5px 0 red";
+        }
+        
+        gradeIns.classList.add("grade");
+        gradeIns.style.transform = "scale(.75)";
+        gradeIns.textContent = media.toFixed(1);
+        
+        gradeContainer.insertBefore(gradeIns, gradeContainer.firstChild);
+        avviso.textContent = "";
+    }
 }
 
 function calculateNeededGrade(subjectIndex) {
@@ -182,7 +191,7 @@ function materia() {
         name: `Materia ${subjects.length + 1}`
     };
     subjects.push(newSubject);
-    saveSubjects(); // Save to local storage
+    saveSubjects();
 
     createSubject(subjects.length - 1);
     i++;
@@ -192,7 +201,12 @@ function createSubject(index) {
     var materia = document.getElementById("materia");
     var materia2 = document.createElement("li");
     materia.appendChild(materia2);
-    materia2.classList.add("sub");
+    materia2.classList.add("sub", "small");
+
+    setTimeout(function() {
+        materia2.classList.remove("small");
+    }, 1);
+
     materia2.innerHTML = `<button onclick="cambio(${index})" class="scegli">-</button><input type="text" placeholder="Materia ${index+1}" id="i${index + 1}" onblur="updateSubjectName(${index})">`;
 
     var nuovaMateria = document.createElement("main");
@@ -270,7 +284,7 @@ function createSubject(index) {
 function updateSubjectName(index) {
     var input = document.getElementById(`i${index + 1}`);
     subjects[index].name = input.value || `Materia ${index + 1}`;
-    saveSubjects(); // Save to local storage
+    saveSubjects();
 }
 
 function removeAllVotes(subjectIndex) {
@@ -289,9 +303,9 @@ function removeAllVotes(subjectIndex) {
     var tbody = document.getElementById("media-" + subjectIndex);
     tbody.removeChild(tbody.lastChild);
 
-    calc(subjectIndex);
+    var newMedia = calc(subjectIndex);
+    ins(subjectIndex, newMedia);
     calculateTotalAverage();
-    location.reload();
 }
 
 function cambio(subjectIndex) {
@@ -347,12 +361,15 @@ function mat() {
 
     var subjectIndex = subjects.length - 1;
     subjects.pop();
-    saveSubjects(); // Save to local storage
+    saveSubjects();
 
     var materia = document.getElementById("materia");
     var lastMateriaElement = materia.lastElementChild;
     if (lastMateriaElement) {
-        materia.removeChild(lastMateriaElement);
+        lastMateriaElement.classList.add("remove"); 
+        setTimeout(function() {
+            materia.removeChild(lastMateriaElement);
+        }, 280);
     }
 
     var lastMainElement = document.getElementById("materia-" + (subjectIndex + 1));
@@ -363,7 +380,6 @@ function mat() {
     i--;
 
     calculateTotalAverage();
-    location.reload();
 }
 
 function menu() {
@@ -371,7 +387,6 @@ function menu() {
     aside.classList.toggle("translate");
 }
 
-// Load subjects from local storage of the materia.html file
 document.addEventListener("DOMContentLoaded", function() {
     const storedMateriaData = localStorage.getItem('materiaData');
     if (storedMateriaData) {

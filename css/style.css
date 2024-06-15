@@ -414,7 +414,7 @@ hr {
 
 footer {
     background-color: #28293D;
-    margin-top: 20px;
+    margin-block: 30px;
     border-radius: 10px;
     padding: 5px;
     padding-inline: 15px;
