@@ -62,7 +62,7 @@ function verifica() {
     });
 
     var container = document.getElementById("scroll-2");
-    container.insertBefore(evento, container.firstChild);
+    container.appendChild(evento);
     
     var calendar = document.getElementById("element-2");
     if(calendar.classList.contains("first")){
@@ -104,7 +104,7 @@ function news() {
     });
 
     var container = document.getElementById("scroll-1");
-    container.insertBefore(newsElement, container.firstChild);
+    container.appendChild(newsElement);
     
     var newsSection = document.getElementById("element-1");
     if(newsSection.classList.contains("first")){
@@ -132,7 +132,7 @@ function loadNews() {
     if (newsData) {
         newsData.forEach(news => {
             var newsElement = document.createElement("div");
-            newsElement.classList.add("news", "column", "event-element-1");
+            newsElement.classList.add("news", "column", "event-element-1", "hidden");
             newsElement.innerHTML = `<i class="fa-solid fa-file-invoice head" style="background-color:${news.color};"></i><h4>${news.title}</h4>`;
 
             var deleteButton = document.createElement("button");
@@ -172,7 +172,7 @@ function loadEvents() {
     if (eventData) {
         eventData.forEach(event => {
             var evento = document.createElement("div");
-            evento.classList.add("event-element-2", "event", "column");
+            evento.classList.add("event-element-2", "event", "column", "hidden");
             evento.innerHTML = `<h4>${event}</h4>`;
 
             var deleteButton = document.createElement("button");
