@@ -17,7 +17,9 @@ function loadSubjects() {
             createSubject(index);
             subject.voti.forEach((voto, votoIndex) => {
                 const peso = subject.pesi[votoIndex];
-                addVoteToUI(index, voto, peso);
+                const type = subject.tipologie[votoIndex];
+                const date = subject.date[votoIndex];
+                addVoteToUI(index, voto, peso, type, date);
             });
             document.getElementById(`i${index + 1}`).value = subject.name || `Materia ${index + 1}`;
             calc(index);
@@ -29,6 +31,15 @@ function add(subjectIndex) {
     var voto = parseFloat(document.getElementById("voto-" + subjectIndex).value);
     var peso = parseFloat(document.getElementById("peso-" + subjectIndex).value);
     peso = Number(peso);
+    var type = document.getElementById("type-" + subjectIndex).value;
+    var date = document.getElementById("date-grade-" + subjectIndex).value;
+
+    if (!date) {
+        var today = new Date();
+        var day = ("0" + today.getDate()).slice(-2);
+        var month = ("0" + (today.getMonth() + 1)).slice(-2);
+        date = today.getFullYear() + "-" + month + "-" + day;
+    }
 
     if (peso < 1 || peso > 100) {
         alert("L'intervallo deve andare da 1 a 100!");
@@ -40,37 +51,85 @@ function add(subjectIndex) {
         return;
     }
 
+    if (!subjects[subjectIndex].voti) subjects[subjectIndex].voti = [];
+    if (!subjects[subjectIndex].pesi) subjects[subjectIndex].pesi = [];
+    if (!subjects[subjectIndex].tipologie) subjects[subjectIndex].tipologie = [];
+    if (!subjects[subjectIndex].date) subjects[subjectIndex].date = [];
+
     subjects[subjectIndex].voti.push(voto);
     subjects[subjectIndex].pesi.push(peso);
+    subjects[subjectIndex].tipologie.push(type);
+    subjects[subjectIndex].date.push(date);
     saveSubjects();
 
-    addVoteToUI(subjectIndex, voto, peso);
+    addVoteToUI(subjectIndex, voto, peso, type, date);
     calc(subjectIndex);
     calculateTotalAverage();
 }
 
-function addVoteToUI(subjectIndex, voto, peso) {
+function addVoteToUI(subjectIndex, voto, peso, type, date) {
     var tbody = document.getElementById("media-" + subjectIndex);
     var tr = document.createElement("tr");
-    var td = document.createElement("td");
-    var td2 = document.createElement("td");
-    td.textContent = voto;
-    td2.textContent = peso + "%";
+    var tdVoto = document.createElement("td");
+    var tdPeso = document.createElement("td");
+    var tdType = document.createElement("td");
+    var tdDate = document.createElement("td");
+
+    tdVoto.textContent = voto;
+    tdPeso.textContent = peso + "%";
+    tdType.textContent = type === '1' ? "Scritto" : "Orale";
+    tdDate.textContent = date;
+
+    tr.appendChild(tdVoto);
+    tr.appendChild(tdPeso);
 
     tbody.appendChild(tr);
-    tr.appendChild(td);
-    tr.appendChild(td2);
+
+    tr.dataset.subjectIndex = subjectIndex;
+    tr.dataset.votoIndex = tbody.childElementCount - 1;
+    tr.dataset.type = type;
+    tr.dataset.date = date;
+    tr.addEventListener('click', showPopup);
 
     if (voto < 5) {
-        td.style.backgroundColor = "rgba(238, 75, 43, .7)";
-        td2.style.backgroundColor = "rgba(238, 75, 43, .7)";
+        tdVoto.style.backgroundColor = "rgba(238, 75, 43, .7)";
+        tdPeso.style.backgroundColor = "rgba(238, 75, 43, .7)";
     } else if (voto < 6) {
-        td.style.backgroundColor = "rgba(255, 165, 0, .7)";
-        td2.style.backgroundColor = "rgba(255, 165, 0, .7)";
+        tdVoto.style.backgroundColor = "rgba(255, 165, 0, .7)";
+        tdPeso.style.backgroundColor = "rgba(255, 165, 0, .7)";
     } else {
-        td.style.backgroundColor = "rgba(34,139,34,.7)";
-        td2.style.backgroundColor = "rgba(34,139,34,.7)";
+        tdVoto.style.backgroundColor = "rgba(34, 139, 34, .7)";
+        tdPeso.style.backgroundColor = "rgba(34, 139, 34, .7)";
     }
+}
+
+function showPopup(event) {
+    var subjectIndex = event.currentTarget.dataset.subjectIndex;
+    var votoIndex = event.currentTarget.dataset.votoIndex;
+
+    var voto = subjects[subjectIndex].voti[votoIndex];
+    var peso = subjects[subjectIndex].pesi[votoIndex];
+    var type = subjects[subjectIndex].tipologie[votoIndex];
+    var date = subjects[subjectIndex].date[votoIndex];
+
+    var popup = document.getElementById("popup");
+    var overlay = document.getElementById("overlay");
+
+    document.getElementById("popup-voto").textContent = "Voto: " + voto;
+    document.getElementById("popup-peso").textContent = "Peso: " + peso + "%";
+    document.getElementById("popup-tipologia").textContent = "Tipologia: " + (type === '1' ? "Scritto" : "Orale");
+    document.getElementById("popup-data").textContent = "Data: " + date;
+
+    popup.style.display = "block";
+    overlay.style.display = "block";
+}
+
+function closePopup() {
+    var popup = document.getElementById("popup");
+    var overlay = document.getElementById("overlay");
+
+    popup.style.display = "none";
+    overlay.style.display = "none";
 }
 
 function calc(subjectIndex) {
@@ -78,6 +137,7 @@ function calc(subjectIndex) {
     var somma_pesi = 0;
     const mediaf = document.getElementById("mediaf-" + subjectIndex);
     const comment = document.getElementById("comment-" + subjectIndex);
+    var button = document.querySelector("#materia button[onclick='cambio(" + subjectIndex + ")']");
 
     for (let j = 0; j < subjects[subjectIndex].voti.length; j++) {
         somma_voti += subjects[subjectIndex].voti[j] * subjects[subjectIndex].pesi[j];
@@ -85,10 +145,13 @@ function calc(subjectIndex) {
     }
 
     if (somma_pesi === 0) {
-        mediaf.textContent = "-";
+        mediaf.textContent = "N.D.";
         mediaf.style.backgroundColor = "";
         mediaf.style.boxShadow = "";
         comment.textContent = "";
+        button.textContent = "N.D.";
+        button.style.backgroundColor = "#4A90E2";
+        button.style.boxShadow = "0px 0px 10px #4A90E2";
         return 0;
     }
 
@@ -102,7 +165,6 @@ function calc(subjectIndex) {
         mediaf.style.backgroundColor = "orange";
     }
 
-    var button = document.querySelector("#materia button[onclick='cambio(" + subjectIndex + ")']");
     button.textContent = media.toFixed(2);
     button.style.backgroundColor = `${mediaf.style.backgroundColor}`;
     button.style.boxShadow = `0 0 10px 0 ${mediaf.style.backgroundColor}`;
@@ -207,7 +269,7 @@ function createSubject(index) {
         materia2.classList.remove("small");
     }, 1);
 
-    materia2.innerHTML = `<button onclick="cambio(${index})" class="scegli">-</button><input type="text" placeholder="Materia ${index+1}" id="i${index + 1}" onblur="updateSubjectName(${index})">`;
+    materia2.innerHTML = `<button onclick="cambio(${index})" class="scegli">N.D.</button><input type="text" placeholder="Materia ${index+1}" id="i${index + 1}" onblur="updateSubjectName(${index})">`;
 
     var nuovaMateria = document.createElement("main");
     nuovaMateria.classList.add("materia");
@@ -256,6 +318,13 @@ function createSubject(index) {
                     <option value="2">2</option>
                 </select>
                 <input type="text" placeholder="100%" value="100" id="peso-${index}">
+                <label class="piccolo" style="margin-right:10px;">Tipologia</label>
+                <label class="piccolo">Data</label>
+                <select id="type-${index}" class="piccolo">
+                    <option value="1"><i class="fa-solid fa-pen"></i> Scritto</option>
+                    <option value="2"><i class="fa-solid fa-ear-listen"></i> Orale</option>
+                </select>
+                <input type="date" id="date-grade-${index}" class="piccolo">
             </div>
             <div class="flex-3">
                 <button onclick="add(${index})" class="add" id="add-${index}" title="Aggiungi un voto"></button>
@@ -272,9 +341,10 @@ function createSubject(index) {
                 <tbody id="media-${index}">
                 </tbody>
             </table>
-            <h1 class="mediaf" id="mediaf-${index}">-</h1>
+            <h1 class="mediaf" id="mediaf-${index}">N.D.</h1>
             <h5 class="comment" id="comment-${index}"></h5>
             <h5 id="to6-${index}" style="text-align:center;"></h5>
+            <div class="spessore">zao</div>
         </div>
     `;
 
@@ -303,6 +373,7 @@ function removeAllVotes(subjectIndex) {
     var tbody = document.getElementById("media-" + subjectIndex);
     tbody.removeChild(tbody.lastChild);
 
+    calc(subjectIndex);
     var newMedia = calc(subjectIndex);
     ins(subjectIndex, newMedia);
     calculateTotalAverage();
@@ -310,9 +381,11 @@ function removeAllVotes(subjectIndex) {
 
 function cambio(subjectIndex) {
     var materias = document.querySelectorAll(".materia");
+    var footer = document.querySelector("footer");
     materias.forEach(element => {
         element.classList.add("off");
     });
+    footer.classList.toggle("off");
     var materiaSelezionata = document.querySelector("#materia-" + (subjectIndex + 1));
     materiaSelezionata.classList.toggle("off");
     materiaSelezionata.classList.toggle("translate");
@@ -333,7 +406,7 @@ function calculateTotalAverage() {
 
     const mediaTotElement = document.getElementById("media-tot");
     if (totalSommaPesi === 0) {
-        mediaTotElement.textContent = "-";
+        mediaTotElement.textContent = "N.D.";
         mediaTotElement.style.backgroundColor = "#4A90E2";
         mediaTotElement.style.boxShadow = `0 0 25px 0 #4A90E2`;
         return;

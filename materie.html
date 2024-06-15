@@ -24,15 +24,11 @@
         <a href="https://nt-ossas.github.io/schoolsync/materie"><i class="fa-solid fa-list on"></i></a>
         <a href="https://nt-ossas.github.io/schoolsync/about"><i class="fa-regular fa-address-card"></i></a>
     </nav>
-    <footer>
-        <h3>Note:</h3>
-        <h5>Arriverà presto un restyle grafico per la sezione "Medie Insufficienti" con delle animazioni.</h5>
-    </footer>
     <!--- media -->
     <div class="grid-duo">
         <div class="box">
             <h4>Media totale</h4>
-            <div id="media-tot" class="mediaf">-</div>
+            <div id="media-tot" class="mediaf">N.D.</div>
         </div>
         <div class="box">
             <!--- grade -->
@@ -52,7 +48,18 @@
     <!--- materie -->
     <div id="body">
     </div>
+    <div id="popup" class="popup">
+        <h3>Dettagli Voto</h3>
+        <p id="popup-voto"></p>
+        <p id="popup-peso"></p>
+        <p id="popup-tipologia"></p>
+        <p id="popup-data"></p>
+        <button onclick="closePopup()" class="close">Chiudi</button>
+    </div>
+    <div id="overlay" class="overlay" onclick="closePopup()"></div>    
     <footer id="foot">
+        <h3>Note:</h3>
+        <h5>Arriverà presto un restyle grafico per la sezione "Medie Insufficienti" con delle animazioni.</h5>
         <h6 style="text-align: center;">&copy; 2024 SchoolSync - All Rights Reserved - Ossas</h6>
     </footer>
 </body>
