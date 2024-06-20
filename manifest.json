@@ -1,0 +1,16 @@
+{
+    "name": "SchoolSync",
+    "short_name": "SchoolSync",
+    "start_url": ".",
+    "background_color": "#1E1E2E",
+    "theme_color": "#28293D",
+    "description": "Il tuo registro elettronico personale.",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "img/TECHZONE_logo.png",
+        "sizes": "1077x1077",
+        "type": "image/png"
+      }
+    ] 
+}
