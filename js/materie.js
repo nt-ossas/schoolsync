@@ -31,7 +31,6 @@ function loadTotalAverage() {
         setTotalAverageStyle(mediaTot);
     } else {
         mediaTotElement.textContent = "N.D.";
-        mediaTotElement.style.backgroundColor = "#4A90E2";
     }
 }
 
@@ -378,9 +377,9 @@ function createSubject(index) {
                     <option value="1"><i class="fa-solid fa-pen"></i> Scritto</option>
                     <option value="2"><i class="fa-solid fa-ear-listen"></i> Orale</option>
                 </select>
-                <input type="date" id="date-grade-${index}" class="piccolo">
+                <input type="date" id="date-grade-${index}" class="piccolo" placeholder="Data">
             </div>
-            <div class="flex-3">
+            <div class="grid-trio" style="margin-left:38px;">
                 <button onclick="add(${index})" class="add" id="add-${index}" title="Aggiungi un voto"></button>
                 <button onclick="calculateNeededGrade(${index})" class="calc-needed" id="calc-needed-${index}" title="Calcola che voti devi prendere per avere  la media del 6">6</button>
                 <button onclick="removeAllVotes(${index})" class="remove-all" id="remove-all-${index}" title="Rimuovi tutti i voti di questa materia">-</button>
@@ -463,7 +462,6 @@ function calculateTotalAverage() {
     const mediaTotElement = document.getElementById("media-tot");
     if (totalSommaPesi === 0) {
         mediaTotElement.textContent = "N.D.";
-        mediaTotElement.style.backgroundColor = "#4A90E2";
         return;
     }
 
