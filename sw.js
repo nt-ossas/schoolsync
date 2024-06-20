@@ -9,7 +9,7 @@ self.addEventListener("install", e => {
                 "./css/style.css", 
                 "./css/desktop.css", 
                 "./css/materia.css", 
-                "./img/TECHZONE_logo.png",
+                "./img/schoolsync_logo_500.png",
                 "./js/script.js",
                 "./js/width.js",
                 "./js/materie.js",
