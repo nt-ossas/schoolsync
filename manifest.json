@@ -2,8 +2,8 @@
     "name": "SchoolSync",
     "short_name": "SchoolSync",
     "start_url": ".",
-    "background_color": "#1E1E2E",
-    "theme_color": "#28293D",
+    "background_color": "#28293D",
+    "theme_color": "#1E1E2E",
     "description": "Il tuo registro elettronico personale.",
     "display": "standalone",
     "icons": [
