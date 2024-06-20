@@ -204,6 +204,7 @@ footer {
     text-align: center;
     line-height: 65px;
     font-size: 30px;
+    padding: 3px;
 }
 
 .event {
@@ -249,7 +250,7 @@ button.add::before {
     color: cornsilk;
 }
 
-#media-tot {
+.media-tot {
     height: 85px;
     width: 85px;
     line-height: 85px;
@@ -326,6 +327,7 @@ i.mini {
 .avviso {
     color: #8f8b85;
     text-align: center;
+    margin-left: 50px;
 }
 
 h5.avviso {

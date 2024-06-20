@@ -7,7 +7,37 @@ window.onload = function() {
 
 function saveSubjects() {
     localStorage.setItem('subjects', JSON.stringify(subjects));
+    saveTotalAverage();
 }
+
+function saveTotalAverage() {
+    const totalSommaVoti = subjects.reduce((sum, subject) => {
+        return sum + subject.voti.reduce((sumVoti, voto, index) => sumVoti + voto * subject.pesi[index], 0);
+    }, 0);
+
+    const totalSommaPesi = subjects.reduce((sum, subject) => {
+        return sum + subject.pesi.reduce((sumPesi, peso) => sumPesi + peso, 0);
+    }, 0);
+
+    const mediaTotale = totalSommaPesi ? totalSommaVoti / totalSommaPesi : 0;
+    localStorage.setItem('mediaTot', mediaTotale.toFixed(2));
+}
+
+function loadTotalAverage() {
+    const mediaTot = localStorage.getItem('mediaTot');
+    const mediaTotElement = document.getElementById('media-tot-index');
+    if (mediaTot !== null && mediaTot !== "0.00") {
+        mediaTotElement.textContent = mediaTot;
+        setTotalAverageStyle(mediaTot);
+    } else {
+        mediaTotElement.textContent = "N.D.";
+        mediaTotElement.style.backgroundColor = "#4A90E2";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadTotalAverage();
+});
 
 function loadSubjects() {
     const storedSubjects = localStorage.getItem('subjects');
@@ -24,6 +54,23 @@ function loadSubjects() {
             document.getElementById(`i${index + 1}`).value = subject.name || `Materia ${index + 1}`;
             calc(index);
         });
+    }
+
+    const mediaTot = localStorage.getItem('mediaTot');
+    if (mediaTot !== null) {
+        document.getElementById('media-tot-index').textContent = mediaTot;
+        setTotalAverageStyle(mediaTot);
+    }
+}
+
+function setTotalAverageStyle(mediaTot) {
+    const mediaTotElement = document.getElementById("media-tot-index");
+    if (mediaTot >= 6) {
+        mediaTotElement.style.backgroundColor = "green";
+    } else if (mediaTot < 5) {
+        mediaTotElement.style.backgroundColor = "red";
+    } else {
+        mediaTotElement.style.backgroundColor = "orange";
     }
 }
 
@@ -61,6 +108,7 @@ function add(subjectIndex) {
     subjects[subjectIndex].tipologie.push(type);
     subjects[subjectIndex].date.push(date);
     saveSubjects();
+    saveTotalVotes();  // Salva i voti totali
 
     addVoteToUI(subjectIndex, voto, peso, type, date);
     calc(subjectIndex);
@@ -147,11 +195,9 @@ function calc(subjectIndex) {
     if (somma_pesi === 0) {
         mediaf.textContent = "N.D.";
         mediaf.style.backgroundColor = "";
-        mediaf.style.boxShadow = "";
         comment.textContent = "";
         button.textContent = "N.D.";
         button.style.backgroundColor = "#4A90E2";
-        button.style.boxShadow = "0px 0px 10px #4A90E2";
         return 0;
     }
 
@@ -167,8 +213,6 @@ function calc(subjectIndex) {
 
     button.textContent = media.toFixed(2);
     button.style.backgroundColor = `${mediaf.style.backgroundColor}`;
-    button.style.boxShadow = `0 0 10px 0 ${mediaf.style.backgroundColor}`;
-    mediaf.style.boxShadow = `0 0 25px 0 ${mediaf.style.backgroundColor}`;
     comment.style.color = `${mediaf.style.backgroundColor}`;
     mediaf.textContent = media.toFixed(2);
 
@@ -182,29 +226,39 @@ function ins(subjectIndex, media) {
     const gradeContainer = document.getElementById("grade-container");
     const avviso = document.getElementById("avviso");
     const existingGrade = document.getElementById(`ins-${subjectIndex}`);
-    
+
     if (existingGrade) {
         existingGrade.remove();
     }
+
     if (media >= 6 || media === 0 || isNaN(media)) {
+        // Se non ci sono medie insufficienti, mostra l'avviso corretto
+        const insufficientGrades = subjects.some(subject => {
+            const media = calc(subjects.indexOf(subject));
+            return media < 6 && media !== 0 && !isNaN(media);
+        });
+
+        if (!insufficientGrades) {
+            avviso.textContent = "Nessuna media insufficiente";
+        } else {
+            avviso.textContent = "";
+        }
         return;
     } else {
         const gradeIns = document.createElement("div");
         gradeIns.id = `ins-${subjectIndex}`;
-        
+
         if (media < 6) {
             gradeIns.style.backgroundColor = "orange";
-            gradeIns.style.boxShadow = "0 0 5px 0 orange";
         }
-        if (media < 5){
+        if (media < 5) {
             gradeIns.style.backgroundColor = "red";
-            gradeIns.style.boxShadow = "0 0 5px 0 red";
         }
-        
+
         gradeIns.classList.add("grade");
         gradeIns.style.transform = "scale(.75)";
         gradeIns.textContent = media.toFixed(1);
-        
+
         gradeContainer.insertBefore(gradeIns, gradeContainer.firstChild);
         avviso.textContent = "";
     }
@@ -361,21 +415,23 @@ function removeAllVotes(subjectIndex) {
     var votes = subjects[subjectIndex].voti;
     var weights = subjects[subjectIndex].pesi;
 
-    if (votes.length === 0) {
-        alert("Non ci sono voti da rimuovere!");
-        return;
+    while (votes.length > 0) {
+        votes.pop();
+        weights.pop();
     }
 
-    votes.pop();
-    weights.pop();
-    saveSubjects(); 
+    saveSubjects();
+    saveTotalVotes(); 
 
     var tbody = document.getElementById("media-" + subjectIndex);
-    tbody.removeChild(tbody.lastChild);
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
 
+    // Calcola nuovamente la media per la materia
     calc(subjectIndex);
-    var newMedia = calc(subjectIndex);
-    ins(subjectIndex, newMedia);
+
+    // Calcola nuovamente la media totale
     calculateTotalAverage();
 }
 
@@ -408,7 +464,6 @@ function calculateTotalAverage() {
     if (totalSommaPesi === 0) {
         mediaTotElement.textContent = "N.D.";
         mediaTotElement.style.backgroundColor = "#4A90E2";
-        mediaTotElement.style.boxShadow = `0 0 25px 0 #4A90E2`;
         return;
     }
 
@@ -423,7 +478,7 @@ function calculateTotalAverage() {
         mediaTotElement.style.backgroundColor = "orange";
     }
 
-    mediaTotElement.style.boxShadow = `0 0 15px 0 ${mediaTotElement.style.backgroundColor}`;
+    saveTotalAverage();
 }
 
 function mat() {
@@ -433,31 +488,52 @@ function mat() {
     }
 
     var subjectIndex = subjects.length - 1;
+
+    // Rimuovi tutti i voti della materia prima di eliminare la materia stessa
+    removeVotesForSubject(subjectIndex);
+
+    // Rimuovi la materia dal localStorage e dall'interfaccia
     subjects.pop();
     saveSubjects();
 
+    // Rimuovi l'elemento visuale della materia
     var materia = document.getElementById("materia");
     var lastMateriaElement = materia.lastElementChild;
     if (lastMateriaElement) {
-        lastMateriaElement.classList.add("remove"); 
+        lastMateriaElement.classList.add("remove");
         setTimeout(function() {
             materia.removeChild(lastMateriaElement);
         }, 280);
     }
 
-    var lastMainElement = document.getElementById("materia-" + (subjectIndex + 1));
-    if (lastMainElement) {
-        document.body.removeChild(lastMainElement);
-    }
+    // Ricarica i voti totali
+    const totalVotes = loadTotalVotes();
+    addVotesToGradeContainer(totalVotes);
 
-    i--;
-
+    // Calcola nuovamente la media totale
     calculateTotalAverage();
+    location.reload();
 }
 
 function menu() {
     var aside = document.getElementById("aside");
     aside.classList.toggle("translate");
+}
+
+function removeVotesForSubject(subjectIndex) {
+    // Rimuovi tutti i voti della materia
+    var votesToRemove = subjects[subjectIndex].voti.length;
+    subjects[subjectIndex].voti = [];
+    subjects[subjectIndex].pesi = [];
+
+    // Salvataggio dei dati aggiornati
+    saveSubjects();
+
+    // Rimuovi le righe della tabella dei voti
+    var tbody = document.getElementById("media-" + subjectIndex);
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -467,4 +543,81 @@ document.addEventListener("DOMContentLoaded", function() {
         subjects = materiaData.subjects || [];
         loadSubjects();
     }
+});
+
+function saveTotalVotes() {
+    const totalVotes = subjects.flatMap(subject => subject.voti);
+    localStorage.setItem('totalVotes', JSON.stringify(totalVotes));
+}
+
+function loadTotalVotes() {
+    const storedTotalVotes = localStorage.getItem('totalVotes');
+    return storedTotalVotes ? JSON.parse(storedTotalVotes) : [];
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const storedMateriaData = localStorage.getItem('materiaData');
+    if (storedMateriaData) {
+        const materiaData = JSON.parse(storedMateriaData);
+        subjects = materiaData.subjects || [];
+        loadSubjects();
+    }
+
+    const totalVotes = loadTotalVotes();
+    addVotesToGradeContainer(totalVotes);
+
+    console.log('Total votes loaded:', totalVotes);
+});
+
+function addVotesToGradeContainer(votes) {
+    const gradeContainer = document.getElementById("grade-container-index");
+
+    // Svuota il container prima di aggiungere nuovi voti
+    while (gradeContainer.firstChild) {
+        gradeContainer.removeChild(gradeContainer.firstChild);
+    }
+
+    if (votes.length === 0) {
+        const avviso = document.createElement('h4');
+        avviso.textContent = "Ancora nessuna valutazione...";
+        avviso.classList.add('avviso');
+        avviso.id = 'avviso';
+        gradeContainer.appendChild(avviso);
+    } else {
+        // Aggiungi i voti al container
+        votes.reverse().forEach(vote => {
+            const gradeElement = document.createElement('div');
+            gradeElement.classList.add('grade');
+            
+            // Adjust the display based on the decimal part of the vote
+            let displayText = vote.toFixed(2);
+            if (displayText.endsWith('.50')) {
+                displayText = displayText.replace('.50', '½');
+            } else if (displayText.endsWith('.25')) {
+                displayText = displayText.replace('.25', '+');
+            } else if (displayText.endsWith('.75')) {
+                displayText = displayText.replace('.75', '−');
+            }
+
+            gradeElement.textContent = displayText;
+
+            // Applica lo stile in base al valore del voto
+            if (vote < 5) {
+                gradeElement.style.backgroundColor = "red";
+            } else if (vote < 6) {
+                gradeElement.style.backgroundColor = "orange";
+            } else {
+                gradeElement.style.backgroundColor = "green";
+            }
+
+            gradeContainer.appendChild(gradeElement);
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const totalVotes = loadTotalVotes();
+    addVotesToGradeContainer(totalVotes);
+
+    console.log('Total votes loaded:', totalVotes);
 });
