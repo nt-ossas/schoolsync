@@ -139,8 +139,8 @@ footer {
     margin-bottom: 30px;
 }
 
-.grid-trio input {
-    width: 60%;
+.grid-trio input, .grid-trio select {
+    width: 40%;
 }
 
 .box {
@@ -252,6 +252,12 @@ button.add::before {
 button.canc, button.add, button.calc-needed, button.remove-all{
     display: flex;
     justify-content: center;
+}
+
+.b-index{
+    width: 50px !important;
+    height: 50px !important;
+    line-height: 50px;
 }
 
 .media-tot {
