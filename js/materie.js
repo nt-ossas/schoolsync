@@ -26,11 +26,12 @@ function saveTotalAverage() {
 function loadTotalAverage() {
     const mediaTot = localStorage.getItem('mediaTot');
     const mediaTotElement = document.getElementById('media-tot-index');
-    if (mediaTot !== null && mediaTot !== "0.00") {
-        mediaTotElement.textContent = mediaTot;
-        setTotalAverageStyle(mediaTot);
-    } else {
+
+    mediaTotElement.textContent = mediaTot;
+    setTotalAverageStyle(mediaTot);
+    if (mediaTot === null || mediaTot === "0.00") {
         mediaTotElement.textContent = "N.D.";
+        mediaTotElement.style.backgroundColor = "";
     }
 }
 
@@ -410,21 +411,26 @@ function updateSubjectName(index) {
     saveSubjects();
 }
 
-function removeAllVotes(subjectIndex) {
-    var votes = subjects[subjectIndex].voti;
-    var weights = subjects[subjectIndex].pesi;
-
-    while (votes.length > 0) {
-        votes.pop();
-        weights.pop();
+function removeLastVote(subjectIndex) {
+    if (!subjects[subjectIndex] || subjects[subjectIndex].voti.length === 0) {
+        alert("Non ci sono voti da rimuovere per questa materia!");
+        return;
     }
 
-    saveSubjects();
-    saveTotalVotes(); 
+    // Rimuovi l'ultimo voto
+    subjects[subjectIndex].voti.pop();
+    subjects[subjectIndex].pesi.pop();
+    subjects[subjectIndex].tipologie.pop();
+    subjects[subjectIndex].date.pop();
 
+    // Salva i soggetti aggiornati
+    saveSubjects();
+    saveTotalVotes();  // Salva i voti totali aggiornati
+
+    // Rimuovi l'ultima riga della tabella dei voti
     var tbody = document.getElementById("media-" + subjectIndex);
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
+    if (tbody.lastChild) {
+        tbody.removeChild(tbody.lastChild);
     }
 
     // Calcola nuovamente la media per la materia
@@ -432,6 +438,11 @@ function removeAllVotes(subjectIndex) {
 
     // Calcola nuovamente la media totale
     calculateTotalAverage();
+}
+
+// Assicurati di sostituire la chiamata della funzione removeAllVotes con removeLastVote
+function removeAllVotes(subjectIndex) {
+    removeLastVote(subjectIndex);
 }
 
 function cambio(subjectIndex) {
@@ -462,6 +473,7 @@ function calculateTotalAverage() {
     const mediaTotElement = document.getElementById("media-tot");
     if (totalSommaPesi === 0) {
         mediaTotElement.textContent = "N.D.";
+        mediaTotElement.style.backgroundColor= "";
         return;
     }
 
@@ -504,13 +516,16 @@ function mat() {
         }, 280);
     }
 
+    setTimeout(() => {
+        location.reload();
+    }, 280);
+
     // Ricarica i voti totali
     const totalVotes = loadTotalVotes();
     addVotesToGradeContainer(totalVotes);
 
     // Calcola nuovamente la media totale
     calculateTotalAverage();
-    location.reload();
 }
 
 function menu() {
