@@ -26,8 +26,15 @@
     </nav>
     <div class="moduli">
         <h5 style="text-align: center;">Salva gli orari scolastici ogni e visualizzali ogni giorno in base alla giornata!</h5>
+        <select id="orario-select" onchange="orarioSelect()">
+            <option value="1">Lunedì</option>
+            <option value="2">Matedì</option>
+            <option value="3">Mercoledì</option>
+            <option value="4">Giovedì</option>
+            <option value="5">Venerdì</option>
+            <option value="6">Sabato</option>
+        </select>
         <div class="modulo hidden" id="modulo-1">
-            <h4 class="avviso">Lunedì</h4>
             <input type="text" placeholder="1 ora" id="i-1">
             <input type="text" placeholder="2 ora" id="i-2">
             <input type="text" placeholder="3 ora" id="i-3">
@@ -36,7 +43,6 @@
             <input type="text" placeholder="6 ora" id="i-6">
         </div>
         <div class="modulo hidden" id="modulo-2">
-            <h4 class="avviso">Martedì</h4>
             <input type="text" placeholder="1 ora" id="i-1">
             <input type="text" placeholder="2 ora" id="i-2">
             <input type="text" placeholder="3 ora" id="i-3">
@@ -45,7 +51,6 @@
             <input type="text" placeholder="6 ora" id="i-6">
         </div>
         <div class="modulo hidden" id="modulo-3">
-            <h4 class="avviso">Mercoledì</h4>
             <input type="text" placeholder="1 ora" id="i-1">
             <input type="text" placeholder="2 ora" id="i-2">
             <input type="text" placeholder="3 ora" id="i-3">
@@ -54,7 +59,6 @@
             <input type="text" placeholder="6 ora" id="i-6">
         </div>
         <div class="modulo hidden" id="modulo-4">
-            <h4 class="avviso">Giovedì</h4>
             <input type="text" placeholder="1 ora" id="i-1">
             <input type="text" placeholder="2 ora" id="i-2">
             <input type="text" placeholder="3 ora" id="i-3">
@@ -63,7 +67,6 @@
             <input type="text" placeholder="6 ora" id="i-6">
         </div>
         <div class="modulo hidden" id="modulo-5">
-            <h4 class="avviso">Venerdì</h4>
             <input type="text" placeholder="1 ora" id="i-1">
             <input type="text" placeholder="2 ora" id="i-2">
             <input type="text" placeholder="3 ora" id="i-3">
@@ -72,7 +75,6 @@
             <input type="text" placeholder="6 ora" id="i-6">
         </div>
         <div class="modulo hidden" id="modulo-6">
-            <h4 class="avviso">Sabato</h4>
             <input type="text" placeholder="1 ora" id="i-1">
             <input type="text" placeholder="2 ora" id="i-2">
             <input type="text" placeholder="3 ora" id="i-3">

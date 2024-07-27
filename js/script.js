@@ -197,18 +197,35 @@ function loadEvents() {
 
 function orario() {
     var today = new Date();
-    var dayOfWeek = today.getDay(); 
+    var dayOfWeek = today.getDay();
     var moduloElements = document.querySelectorAll(".modulo"); 
+    var orarioSelect = document.getElementById(`orario-select`); 
     var orario = document.getElementById(`modulo-${dayOfWeek}`); 
 
-    console.log(dayOfWeek);
+    moduloElements.forEach(element => {
+        element.classList.add("hidden");
+    });
+    
+    if (orario) {
+        orario.classList.remove("hidden");
+    }
+
+    if (orarioSelect) {
+        orarioSelect.value = dayOfWeek;
+    }
+}
+
+function orarioSelect(){
+    var orarioValue = document.getElementById(`orario-select`).value;
+    var orario = document.getElementById(`modulo-${orarioValue}`); 
+    var moduloElements = document.querySelectorAll(".modulo"); 
 
     moduloElements.forEach(element => {
         element.classList.add("hidden");
     });
 
     if (orario) {
-        orario.classList.toggle("hidden");
+        orario.classList.remove("hidden");
     }
 }
 

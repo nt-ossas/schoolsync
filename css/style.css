@@ -23,6 +23,14 @@ aside {
     border-radius: 10px;
 }
 
+select#orario-select{
+    width: 100px;
+    text-align: center;
+    margin-inline: 35%;
+    border-bottom: 2px solid #393A50;
+    box-shadow: 0px 0px 10px #393A50;
+}
+
 nav {
     background-color: #28293D;
     color: #4A90E2;
