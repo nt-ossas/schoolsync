@@ -50,10 +50,11 @@ input[type="date"].piccolo{
     position: fixed;
     top: 50%;
     left: 70%;
+    width: 175px;
     transform: translate(-50%, -50%);
     padding: 50px;
     margin-inline: -20%;
-    padding-inline: -20%;
+    padding: -20%;
     border-radius: 10px;
     background: #28293D;
     box-shadow: 0px 0px 10px #282828;
@@ -66,14 +67,15 @@ input[type="date"].piccolo{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
 
 .close{
-    width: 200px;
-    background-color: #4A90E2;
-    box-shadow: 0px 0px 5px #4A90E2;
+    width: 150px;
+    margin-left: 15px;
+    background-color: #4a91e250;
+    box-shadow: 0px 0px 5px #4a91e250;
     border-radius: 10px;
 }
 

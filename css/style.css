@@ -1,3 +1,12 @@
+:root{
+    --bg-green:rgba(47, 255, 0, 0.5);
+    --bg-red:rgba(254, 25, 25, 0.5);
+    --bg-orange:rgba(255, 140, 0, 0.5);
+    --color-green:rgba(47, 255, 0, 1);
+    --color-red:rgba(254, 25, 25, 2);
+    --color-orange:rgba(255, 140, 0, 1);
+}
+
 body {
     background-color: #1E1E2E;
     color: cornsilk;
@@ -43,10 +52,6 @@ nav a i.on {
 
 .description hr {
     margin-block: 25px;
-}
-
-a {
-    color: #4A90E2;
 }
 
 .description h4 {

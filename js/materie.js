@@ -29,7 +29,7 @@ function loadTotalAverage() {
 
     mediaTotElement.textContent = mediaTot;
     setTotalAverageStyle(mediaTot);
-    if (mediaTot === null || mediaTot === "0.00") {
+    if (mediaTot === null || mediaTot === "0.00" || mediaTot === 0.00 || isNaN(mediaTot)){
         mediaTotElement.textContent = "N.D.";
         mediaTotElement.style.backgroundColor = "";
     }
@@ -57,7 +57,7 @@ function loadSubjects() {
     }
 
     const mediaTot = localStorage.getItem('mediaTot');
-    if (mediaTot !== null) {
+    if (mediaTot !== null && mediaTot !== 0.00) {
         document.getElementById('media-tot-index').textContent = mediaTot;
         setTotalAverageStyle(mediaTot);
     }
@@ -66,11 +66,11 @@ function loadSubjects() {
 function setTotalAverageStyle(mediaTot) {
     const mediaTotElement = document.getElementById("media-tot-index");
     if (mediaTot >= 6) {
-        mediaTotElement.style.backgroundColor = "green";
+        mediaTotElement.style.backgroundColor = "var(--bg-green)";
     } else if (mediaTot < 5) {
-        mediaTotElement.style.backgroundColor = "red";
+        mediaTotElement.style.backgroundColor = "var(--bg-red)";
     } else {
-        mediaTotElement.style.backgroundColor = "orange";
+        mediaTotElement.style.backgroundColor = "var(--bg-orange)";
     }
 }
 
@@ -80,6 +80,7 @@ function add(subjectIndex) {
     peso = Number(peso);
     var type = document.getElementById("type-" + subjectIndex).value;
     var date = document.getElementById("date-grade-" + subjectIndex).value;
+    var to6 = document.getElementById("to6-" + subjectIndex);
 
     if (!date) {
         var today = new Date();
@@ -109,6 +110,8 @@ function add(subjectIndex) {
     subjects[subjectIndex].date.push(date);
     saveSubjects();
     saveTotalVotes();  // Salva i voti totali
+
+    to6.textContent = '';
 
     addVoteToUI(subjectIndex, voto, peso, type, date);
     calc(subjectIndex);
@@ -204,11 +207,11 @@ function calc(subjectIndex) {
     var media = somma_voti / somma_pesi;
 
     if (media >= 6) {
-        mediaf.style.backgroundColor = "green";
+        mediaf.style.backgroundColor = "var(--bg-green)";
     } else if (media < 5) {
-        mediaf.style.backgroundColor = "red";
+        mediaf.style.backgroundColor = "var(--bg-red)";
     } else if (media < 6) {
-        mediaf.style.backgroundColor = "orange";
+        mediaf.style.backgroundColor = "var(--bg-orange)";
     }
 
     button.textContent = media.toFixed(2);
@@ -249,10 +252,10 @@ function ins(subjectIndex, media) {
         gradeIns.id = `ins-${subjectIndex}`;
 
         if (media < 6) {
-            gradeIns.style.backgroundColor = "orange";
+            gradeIns.style.backgroundColor = "var(--bg-orange)";
         }
         if (media < 5) {
-            gradeIns.style.backgroundColor = "red";
+            gradeIns.style.backgroundColor = "var(--bg-red)";
         }
 
         gradeIns.classList.add("grade");
@@ -411,36 +414,6 @@ function updateSubjectName(index) {
     saveSubjects();
 }
 
-function removeLastVote(subjectIndex) {
-    if (!subjects[subjectIndex] || subjects[subjectIndex].voti.length === 0) {
-        alert("Non ci sono voti da rimuovere per questa materia!");
-        return;
-    }
-
-    // Rimuovi l'ultimo voto
-    subjects[subjectIndex].voti.pop();
-    subjects[subjectIndex].pesi.pop();
-    subjects[subjectIndex].tipologie.pop();
-    subjects[subjectIndex].date.pop();
-
-    // Salva i soggetti aggiornati
-    saveSubjects();
-    saveTotalVotes();  // Salva i voti totali aggiornati
-
-    // Rimuovi l'ultima riga della tabella dei voti
-    var tbody = document.getElementById("media-" + subjectIndex);
-    if (tbody.lastChild) {
-        tbody.removeChild(tbody.lastChild);
-    }
-
-    // Calcola nuovamente la media per la materia
-    calc(subjectIndex);
-
-    // Calcola nuovamente la media totale
-    calculateTotalAverage();
-}
-
-// Assicurati di sostituire la chiamata della funzione removeAllVotes con removeLastVote
 function removeAllVotes(subjectIndex) {
     removeLastVote(subjectIndex);
 }
@@ -459,94 +432,9 @@ function cambio(subjectIndex) {
     menu();
 }
 
-function calculateTotalAverage() {
-    var totalSommaVoti = 0;
-    var totalSommaPesi = 0;
-
-    for (let subject of subjects) {
-        for (let j = 0; j < subject.voti.length; j++) {
-            totalSommaVoti += subject.voti[j] * subject.pesi[j];
-            totalSommaPesi += subject.pesi[j];
-        }
-    }
-
-    const mediaTotElement = document.getElementById("media-tot");
-    if (totalSommaPesi === 0) {
-        mediaTotElement.textContent = "N.D.";
-        mediaTotElement.style.backgroundColor= "";
-        return;
-    }
-
-    var mediaTotale = totalSommaVoti / totalSommaPesi;
-    mediaTotElement.textContent = mediaTotale.toFixed(2);
-
-    if (mediaTotale >= 6) {
-        mediaTotElement.style.backgroundColor = "green";
-    } else if (mediaTotale < 5) {
-        mediaTotElement.style.backgroundColor = "red";
-    } else if (mediaTotale < 6) {
-        mediaTotElement.style.backgroundColor = "orange";
-    }
-
-    saveTotalAverage();
-}
-
-function mat() {
-    if (subjects.length === 0) {
-        alert("Non ci sono materie da rimuovere!");
-        return;
-    }
-
-    var subjectIndex = subjects.length - 1;
-
-    // Rimuovi tutti i voti della materia prima di eliminare la materia stessa
-    removeVotesForSubject(subjectIndex);
-
-    // Rimuovi la materia dal localStorage e dall'interfaccia
-    subjects.pop();
-    saveSubjects();
-
-    // Rimuovi l'elemento visuale della materia
-    var materia = document.getElementById("materia");
-    var lastMateriaElement = materia.lastElementChild;
-    if (lastMateriaElement) {
-        lastMateriaElement.classList.add("remove");
-        setTimeout(function() {
-            materia.removeChild(lastMateriaElement);
-        }, 280);
-    }
-
-    setTimeout(() => {
-        location.reload();
-    }, 280);
-
-    // Ricarica i voti totali
-    const totalVotes = loadTotalVotes();
-    addVotesToGradeContainer(totalVotes);
-
-    // Calcola nuovamente la media totale
-    calculateTotalAverage();
-}
-
 function menu() {
     var aside = document.getElementById("aside");
     aside.classList.toggle("translate");
-}
-
-function removeVotesForSubject(subjectIndex) {
-    // Rimuovi tutti i voti della materia
-    var votesToRemove = subjects[subjectIndex].voti.length;
-    subjects[subjectIndex].voti = [];
-    subjects[subjectIndex].pesi = [];
-
-    // Salvataggio dei dati aggiornati
-    saveSubjects();
-
-    // Rimuovi le righe della tabella dei voti
-    var tbody = document.getElementById("media-" + subjectIndex);
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
-    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -582,6 +470,135 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log('Total votes loaded:', totalVotes);
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const totalVotes = loadTotalVotes();
+    addVotesToGradeContainer(totalVotes);
+
+    console.log('Total votes loaded:', totalVotes);
+});
+
+function mat() {
+    if (subjects.length === 0) {
+        return;
+    }
+
+    var subjectIndex = subjects.length - 1;
+
+    // Controlla se la materia ha dei voti
+    if (subjects[subjectIndex].voti.length > 0) {
+        confirm("Rimuovi tutti i voti dalla materia prima di eliminarla!");
+    } else {
+        // Se la materia non ha voti, procedi con l'eliminazione senza avviso
+        subjects.pop();
+        saveSubjects();
+
+        // Rimuovi l'elemento visuale della materia
+        var materia = document.getElementById("materia");
+        var lastMateriaElement = materia.lastElementChild;
+        if (lastMateriaElement) {
+            lastMateriaElement.classList.add("remove");
+            setTimeout(function() {
+                materia.removeChild(lastMateriaElement);
+            }, 280);
+        }
+
+        setTimeout(() => {
+            location.reload();
+        }, 280);
+
+        // Ricarica i voti totali
+        const totalVotes = loadTotalVotes();
+        addVotesToGradeContainer(totalVotes);
+
+        // Calcola nuovamente la media totale
+        calculateTotalAverage();
+    }
+}
+
+function removeVotesForSubject(subjectIndex) {
+    // Rimuovi tutti i voti della materia
+    subjects[subjectIndex].voti = [];
+    subjects[subjectIndex].pesi = [];
+    subjects[subjectIndex].tipologie = [];
+    subjects[subjectIndex].date = [];
+
+    // Salvataggio dei dati aggiornati
+    saveSubjects();
+
+    // Rimuovi le righe della tabella dei voti
+    var tbody = document.getElementById("media-" + subjectIndex);
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
+}
+
+function removeLastVote(subjectIndex) {
+    if (!subjects[subjectIndex] || subjects[subjectIndex].voti.length === 0) {
+        return;
+    }
+
+    // Rimuovi l'ultimo voto
+    subjects[subjectIndex].voti.pop();
+    subjects[subjectIndex].pesi.pop();
+    subjects[subjectIndex].tipologie.pop();
+    subjects[subjectIndex].date.pop();
+
+    // Salva i soggetti aggiornati
+    saveSubjects();
+    saveTotalVotes();  // Salva i voti totali aggiornati
+
+    // Rimuovi l'ultima riga della tabella dei voti
+    var tbody = document.getElementById("media-" + subjectIndex);
+    if (tbody.lastChild) {
+        tbody.removeChild(tbody.lastChild);
+    }
+
+    var to6 = document.getElementById("to6-" + subjectIndex);
+    to6.textContent = '';
+
+    // Calcola nuovamente la media per la materia
+    calc(subjectIndex);
+
+    // Calcola nuovamente la media totale
+    calculateTotalAverage();
+}
+
+function removeAllVotes(subjectIndex) {
+    removeLastVote(subjectIndex);
+}
+
+function calculateTotalAverage() {
+    var totalSommaVoti = 0;
+    var totalSommaPesi = 0;
+
+    for (let subject of subjects) {
+        for (let j = 0; j < subject.voti.length; j++) {
+            totalSommaVoti += subject.voti[j] * subject.pesi[j];
+            totalSommaPesi += subject.pesi[j];
+        }
+    }
+
+    const mediaTotElement = document.getElementById("media-tot");
+    if (totalSommaPesi === 0) {
+        mediaTotElement.textContent = "N.D.";
+        mediaTotElement.style.backgroundColor = "";
+        return;
+    }
+
+    var mediaTotale = totalSommaVoti / totalSommaPesi;
+    mediaTotElement.textContent = mediaTotale.toFixed(2);
+
+    if (mediaTotale >= 6) {
+        mediaTotElement.style.backgroundColor = "var(--bg-green)";
+    } else if (mediaTotale < 5) {
+        mediaTotElement.style.backgroundColor = "var(--bg-red)";
+    } else if (mediaTotale < 6) {
+        mediaTotElement.style.backgroundColor = "var(--bg-orange)";
+    }
+
+    saveTotalAverage();
+}
+
 function addVotesToGradeContainer(votes) {
     const gradeContainer = document.getElementById("grade-container-index");
 
@@ -601,7 +618,7 @@ function addVotesToGradeContainer(votes) {
         votes.reverse().forEach(vote => {
             const gradeElement = document.createElement('div');
             gradeElement.classList.add('grade');
-            
+
             // Adjust the display based on the decimal part of the vote
             let displayText = vote.toFixed(2);
             if (displayText.endsWith('.50')) {
@@ -610,27 +627,25 @@ function addVotesToGradeContainer(votes) {
                 displayText = displayText.replace('.25', '+');
             } else if (displayText.endsWith('.75')) {
                 displayText = displayText.replace('.75', '−');
+            } else if (displayText.endsWith('.00')) {
+                displayText = displayText.replace('.00', '');
             }
 
             gradeElement.textContent = displayText;
 
             // Applica lo stile in base al valore del voto
             if (vote < 5) {
-                gradeElement.style.backgroundColor = "red";
+                gradeElement.style.backgroundColor = "var(--bg-red)";
+                gradeElement.style.color = "var(--color-red)";
             } else if (vote < 6) {
-                gradeElement.style.backgroundColor = "orange";
+                gradeElement.style.backgroundColor = "var(--bg-orange)";
+                gradeElement.style.color = "var(--color-orange)";
             } else {
-                gradeElement.style.backgroundColor = "green";
+                gradeElement.style.backgroundColor = "var(--bg-green)";
+                gradeElement.style.color = "var(--color-green)";
             }
 
             gradeContainer.appendChild(gradeElement);
         });
     }
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    const totalVotes = loadTotalVotes();
-    addVotesToGradeContainer(totalVotes);
-
-    console.log('Total votes loaded:', totalVotes);
-});
