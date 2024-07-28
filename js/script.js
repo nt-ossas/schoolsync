@@ -2,6 +2,7 @@ window.onload = function(){
     orario();
     loadNews();
     loadEvents();
+    requestNotificationPermission(); // Richiedi il permesso per le notifiche
 }
 
 function show(n) {
@@ -19,57 +20,6 @@ function show(n) {
     } else {
         scroll.innerHTML = `<h4>${n === 2 ? 'Calendar' : 'News'}</h4><i class="fa-solid fa-circle-chevron-right" onclick="show(${n})"></i>`;
     }
-}
-
-function verifica() {
-    var nomeProva = document.getElementById("nomeProva").value;
-    var dataProva = document.getElementById("dataProva").value;
-
-    if (nomeProva === "" || dataProva === "") {
-        alert("Scrivi qualcosa porco dio");
-        return;
-    }
-
-    var today = new Date();
-    var provaDate = new Date(dataProva);
-    var maxDate = new Date('2026-12-31');
-
-    if (provaDate < today || provaDate > maxDate) {
-        alert("La data deve essere compresa tra oggi e l'anno prossimo!");
-        return;
-    }
-
-    var evento = document.createElement("div");
-    evento.classList.add("event-element-2", "event", "column", "small");
-    evento.innerHTML = `<h4>${nomeProva} <hr> ${dataProva}</h4>`;
-
-    var deleteButton = document.createElement("button");
-    deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
-    deleteButton.classList.add("delete-button");
-
-    setTimeout(function() {
-        evento.classList.remove("small");
-    }, 1);
-
-    evento.appendChild(deleteButton);
-
-    deleteButton.addEventListener("click", function() {
-        evento.classList.add("remove");
-        setTimeout(function() {
-            evento.remove();
-            saveEvents();
-        }, 280);
-    });
-
-    var container = document.getElementById("scroll-2");
-    container.appendChild(evento);
-    
-    var calendar = document.getElementById("element-2");
-    if(calendar.classList.contains("first")){
-        evento.classList.add("hidden");
-    }
-
-    saveEvents();
 }
 
 function news() {
@@ -167,34 +117,6 @@ function saveEvents() {
     localStorage.setItem("events", JSON.stringify(eventData));
 }
 
-function loadEvents() {
-    var eventData = JSON.parse(localStorage.getItem("events"));
-    if (eventData) {
-        eventData.forEach(event => {
-            var evento = document.createElement("div");
-            evento.classList.add("event-element-2", "event", "column", "hidden");
-            evento.innerHTML = `<h4>${event}</h4>`;
-
-            var deleteButton = document.createElement("button");
-            deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
-            deleteButton.classList.add("delete-button");
-
-            evento.appendChild(deleteButton);
-
-            deleteButton.addEventListener("click", function() {
-                evento.classList.add("remove");
-                setTimeout(function() {
-                    evento.remove();
-                    saveEvents();
-                }, 280);
-            });
-
-            var container = document.getElementById("scroll-2");
-            container.appendChild(evento);
-        });
-    }
-}
-
 function orario() {
     var today = new Date();
     var dayOfWeek = today.getDay();
@@ -275,3 +197,141 @@ document.addEventListener('change', function(event) {
 });
 
 document.addEventListener('DOMContentLoaded', loadModuli);
+
+function requestNotificationPermission() {
+    if (Notification.permission !== 'granted') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+            } else {
+                console.log('Notification permission denied.');
+            }
+        });
+    }
+}
+
+function verifica() {
+    var nomeProva = document.getElementById("nomeProva").value;
+    var dataProva = document.getElementById("dataProva").value;
+    var oraNotifica = document.getElementById("oraNotifica").value;
+
+    if (nomeProva === "" || dataProva === "" || oraNotifica === "") {
+        alert("Scrivi qualcosa e imposta un'ora valida");
+        return;
+    }
+
+    var today = new Date();
+    var provaDate = new Date(dataProva + "T" + oraNotifica);
+    var maxDate = new Date('2026-12-31');
+
+    if (provaDate < today || provaDate > maxDate) {
+        alert("La data deve essere compresa tra oggi e l'anno prossimo!");
+        return;
+    }
+
+    var evento = document.createElement("div");
+    evento.classList.add("event-element-2", "event", "column", "small");
+    evento.innerHTML = `<h4>${nomeProva} <hr> ${dataProva} ${oraNotifica}</h4>`;
+
+    var deleteButton = document.createElement("button");
+    deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
+    deleteButton.classList.add("delete-button");
+
+    setTimeout(function() {
+        evento.classList.remove("small");
+    }, 1);
+
+    evento.appendChild(deleteButton);
+
+    deleteButton.addEventListener("click", function() {
+        evento.classList.add("remove");
+        setTimeout(function() {
+            evento.remove();
+            saveEvents();
+        }, 280);
+    });
+
+    var container = document.getElementById("scroll-2");
+    container.appendChild(evento);
+    
+    var calendar = document.getElementById("element-2");
+    if(calendar.classList.contains("first")){
+        evento.classList.add("hidden");
+    }
+
+    saveEvents();
+    scheduleNotification(nomeProva, provaDate); // Programma la notifica
+}
+
+function scheduleNotification(nomeProva, provaDate) {
+    if (Notification.permission === 'granted') {
+        var now = new Date();
+        var timeUntilNotification = provaDate.getTime() - now.getTime();
+
+        if (timeUntilNotification > 0) {
+            setTimeout(() => {
+                new Notification('Promemoria Evento', {
+                    body: `Ricorda che domani hai un evento in programma: ${nomeProva}`
+                });
+            }, timeUntilNotification);
+        }
+    } else {
+        console.log('Notifications permission not granted');
+    }
+}
+
+function loadEvents() {
+    var eventData = JSON.parse(localStorage.getItem("events"));
+    if (eventData) {
+        eventData.forEach(event => {
+            var evento = document.createElement("div");
+            evento.classList.add("event-element-2", "event", "column", "hidden");
+            evento.innerHTML = `<h4>${event}</h4>`;
+
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
+            deleteButton.classList.add("delete-button");
+
+            evento.appendChild(deleteButton);
+
+            deleteButton.addEventListener("click", function() {
+                evento.classList.add("remove");
+                setTimeout(function() {
+                    evento.remove();
+                    saveEvents();
+                }, 280);
+            });
+
+            var container = document.getElementById("scroll-2");
+            container.appendChild(evento);
+
+            // Programma la notifica
+            var [nomeProva, dataOraProva] = event.split(" <hr> ");
+            var [dataProva, oraProva] = dataOraProva.split(" ");
+            var provaDate = new Date(dataProva + "T" + oraProva);
+            scheduleNotification(nomeProva, provaDate);
+        });
+    }
+}
+
+window.onload = function(){
+    orario();
+    loadNews();
+    loadEvents();
+    requestNotificationPermission(); // Richiedi il permesso per le notifiche
+}
+
+// Funzione per richiedere il permesso per le notifiche
+function requestNotificationPermission() {
+    if ('Notification' in window) {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') {
+                console.log('Permission for notifications granted');
+            } else {
+                console.log('Permission for notifications denied');
+            }
+        });
+    } else {
+        console.log('Notifications are not supported by this browser');
+    }
+}
