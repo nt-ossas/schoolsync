@@ -145,3 +145,12 @@ nav a i.on {
 #todo-list{
   margin-top: 0;
 }
+
+footer{
+  opacity: .5;
+  width: 100%;
+  left: 0;
+  bottom: 10px;
+  text-align: center;
+  position: fixed;
+}
