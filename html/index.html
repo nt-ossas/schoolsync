@@ -3,7 +3,7 @@
 <head>
     <title>SchoolSync</title>
     <meta charset="UTF-8">
-    <link rel="icon" href="img/schoolsync_logo_500.png"/>
+    <link rel="icon" href="../img/schoolsync_logo_500.png"/>
     <meta name="keywords" content="media, calcola, ossas, registro">
     <meta name="description" content="Calcola la tua media con vari pesi dei voti">
     <meta name="author" content="Ossas">
@@ -14,17 +14,19 @@
             integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-    <script src="js/script.js"></script>
-    <script src="js/materie.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/materie.js"></script>
+    <script src="../js/width.js"></script>
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="img/schoolsync_logo_500.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="apple-touch-icon" href="../img/schoolsync_logo_500.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/desktop.css">
 </head>
 <body>
     <nav>
         <a href="https://nt-ossas.github.io/schoolsync"><i class="fa-solid fa-house on"></i></a>
         <a href="https://nt-ossas.github.io/schoolsync/materie"><i class="fa-solid fa-list"></i></a>
+        <a href="https://nt-ossas.github.io/schoolsync/classmap"><i class="fa-solid fa-map"></i></a>
         <a href="https://nt-ossas.github.io/schoolsync/about"><i class="fa-regular fa-address-card"></i></a>
     </nav>
     <div class="grid-duo">
@@ -81,12 +83,10 @@
             <input type="date" id="dataProva" name="dataProva">
             <button type="submit" onclick="verifica()" class="add b-index"></button>
         </div>
-        <h5 class="avviso">Scegli l'orario delle notifiche</h5>
-        <input type="time" id="oraNotifica" width="100%">
     </div>
     <footer>
         <h3>Note:</h3>
-        <h5>La grafica verrà migliorata nel corso del tempo.</h5>
+        <h5>Arriveranno presto le notifiche push per la Web Application.</h5>
         <h6 style="text-align: center;">&copy; 2024 SchoolSync - All Rights Reserved - Ossas</h6>
     </footer>
 </body>

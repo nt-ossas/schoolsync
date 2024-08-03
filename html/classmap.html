@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../img/classmap.png"/>
+    <meta name="keywords" content="trova, cerca, classe, aula, tua, stanza, scuola, blaise, pascal, bus, polo">
+    <meta name="description" content="Check Your Class">
+    <meta name="author" content="Ossas">
+    <meta name="theme-color" content="#373737">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ClassMap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/classmap.css">
+    <script src="../js/classmap.js"></script>
+    <script src="../js/width.js"></script>
+    <script src="../js/not.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="https://nt-ossas.github.io/schoolsync"><i class="fa-solid fa-house"></i></a>
+        <a href="https://nt-ossas.github.io/schoolsync/materie"><i class="fa-solid fa-list"></i></a>
+        <a href="https://nt-ossas.github.io/schoolsync/about"><i class="fa-solid fa-map on"></i></a>
+        <a href="https://nt-ossas.github.io/schoolsync/about"><i class="fa-regular fa-address-card"></i></a>
+    </nav>
+    <h1 class="title">classmap</h1>
+    <h2 class="sub-title">Check Your Class</h2>
+    <p>Controlla la posizione della aula nel Polo Scolastico <a target="_blank" href="https://www.pascal.edu.it">Blaise Pascal</a></p>
+    <!--<div class="not">
+        <button onclick="requestNotPerm()">Tieniti aggiornato attivando le notifiche!<i class="fa-regular fa-bell"></i></button>
+        <h6>Not avaible on iPhone or Apple devices</h6>
+    </div>-->
+    <h4 class="label">Seleziona l'aula da trovare:</h4>
+    <select id="class" onchange="aula()">
+        <option value="0">seleziona un'aula</option>
+        <option value="01.c.1" id="centrale">01</option>
+        <option value="02.c.1" id="centrale">02</option>
+        <option value="03.c.1" id="centrale">03</option>
+        <option value="04.c.1" id="centrale">04</option>
+        <option value="05.c.1" id="centrale">05</option>
+        <option value="06.c.1" id="centrale">06</option>
+        <option value="07.c.1" id="centrale">07</option>
+        <option value="10.c.2" id="centrale">10</option>
+        <option value="11.c.2" id="centrale">11</option>
+        <option value="12.c.2" id="centrale">12</option>
+        <option value="20.c.3" id="centrale">20</option>
+        <option value="21.c.3" id="centrale">21</option>
+        <option value="22.c.3" id="centrale">22</option>
+        <option value="30.o.1" id="ospedale">30</option>
+        <option value="31.o.1" id="ospedale">31</option>
+        <option value="32.o.1" id="ospedale">32</option>
+        <option value="33.o.1" id="ospedale">33</option>
+        <option value="34.o.1" id="ospedale">34</option>
+        <option value="35.o.2" id="ospedale">35</option>
+        <option value="36.o.2" id="ospedale">36</option>
+        <option value="37.o.2" id="ospedale">37</option>
+        <option value="38.o.2" id="ospedale">38</option>
+        <option value="40.b.1" id="bunker">40</option>
+        <option value="41.b.1" id="bunker">41</option>
+        <option value="42.b.1" id="bunker">42</option>
+        <option value="43.b.1" id="bunker">43</option>
+        <option value="44.b.1" id="bunker">44</option>
+        <option value="45.b.1" id="bunker">45</option>
+        <option value="46.b.1" id="bunker">46</option>
+        <option value="47.b.1" id="bunker">47</option>
+        <option value="48.b.1" id="bunker">48</option>
+        <option value="51.e.1" id="erigendo">51</option>
+        <option value="52.e.1" id="erigendo">52</option>
+        <option value="53.e.1" id="erigendo">53</option>
+        <option value="54.e.1" id="erigendo">54</option>
+        <option value="55.e.1" id="erigendo">55</option>
+        <option value="61.t.1" id="tempietto">61</option>
+        <option value="64.t.1" id="tempietto">64</option>
+        <option value="71.p.1" id="piramide">71</option>
+        <option value="72.p.1" id="piramide">72</option>
+        <option value="73.p.1" id="piramide">73</option>
+        <option value="74.p.1" id="piramide">74</option>
+        <option value="A1.c.1" id="centrale">A1</option>
+        <option value="A2.c.1" id="centrale">A2</option>
+        <option value="A3.c.1" id="centrale">A3</option>
+        <option value="A4.c.1" id="centrale">A4</option>
+        <option value="Aula-Magna.c.1" id="centrale">Aula Magna</option>
+        <option value="Lab-D1.c.3" id="centrale">Lab D1</option>
+        <option value="Lab-D2.o.1" id="ospedale">Lab D2</option>
+        <option value="Lab-F.c.1" id="centrale">Lab F</option>
+        <option value="Lab-Foto.c.1" id="centrale">Lab Foto</option>
+        <option value="Lab-G1.c.3" id="centrale">Lab G1</option>
+        <option value="Lab-G2.c.3" id="centrale">Lab G2</option>
+        <option value="Lab-G3.c.3" id="centrale">Lab G3</option>
+        <option value="Lab-L1.o.2" id="ospedale">Lab L1</option>
+        <option value="Lab-L2.o.2" id="ospedale">Lab L2</option>
+        <option value="Lab-S1.c.1" id="centrale">Lab S1</option>
+        <option value="Lab-S2.c.1" id="centrale">Lab S2</option>
+        <option value="Lab-S3.c.1" id="centrale">Lab S3</option>
+        <option value="Lab-T1.c.2" id="centrale">Lab T1</option>
+        <option value="Lab-T2.c.2" id="centrale">Lab T2</option>
+        <option value="Lab-T3.c.2" id="centrale">Lab T3</option>
+        <option value="Lab-T4.c.2" id="centrale">Lab T4</option>
+        <option value="Lab-T5.c.2" id="centrale">Lab T5</option>
+        <option value="Lab-T6.c.2" id="centrale">Lab T6</option>
+        <option value="Sala Insegnanti.c.1" id="centrale">Sala Insegnanti</option>
+    </select>
+    <h3 class="hidden" id="stampa">Piantina per aula <span></span></h3>
+    <div class="box hidden" id="box-ospedale1">
+        <h4 class="piano">Piano Terra</h4>
+        <img src="../img/o.1.png">
+    </div>
+    <div class="box hidden" id="box-ospedale2">
+        <h4 class="piano">Piano Primo</h4>
+        <img src="../img/o.2.png">
+    </div>
+    <div class="box hidden" id="box-erigendo">
+        <img src="../img/e.1.png">
+    </div>
+    <div class="box hidden" id="box-piramide">
+        <img src="../img/p.1.png">
+    </div>
+    <div class="box hidden" id="box-centrale1">
+        <h4 class="piano">Piano Terra</h4>
+        <img src="../img/c.1.png">
+    </div>
+    <div class="box hidden" id="box-centrale2">
+        <h4 class="piano">Piano Primo</h4>
+        <img src="../img/c.2.png">
+    </div>
+    <div class="box hidden" id="box-centrale3">
+        <h4 class="piano">Piano Secondo</h4>
+        <img src="../img/c.3.png">
+    </div>
+    <div class="box hidden" id="box-bunker">
+        <img src="../img/b.1.png">
+    </div>
+    <div class="box hidden" id="box-tempietto">
+        <img src="../img/t.1.png">
+    </div>
+    <div class="overlay hidden"></div>
+</body>
+<footer>
+    <h4>2024 WebSite - Ossas - ClassMap</h4>
+</footer>
+</html>

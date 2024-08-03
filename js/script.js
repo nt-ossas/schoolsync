@@ -2,7 +2,6 @@ window.onload = function(){
     orario();
     loadNews();
     loadEvents();
-    requestNotificationPermission(); // Richiedi il permesso per le notifiche
 }
 
 function show(n) {
@@ -198,30 +197,17 @@ document.addEventListener('change', function(event) {
 
 document.addEventListener('DOMContentLoaded', loadModuli);
 
-function requestNotificationPermission() {
-    if (Notification.permission !== 'granted') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                console.log('Notification permission granted.');
-            } else {
-                console.log('Notification permission denied.');
-            }
-        });
-    }
-}
-
 function verifica() {
     var nomeProva = document.getElementById("nomeProva").value;
     var dataProva = document.getElementById("dataProva").value;
-    var oraNotifica = document.getElementById("oraNotifica").value;
 
-    if (nomeProva === "" || dataProva === "" || oraNotifica === "") {
-        alert("Scrivi qualcosa e imposta un'ora valida");
+    if (nomeProva === "" || dataProva === "") {
+        alert("Scrivi qualcosa disabile");
         return;
     }
 
     var today = new Date();
-    var provaDate = new Date(dataProva + "T" + oraNotifica);
+    var provaDate = new Date(dataProva);
     var maxDate = new Date('2026-12-31');
 
     if (provaDate < today || provaDate > maxDate) {
@@ -231,7 +217,7 @@ function verifica() {
 
     var evento = document.createElement("div");
     evento.classList.add("event-element-2", "event", "column", "small");
-    evento.innerHTML = `<h4>${nomeProva} <hr> ${dataProva} ${oraNotifica}</h4>`;
+    evento.innerHTML = `<h4>${nomeProva} <hr> ${dataProva}</h4>`;
 
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = `<i class="fa-solid fa-trash mini"></i>`;
@@ -260,24 +246,6 @@ function verifica() {
     }
 
     saveEvents();
-    scheduleNotification(nomeProva, provaDate); // Programma la notifica
-}
-
-function scheduleNotification(nomeProva, provaDate) {
-    if (Notification.permission === 'granted') {
-        var now = new Date();
-        var timeUntilNotification = provaDate.getTime() - now.getTime();
-
-        if (timeUntilNotification > 0) {
-            setTimeout(() => {
-                new Notification('Promemoria Evento', {
-                    body: `Ricorda che domani hai un evento in programma: ${nomeProva}`
-                });
-            }, timeUntilNotification);
-        }
-    } else {
-        console.log('Notifications permission not granted');
-    }
 }
 
 function loadEvents() {
@@ -304,34 +272,6 @@ function loadEvents() {
 
             var container = document.getElementById("scroll-2");
             container.appendChild(evento);
-
-            // Programma la notifica
-            var [nomeProva, dataOraProva] = event.split(" <hr> ");
-            var [dataProva, oraProva] = dataOraProva.split(" ");
-            var provaDate = new Date(dataProva + "T" + oraProva);
-            scheduleNotification(nomeProva, provaDate);
         });
-    }
-}
-
-window.onload = function(){
-    orario();
-    loadNews();
-    loadEvents();
-    requestNotificationPermission(); // Richiedi il permesso per le notifiche
-}
-
-// Funzione per richiedere il permesso per le notifiche
-function requestNotificationPermission() {
-    if ('Notification' in window) {
-        Notification.requestPermission().then(function(permission) {
-            if (permission === 'granted') {
-                console.log('Permission for notifications granted');
-            } else {
-                console.log('Permission for notifications denied');
-            }
-        });
-    } else {
-        console.log('Notifications are not supported by this browser');
     }
 }

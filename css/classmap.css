@@ -1,0 +1,155 @@
+:root{
+    --bg-color:#1E1E2E;
+    --color:cornsilk;
+    --title:#ffea96;
+}
+body{
+    margin-top: 10px;
+    background-color: var(--bg-color);
+    color: var(--color);
+    padding: 20px 25px;
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: center;
+}
+a{
+    color: var(--title);
+    text-decoration: none;
+}
+h2.sub-title{
+    color: var(--title);
+    margin-top: -40px;
+    margin-left: 3px;
+}
+h1.title{
+    text-transform: uppercase;
+    font-size: 50px;
+    margin-top: 0px;
+    text-align: left;
+    color: var(--title);
+}
+.box{
+    background-color: var(--title);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+.not button{
+    height: 35px;
+    border-radius: 10px;
+    border: 0;
+    padding-inline: 10px;
+    background-color: var(--title);
+    color: var(--bg-color);
+    font-weight: bold;
+}
+.not button i{
+    margin-left: 1em;
+}
+.not h6{
+    margin-top: 0px;
+    margin-left:10px;
+}
+select#class{
+    text-transform: capitalize;
+    width: 50%;
+    margin-inline: 25%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 2.5px 5px;
+    background-color: var(--bg-box);
+    color: var(--color);
+    appearance: none;
+}
+option{
+    background-color: var(--bg-color);
+}
+.label{
+    margin-bottom: 15px;
+}
+.hidden{
+    display: none;
+}
+.red{background-color: #D02727;}
+.orange{background-color: orange;}
+.magenta{background-color: #EC22E3;}
+.blue{background-color: blue;}
+.green{background-color: green;}
+.ciano{background-color: #55E1FA;}
+
+.red::after{content:' - Centrale'}
+.orange::after{content:' - Erigendo'}
+.magenta::after{content:' - Tenpietto'}
+.blue::after{content:' - Bunker'}
+.green::after{content:' - Ospedale'}
+.ciano::after{content:' - Piramide'}
+
+img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: .3s;
+}
+h4.piano{
+    font-size: 25px;
+}
+.clicked{
+    position: absolute;
+    width: 95%;
+    left: 2.5%;
+    top: 35%;
+    transition: .3s;
+    z-index: 2;
+}
+.overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+footer{
+    opacity: .5;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    position: fixed;
+}
+nav {
+    background-color: #393A50;
+    margin-bottom: 30px;
+    margin-inline: -15px;
+    padding: 12px 10px;
+    padding-inline: 25px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 25%;
+    padding-top: 12px;
+}
+
+nav a i {
+    color: cornsilk;
+    font-size: 20px !important;
+}
+
+nav a i.on {
+    color: #1E1E2E;
+    background-color: cornsilk;
+    padding: 7px;
+    margin: -7px;
+    border-radius: 50%;
+}
+
+.e404{
+    position: absolute;
+    text-align: center;
+    left: 25%;
+    top: 5%;
+    opacity: .5;
+}
+
+.e404 h2{
+    margin-bottom: -30px;
+    font-size: 100px;
+}
