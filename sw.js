@@ -16,6 +16,7 @@ self.addEventListener("install", e => {
                 "./css/todo.css", 
                 "./js/script.js",
                 "./js/width.js",
+                "./js/service-worker.js",
                 "./js/materie.js",
                 "./js/classmap.js",
                 "./js/todo.js",
