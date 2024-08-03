@@ -45,7 +45,7 @@ function addItem() {
 
     var input = document.getElementById("todo-input").value;
     if (input === '') {
-        alert("Please enter a task!");
+        alert("Scrivi qualcosa non fare il comunista");
         return;
     }
 
@@ -123,9 +123,10 @@ window.onload = function() {
         document.body.appendChild(div);
     } else {
         loadItems();
-        document.getElementById("todo-input").addEventListener("keypress", addOnEnter);
     }
 };
+
+document.getElementById("todo-input").addEventListener("keypress", addOnEnter);
 
 // Funzione per aggiungere un elemento premendo il tasto "Invio"
 function addOnEnter(event) {
