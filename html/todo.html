@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="../img/schoolsync_logo_500.png"/>
+        <meta name="author" content="Ossas">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+                integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+        <title>ToDo</title>
+        <link rel="stylesheet" href="../css/todo.css">
+        <script src="../js/todo.js"></script>
+        <script src="../js/width.js"></script>
+    </head>
+</head>
+<body>
+  <nav>
+      <a href="https://nt-ossas.github.io/schoolsync/html"><i class="fa-solid fa-house"></i></a>
+      <a href="https://nt-ossas.github.io/schoolsync/html/materie"><i class="fa-solid fa-list"></i></a>
+      <a href="https://nt-ossas.github.io/schoolsync/html/classmap"><i class="fa-solid fa-map"></i></a>
+      <a href="https://nt-ossas.github.io/schoolsync/html/todo"><i class="fa-solid fa-check on"></i></a>
+      <a href="https://nt-ossas.github.io/schoolsync/html/about"><i class="fa-regular fa-address-card"></i></a>
+  </nav>
+  ! save !
+  <div class="todo-container">
+    <h1>To-Do List</h1>
+    <input type="text" id="todo-input" placeholder="Add new item" onkeypress="addOnEnter(event)">
+    <button onclick="addItem()" id="add"><i class="fa-solid fa-plus"></i></button>
+    <ul id="todo-list"></ul>
+  </div>
+</body>
+</html>

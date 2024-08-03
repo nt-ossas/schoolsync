@@ -115,6 +115,7 @@ footer{
     text-align: center;
     position: fixed;
 }
+
 nav {
     background-color: #393A50;
     margin-bottom: 30px;
@@ -124,7 +125,7 @@ nav {
     border-radius: 25px;
     display: flex;
     justify-content: center;
-    gap: 25%;
+    gap: 17.5% !important;
     padding-top: 12px;
 }
 

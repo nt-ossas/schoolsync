@@ -41,7 +41,7 @@ nav {
     border-radius: 25px;
     display: flex;
     justify-content: center;
-    gap: 40%;
+    gap: 17.5% !important;
     padding-top: 12px;
 }
 
