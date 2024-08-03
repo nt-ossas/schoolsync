@@ -2,7 +2,8 @@ self.addEventListener("install", e => {
     e.waitUntil(
         caches.open("static").then(cache => {
             return cache.addAll([
-                "./html",
+                ".",
+                "./html/index",
                 "./html/about", 
                 "./html/materie", 
                 "./html/orario", 
