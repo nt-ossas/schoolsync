@@ -141,3 +141,7 @@ nav a i.on {
     margin-bottom: -30px;
     font-size: 100px;
 }
+
+#todo-list{
+  margin-top: 0;
+}

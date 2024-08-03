@@ -1,8 +1,13 @@
-// Funzione per caricare gli elementi dalla memoria
 function loadItems() {
     var items = JSON.parse(localStorage.getItem('todoItems')) || [];
     var ul = document.getElementById("todo-list");
     ul.innerHTML = '';
+
+    // Ordina gli elementi mettendo quelli completati in fondo
+    items.sort(function(a, b) {
+        return a.completed - b.completed;
+    });
+
     items.forEach(function(item) {
         var li = document.createElement("li");
         li.appendChild(document.createTextNode(item.text));
@@ -17,7 +22,7 @@ function loadItems() {
             li.style.animation = "slideOutLeft 0.5s forwards";
             setTimeout(function() {
                 ul.removeChild(li);
-                saveItems();
+                saveItems(); // Salva gli elementi dopo la rimozione
             }, 500);
         };
         li.appendChild(deleteButton);
@@ -48,7 +53,7 @@ function addItem() {
         li.style.animation = "slideOutLeft 0.5s forwards";
         setTimeout(function() {
             ul.removeChild(li);
-            saveItems();
+            saveItems(); // Salva gli elementi dopo la rimozione
         }, 500);
     };
     li.appendChild(deleteButton);
@@ -56,7 +61,7 @@ function addItem() {
     ul.insertBefore(li, ul.childNodes[0]);
     document.getElementById("todo-input").value = "";
     li.addEventListener("click", toggleItem);
-    saveItems();
+    saveItems(); // Salva gli elementi dopo l'aggiunta
 }
 
 // Funzione per spostare l'elemento selezionato in cima alla lista e poi in basso quando viene deselezionato
@@ -64,14 +69,15 @@ function toggleItem() {
     var ul = document.getElementById("todo-list");
     var selectedItem = this;
 
-    if (!selectedItem.classList.contains("completed")) {
+    selectedItem.classList.toggle("completed");
+    if (selectedItem.classList.contains("completed")) {
+        // Sposta l'elemento completato in fondo alla lista
         ul.appendChild(selectedItem);
     } else {
+        // Sposta l'elemento non completato in cima alla lista
         ul.insertBefore(selectedItem, ul.childNodes[0]);
     }
-
-    selectedItem.classList.toggle("completed");
-    saveItems();
+    saveItems(); // Salva gli elementi dopo aver cambiato lo stato di completamento
 }
 
 // Funzione per salvare gli elementi nella memoria
