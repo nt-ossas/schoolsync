@@ -1,46 +1,54 @@
+// Funzione per caricare gli elementi dalla memoria
 function loadItems() {
-    var items = JSON.parse(localStorage.getItem('todoItems')) || [];
-    var ul = document.getElementById("todo-list");
-    ul.innerHTML = '';
+    if (window.innerWidth <= 600) { // Solo per schermi piccoli
+        var items = JSON.parse(localStorage.getItem('todoItems')) || [];
+        var ul = document.getElementById("todo-list");
+        ul.innerHTML = '';
 
-    // Ordina gli elementi mettendo quelli completati in fondo
-    items.sort(function(a, b) {
-        return a.completed - b.completed;
-    });
+        // Ordina gli elementi mettendo quelli completati in fondo
+        items.sort(function(a, b) {
+            return a.completed - b.completed;
+        });
 
-    items.forEach(function(item) {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(item.text));
-        ul.appendChild(li);
-        li.addEventListener("click", toggleItem);
+        items.forEach(function(item) {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(item.text));
+            ul.appendChild(li);
+            li.addEventListener("click", toggleItem);
 
-        // Aggiungi il pulsante Delete
-        var deleteButton = document.createElement("button");
-        deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-        deleteButton.className = "delete-button";
-        deleteButton.onclick = function() {
-            li.style.animation = "slideOutLeft 0.5s forwards";
-            setTimeout(function() {
-                ul.removeChild(li);
-                saveItems(); // Salva gli elementi dopo la rimozione
-            }, 500);
-        };
-        li.appendChild(deleteButton);
+            // Aggiungi il pulsante Delete
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+            deleteButton.className = "delete-button";
+            deleteButton.onclick = function() {
+                li.style.animation = "slideOutLeft 0.5s forwards";
+                setTimeout(function() {
+                    ul.removeChild(li);
+                    saveItems(); // Salva gli elementi dopo la rimozione
+                }, 500);
+            };
+            li.appendChild(deleteButton);
 
-        // Imposta lo stato completato se necessario
-        if (item.completed) {
-            li.classList.add("completed");
-        }
-    });
+            // Imposta lo stato completato se necessario
+            if (item.completed) {
+                li.classList.add("completed");
+            }
+        });
+    }
 }
 
 // Funzione per aggiungere un elemento
 function addItem() {
+    if (window.innerWidth > 600) {
+        return; // Non aggiungere elementi se lo schermo è grande
+    }
+
     var input = document.getElementById("todo-input").value;
     if (input === '') {
         alert("Please enter a task!");
         return;
     }
+
     var ul = document.getElementById("todo-list");
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(input));
@@ -66,6 +74,10 @@ function addItem() {
 
 // Funzione per spostare l'elemento selezionato in cima alla lista e poi in basso quando viene deselezionato
 function toggleItem() {
+    if (window.innerWidth > 600) {
+        return; // Non gestire il toggle se lo schermo è grande
+    }
+
     var ul = document.getElementById("todo-list");
     var selectedItem = this;
 
@@ -82,6 +94,10 @@ function toggleItem() {
 
 // Funzione per salvare gli elementi nella memoria
 function saveItems() {
+    if (window.innerWidth > 600) {
+        return; // Non salvare se lo schermo è grande
+    }
+
     var ul = document.getElementById("todo-list");
     var items = [];
     for (var i = 0; i < ul.children.length; i++) {
@@ -95,7 +111,20 @@ function saveItems() {
 
 // Carica gli elementi al caricamento della pagina
 window.onload = function() {
-    loadItems();
+    if (window.innerWidth > 600) {
+        document.body.style.display = 'none';        
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <div class="e404">
+                <h2>404</h2>
+                <h1>404 ERROR - DEVICE NOT SUPPORTED</h1>
+                <h3>Try on something with a smaller screen</h3>
+            </div>`;
+        document.body.appendChild(div);
+    } else {
+        loadItems();
+        document.getElementById("todo-input").addEventListener("keypress", addOnEnter);
+    }
 };
 
 // Funzione per aggiungere un elemento premendo il tasto "Invio"
