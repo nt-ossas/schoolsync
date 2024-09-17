@@ -20,6 +20,7 @@ self.addEventListener("install", e => {
                 "./js/classmap.js",
                 "./js/todo.js",
                 "./js/not.js",
+                "./js/down.js",
                 "./img/schoolsync_logo_500.png",
                 "./img/classmap.png",
                 "./img/c.1.png",
@@ -29,7 +30,6 @@ self.addEventListener("install", e => {
                 "./img/o.2.png",
                 "./img/b.1.png",
                 "./img/p.1.png",
-                "./img/t.1.png",
                 "./img/e.1.png"
             ]);
         }

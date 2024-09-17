@@ -2,6 +2,7 @@
     --bg-color:#1E1E2E;
     --color:cornsilk;
     --title:#ffea96;
+    --title:#4A90E2;
 }
 body{
     margin-top: 10px;
@@ -78,7 +79,7 @@ option{
 
 .red::after{content:' - Centrale'}
 .orange::after{content:' - Erigendo'}
-.magenta::after{content:' - Tenpietto'}
+.magenta::after{content:' - Scaruffi'}
 .blue::after{content:' - Bunker'}
 .green::after{content:' - Ospedale'}
 .ciano::after{content:' - Piramide'}
@@ -87,6 +88,12 @@ img {
     max-width: 100%;
     border-radius: 10px;
     transition: .3s;
+}
+
+iframe{
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 10px;
 }
 h4.piano{
     font-size: 25px;
@@ -140,17 +147,4 @@ nav a i.on {
     padding: 7px;
     margin: -7px;
     border-radius: 50%;
-}
-
-.e404{
-    position: absolute;
-    text-align: center;
-    left: 25%;
-    top: 5%;
-    opacity: .5;
-}
-
-.e404 h2{
-    margin-bottom: -30px;
-    font-size: 100px;
 }

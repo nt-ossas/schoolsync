@@ -27,10 +27,6 @@
     <h1 class="title">classmap</h1>
     <h2 class="sub-title">Check Your Class</h2>
     <p>Controlla la posizione della aula nel Polo Scolastico <a target="_blank" href="https://www.pascal.edu.it">Blaise Pascal</a></p>
-    <!--<div class="not">
-        <button onclick="requestNotPerm()">Tieniti aggiornato attivando le notifiche!<i class="fa-regular fa-bell"></i></button>
-        <h6>Not avaible on iPhone or Apple devices</h6>
-    </div>-->
     <h4 class="label">Seleziona l'aula da trovare:</h4>
     <select id="class" onchange="aula()">
         <option value="0">seleziona un'aula</option>
@@ -76,11 +72,17 @@
         <option value="72.p.1" id="piramide">72</option>
         <option value="73.p.1" id="piramide">73</option>
         <option value="74.p.1" id="piramide">74</option>
+        <option value="80.s.1" id="scaruffi">80</option>
+        <option value="81.s.1" id="scaruffi">81</option>
+        <option value="82.s.1" id="scaruffi">82</option>
+        <option value="83.s.1" id="scaruffi">83</option>
+        <option value="84.s.1" id="scaruffi">84</option>
         <option value="A1.c.1" id="centrale">A1</option>
         <option value="A2.c.1" id="centrale">A2</option>
         <option value="A3.c.1" id="centrale">A3</option>
         <option value="A4.c.1" id="centrale">A4</option>
         <option value="Aula-Magna.c.1" id="centrale">Aula Magna</option>
+        <option value="Lab-8.s.1" id="scaruffi">Lab 8</option>
         <option value="Lab-D1.c.3" id="centrale">Lab D1</option>
         <option value="Lab-D2.o.1" id="ospedale">Lab D2</option>
         <option value="Lab-F.c.1" id="centrale">Lab F</option>
@@ -107,7 +109,7 @@
         <img src="../img/o.1.png">
     </div>
     <div class="box hidden" id="box-ospedale2">
-        <h4 class="piano">Piano Primo</h4>
+        <h4 class="piano">Primo Piano</h4>
         <img src="../img/o.2.png">
     </div>
     <div class="box hidden" id="box-erigendo">
@@ -121,18 +123,20 @@
         <img src="../img/c.1.png">
     </div>
     <div class="box hidden" id="box-centrale2">
-        <h4 class="piano">Piano Primo</h4>
+        <h4 class="piano">Primo Piano</h4>
         <img src="../img/c.2.png">
     </div>
     <div class="box hidden" id="box-centrale3">
-        <h4 class="piano">Piano Secondo</h4>
+        <h4 class="piano">Secondo Piano </h4>
         <img src="../img/c.3.png">
     </div>
     <div class="box hidden" id="box-bunker">
         <img src="../img/b.1.png">
     </div>
-    <div class="box hidden" id="box-tempietto">
-        <img src="../img/t.1.png">
+    <div class="box hidden" id="box-scaruffi">
+        <img src="../img/s.1.png">
+        <a href="https://maps.app.goo.gl/66WBvP4hGvYXod8b6"><h4 style="color: cornsilk;">Aule Blaise Pascal sede Scaruffi <i class="fa-solid fa-link"></i></h4></a>  
+        <iframe src="https://www.google.com/maps/embed?pb=!4v1726583346475!6m8!1m7!1s1Wh3q4UIdXJj2hIOXWM7eQ!2m2!1d44.70074176810002!2d10.63318077664897!3f15.091240669166297!4f1.8995660068719218!5f0.4000000000000002" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="overlay hidden"></div>
 </body>

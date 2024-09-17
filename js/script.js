@@ -116,39 +116,83 @@ function saveEvents() {
     localStorage.setItem("events", JSON.stringify(eventData));
 }
 
-function orario() {
-    var today = new Date();
-    var dayOfWeek = today.getDay();
-    var moduloElements = document.querySelectorAll(".modulo"); 
-    var orarioSelect = document.getElementById(`orario-select`); 
-    var orario = document.getElementById(`modulo-${dayOfWeek}`); 
+// Funzione per caricare l'orario del giorno selezionato
+function orarioSelect() {
+    var orarioSelectElement = document.getElementById("orario-select");
+    var orarioValue = orarioSelectElement.value;
+    var orario = document.getElementById(`modulo-${orarioValue}`);
+    var moduloElements = document.querySelectorAll(".modulo");
 
     moduloElements.forEach(element => {
         element.classList.add("hidden");
     });
+
+    if (orario) {
+        orario.classList.remove("hidden");
+        fillInputs(`modulo-${orarioValue}`);
+    }
+
+    // Salva il giorno selezionato nel localStorage
+    localStorage.setItem("selectedDay", orarioValue);
+}
+
+// Funzione per mostrare/nascondere i campi di input per la modifica
+function toggleEdit(moduloId) {
+    var modulo = document.getElementById(moduloId);
+    var inputs = modulo.querySelector('.inputs');
+    var isHidden = inputs.classList.contains('hidden');
     
-    if (orario) {
-        orario.classList.remove("hidden");
-    }
-
-    if (orarioSelect) {
-        orarioSelect.value = dayOfWeek;
+    inputs.classList.toggle('hidden', !isHidden);
+    if (!isHidden) {
+        fillInputs(moduloId);
     }
 }
 
-function orarioSelect(){
-    var orarioValue = document.getElementById(`orario-select`).value;
-    var orario = document.getElementById(`modulo-${orarioValue}`); 
-    var moduloElements = document.querySelectorAll(".modulo"); 
+// Funzione per riempire i campi di input con i dati salvati
+function fillInputs(moduloId) {
+    var savedData = JSON.parse(localStorage.getItem(moduloId)) || {};
+    var inputs = document.querySelectorAll(`#${moduloId} .inputs input`);
+    
+    inputs.forEach(input => {
+        var index = input.id.split('-')[1];
+        input.value = savedData[index] || '';
+    });
+}
 
-    moduloElements.forEach(element => {
-        element.classList.add("hidden");
+// Funzione per salvare gli orari nel localStorage
+function saveOrari(moduloId) {
+    var inputs = document.querySelectorAll(`#${moduloId} .inputs input`);
+    var savedData = {};
+
+    inputs.forEach(input => {
+        var index = input.id.split('-')[1];
+        savedData[index] = input.value;
     });
 
-    if (orario) {
-        orario.classList.remove("hidden");
+    localStorage.setItem(moduloId, JSON.stringify(savedData));
+    toggleEdit(moduloId); // Nascondi i campi di input dopo aver salvato
+}
+
+// Funzione per caricare l'orario salvato all'apertura della pagina
+function loadSavedOrario() {
+    var savedDay = localStorage.getItem("selectedDay");
+    var today = new Date();
+    var dayOfWeek = today.getDay() + 1; // Modifica per far partire da 1 (Lunedì) a 6 (Sabato)
+
+    if (savedDay !== null) {
+        var orarioSelect = document.getElementById("orario-select");
+        if (orarioSelect) {
+            orarioSelect.value = savedDay;
+        }
+
+        orarioSelect(); // Chiama la funzione orarioSelect per mostrare l'orario salvato
+    } else {
+        orarioSelect(); // Chiama la funzione orarioSelect per mostrare l'orario del giorno corrente
     }
 }
+
+// Chiama loadSavedOrario all'apertura della pagina
+window.onload = loadSavedOrario;
 
 function close() {
     var today = new Date();

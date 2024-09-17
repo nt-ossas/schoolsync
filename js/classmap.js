@@ -13,7 +13,7 @@ function aula() {
 
     if(value == 0){
         stampaContainer.classList.add('hidden');
-        root.style.setProperty('--title', 'rgb(255, 234, 150)');
+        root.style.setProperty('--title', '#4A90E2');
         return;
     }
 
@@ -28,7 +28,7 @@ function aula() {
     const ospedale2 = document.getElementById('box-ospedale2');
     const bunker = document.getElementById('box-bunker');
     const erigendo = document.getElementById('box-erigendo');
-    const tempietto = document.getElementById('box-tempietto');
+    const scaruffi = document.getElementById('box-scaruffi');
     const piramide = document.getElementById('box-piramide');
 
     if (selectedOption.id.includes('centrale')) {
@@ -57,10 +57,10 @@ function aula() {
         stampa.classList.add('blue');
         root.style.setProperty('--title', 'blue');
         bunker.classList.remove('hidden');
-    } else if (selectedOption.id.includes('tempietto')) {
+    } else if (selectedOption.id.includes('scaruffi')) {
         stampa.classList.add('magenta');
         root.style.setProperty('--title', '#EC22E3');
-        tempietto.classList.remove('hidden');
+        scaruffi.classList.remove('hidden');
     } else if (selectedOption.id.includes('piramide')) {
         stampa.classList.add('ciano');
         root.style.setProperty('--title', '#55E1FA');
