@@ -66,7 +66,6 @@ function aula() {
         root.style.setProperty('--title', '#55E1FA');
         piramide.classList.remove('hidden');
     }
-    console.log(value.slice(-1))
 }
 document.addEventListener('DOMContentLoaded', () => {
     const images = document.querySelectorAll('img');
