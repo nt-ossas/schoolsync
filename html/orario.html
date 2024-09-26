@@ -13,10 +13,9 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/desktop.css">
+    <link rel="stylesheet" href="../css/orario.css">
     <script src="../js/script.js"></script>
     <script src="../js/width.js"></script>
-    <script src="../js/down.js"></script>
 </head>
 <body>
     <nav>
@@ -27,88 +26,46 @@
         <a href="https://nt-ossas.github.io/schoolsync/html/about"><i class="fa-regular fa-address-card"></i></a>
     </nav>
     <div class="moduli">
-        <h5 style="text-align: center;">Salva gli orari scolastici ogni giorno e visualizzali in base alla giornata!</h5>
-        <select id="orario-select" onchange="orarioSelect()">
-            <option value="1">Lunedì</option>
-            <option value="2">Martedì</option>
-            <option value="3">Mercoledì</option>
-            <option value="4">Giovedì</option>
-            <option value="5">Venerdì</option>
-            <option value="6">Sabato</option>
-        </select>
-        <div class="modulo hidden" id="modulo-1">
-            <button onclick="toggleEdit('modulo-1')">Modifica</button>
-            <button onclick="saveOrari('modulo-1')">Salva</button>
-            <div class="inputs hidden">
-                <input type="text" placeholder="1 ora" id="i-1">
-                <input type="text" placeholder="2 ora" id="i-2">
-                <input type="text" placeholder="3 ora" id="i-3">
-                <input type="text" placeholder="4 ora" id="i-4">
-                <input type="text" placeholder="5 ora" id="i-5">
-                <input type="text" placeholder="6 ora" id="i-6">
+        <h3>Materie per<select id="daySelect"></select></h3>
+        <ul id="scheduleList"></ul>
+    </div>
+    <div class="moduli">
+        <div id="schedule">
+            <div>
+                <label for="hour1" style="margin-right: .2em;"> 1° Ora:</label>
+                <input type="text" id="hour1" placeholder="Materia" class="mat">
+                <input type="text" id="class1" placeholder="Aula" class="aula">
+            </div>
+            <div>
+                <label for="hour2">2° Ora:</label>
+                <input type="text" id="hour2" placeholder="Materia" class="mat">
+                <input type="text" id="class2" placeholder="Aula" class="aula">
+            </div>
+            <div>
+                <label for="hour3">3° Ora:</label>
+                <input type="text" id="hour3" placeholder="Materia" class="mat">
+                <input type="text" id="class3" placeholder="Aula" class="aula">
+            </div>
+            <div>
+                <label for="hour4">4° Ora:</label>
+                <input type="text" id="hour4" placeholder="Materia" class="mat">
+                <input type="text" id="class4" placeholder="Aula" class="aula">
+            </div>
+            <div>
+                <label for="hour5">5° Ora:</label>
+                <input type="text" id="hour5" placeholder="Materia" class="mat">
+                <input type="text" id="class5" placeholder="Aula" class="aula">
+            </div>
+            <div>
+                <label for="hour6">6° Ora:</label>
+                <input type="text" id="hour6" placeholder="Materia" class="mat">
+                <input type="text" id="class6" placeholder="Aula" class="aula">
             </div>
         </div>
-        <div class="modulo hidden" id="modulo-2">
-            <button onclick="toggleEdit('modulo-2')">Modifica</button>
-            <button onclick="saveOrari('modulo-2')">Salva</button>
-            <div class="inputs hidden">
-                <input type="text" placeholder="1 ora" id="i-1">
-                <input type="text" placeholder="2 ora" id="i-2">
-                <input type="text" placeholder="3 ora" id="i-3">
-                <input type="text" placeholder="4 ora" id="i-4">
-                <input type="text" placeholder="5 ora" id="i-5">
-                <input type="text" placeholder="6 ora" id="i-6">
-            </div>
-        </div>
-        <div class="modulo hidden" id="modulo-3">
-            <button onclick="toggleEdit('modulo-3')">Modifica</button>
-            <button onclick="saveOrari('modulo-3')">Salva</button>
-            <div class="inputs hidden">
-                <input type="text" placeholder="1 ora" id="i-1">
-                <input type="text" placeholder="2 ora" id="i-2">
-                <input type="text" placeholder="3 ora" id="i-3">
-                <input type="text" placeholder="4 ora" id="i-4">
-                <input type="text" placeholder="5 ora" id="i-5">
-                <input type="text" placeholder="6 ora" id="i-6">
-            </div>
-        </div>
-        <div class="modulo hidden" id="modulo-4">
-            <button onclick="toggleEdit('modulo-4')">Modifica</button>
-            <button onclick="saveOrari('modulo-4')">Salva</button>
-            <div class="inputs hidden">
-                <input type="text" placeholder="1 ora" id="i-1">
-                <input type="text" placeholder="2 ora" id="i-2">
-                <input type="text" placeholder="3 ora" id="i-3">
-                <input type="text" placeholder="4 ora" id="i-4">
-                <input type="text" placeholder="5 ora" id="i-5">
-                <input type="text" placeholder="6 ora" id="i-6">
-            </div>
-        </div>
-        <div class="modulo hidden" id="modulo-5">
-            <button onclick="toggleEdit('modulo-5')">Modifica</button>
-            <button onclick="saveOrari('modulo-5')">Salva</button>
-            <div class="inputs hidden">
-                <input type="text" placeholder="1 ora" id="i-1">
-                <input type="text" placeholder="2 ora" id="i-2">
-                <input type="text" placeholder="3 ora" id="i-3">
-                <input type="text" placeholder="4 ora" id="i-4">
-                <input type="text" placeholder="5 ora" id="i-5">
-                <input type="text" placeholder="6 ora" id="i-6">
-            </div>
-        </div>
-        <div class="modulo hidden" id="modulo-6">
-            <button onclick="toggleEdit('modulo-6')">Modifica</button>
-            <button onclick="saveOrari('modulo-6')">Salva</button>
-            <div class="inputs hidden">
-                <input type="text" placeholder="1 ora" id="i-1">
-                <input type="text" placeholder="2 ora" id="i-2">
-                <input type="text" placeholder="3 ora" id="i-3">
-                <input type="text" placeholder="4 ora" id="i-4">
-                <input type="text" placeholder="5 ora" id="i-5">
-                <input type="text" placeholder="6 ora" id="i-6">
-            </div>
-        </div>
-    </div>    
+    </div>
+    <button id="saveBtn">Salva Orario</button>
+    <div id="notification" class="notification"></div>
+    <script src="../js/orario.js"></script>
     <footer>
         <h6 style="text-align: center;">&copy; 2024 SchoolSync - All Rights Reserved - Ossas</h6>
     </footer>
