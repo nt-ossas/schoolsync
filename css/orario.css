@@ -28,6 +28,18 @@ input.aula{
     padding-block: 10px;
     margin-inline: 30%;
 }
+#scheduleList{
+    list-style: none;
+    margin-left: -45px;
+}
+#scheduleList li{
+    margin-bottom: 10px;
+    border-bottom: 2px solid #4A90E2;
+}
+#scheduleList li:last-child{
+    border-bottom: 0;
+
+}
 .notification {
     position: fixed;
     bottom: 50px; /* Posizione iniziale in basso */
