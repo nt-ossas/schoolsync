@@ -462,37 +462,25 @@ function calculateTotalAverage() {
     }
 
     const mediaTotElement = document.getElementById("media-tot");
-    const mediaTotIndex = document.getElementById("media-tot-index");
     if (totalSommaPesi === 0) {
         mediaTotElement.textContent = "N.D.";
         mediaTotElement.style.backgroundColor = "";
         mediaTotElement.style.color = "";
-        mediaTotIndex.textContent = "N.D.";
-        mediaTotIndex.style.backgroundColor = "";
-        mediaTotIndex.style.color = "";
         return;
     }
 
     var mediaTotale = totalSommaVoti / totalSommaPesi;
     mediaTotElement.textContent = mediaTotale.toFixed(2);
-    mediaTotIndex.textContent = mediaTotale.toFixed(2);
-    console.log(mediaTotIndex);
 
     if (mediaTotale >= 6) {
         mediaTotElement.style.backgroundColor = "var(--bg-green)";
         mediaTotElement.style.color = "var(--color-green)";
-        mediaTotIndex.style.backgroundColor = "var(--bg-green)";
-        mediaTotIndex.style.color = "var(--color-green)";
     } else if (mediaTotale < 5) {
         mediaTotElement.style.backgroundColor = "var(--bg-red)";
         mediaTotElement.style.color = "var(--color-red)";
-        mediaTotIndex.style.backgroundColor = "var(--bg-red)";
-        mediaTotIndex.style.color = "var(--color-red)";
     } else if (mediaTotale < 6) {
         mediaTotElement.style.backgroundColor = "var(--bg-orange)";
         mediaTotElement.style.color = "var(--color-orange)";
-        mediaTotIndex.style.backgroundColor = "var(--bg-orange)";
-        mediaTotIndex.style.color = "var(--color-orange)";
     }
 
     saveTotalAverage();
