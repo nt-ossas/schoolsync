@@ -34,7 +34,7 @@
         <div class="box">
             <!--- grade -->
             <h4 class="presentation">Medie insufficienti</h4>
-            <h4 id="avviso" style="color: #8f8b85;margin-top: 25px !important;">Offline</h4>
+            <h4 id="avviso" style="color: #8f8b85;margin-top: 25px !important;">Nessuna media insufficiente</h4>
             <div class="grade-container scroll-2" id="grade-container"></div>
         </div>
     </div>
@@ -45,10 +45,15 @@
             <button onclick="materia()" class="add"></button>
             <button onclick="mat()" class="canc">-</button>
         </div>
+        <details>
+            <summary>Clicca se hai problemi</summary>
+            <button onclick="clearLocalStorageExceptSchedule()" class="clear">Clear All</button>
+        </details>
     </aside>
     <!--- materie -->
     <div id="body">
     </div>
+    <div id="notification" class="notification"></div>
     <div id="popup" class="popup">
         <h3>Dettagli Voto</h3>
         <p id="popup-voto"></p>
@@ -60,7 +65,7 @@
     <div id="overlay" class="overlay" onclick="closePopup()"></div>    
     <footer id="foot">
         <h3>Note:</h3>
-        <h5>Arriverà presto un restyle grafico per la sezione "Medie Insufficienti" con delle animazioni.</h5>
+        <h5>Arriveranno presto opzioni più rapide e funzioni più avanzate, per richieste <a href="https://discord.gg/mAQhAh5W"> contattate</a>.</h5>
         <h6 style="text-align: center;">&copy; 2024 SchoolSync - All Rights Reserved - Ossas</h6>
     </footer>
 </body>

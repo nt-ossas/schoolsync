@@ -28,7 +28,7 @@ function mat() {
 
     // Controlla se la materia ha dei voti
     if (subjects[subjectIndex].voti.length > 0) {
-        confirm("Rimuovi tutti i voti dalla materia prima di eliminarla!");
+        alert("Rimuovi tutti i voti dalla materia prima di eliminarla!");
     } else {
         // Se la materia non ha voti, procedi con l'eliminazione senza avviso
         subjects.pop();
@@ -206,7 +206,79 @@ function add(subjectIndex) {
     calc(subjectIndex);
     addVotesToGradeContainer(voto);
     calculateTotalAverage();
+    updateInsufficientGrades();
 }
+
+function ins(subjectIndex, media) {
+    const gradeContainer = document.getElementById("grade-container");
+    const avviso = document.getElementById("avviso");
+    const existingGrade = document.getElementById(`ins-${subjectIndex}`);
+    
+    if (existingGrade) {
+        existingGrade.remove();
+    }
+    
+    if (media >= 6 || media === 0 || isNaN(media)) {
+        const insufficientGrades = subjects.some(subject => {
+            const media = calc(subjects.indexOf(subject));
+            return media < 6 && media !== 0 && !isNaN(media);
+        });
+        if (!insufficientGrades) {
+            avviso.textContent = "Nessuna media insufficiente";
+        } else {
+            avviso.textContent = "";
+        }
+        saveInsufficientGrades();
+        return;
+    } else {
+        const gradeIns = document.createElement("div");
+        gradeIns.id = `ins-${subjectIndex}`;
+        gradeIns.classList.add("grade");
+        gradeIns.style.transform = "scale(.75)";
+        gradeIns.textContent = media.toFixed(1);
+
+        if (media < 6 && media >= 5) {
+            gradeIns.style.backgroundColor = "var(--bg-orange)";
+        } else if (media < 5) {
+            gradeIns.style.backgroundColor = "var(--bg-red)";
+        }
+
+        gradeContainer.insertBefore(gradeIns, gradeContainer.firstChild);
+        avviso.textContent = "";
+    }
+
+    // Save insufficient grades to local storage
+    saveInsufficientGrades();
+}
+
+function saveInsufficientGrades() {
+    const insufficientGrades = [];
+    subjects.forEach((subject, index) => {
+        const media = calc(index);
+        if (media < 6 && media !== 0 && !isNaN(media)) {
+            insufficientGrades.push({ index, media });
+        }
+    });
+    localStorage.setItem('insufficientGrades', JSON.stringify(insufficientGrades));
+}
+
+function loadInsufficientGrades() {
+    const insufficientGrades = JSON.parse(localStorage.getItem('insufficientGrades')) || [];
+    insufficientGrades.forEach(item => {
+        ins(item.index, item.media);
+    });
+}
+
+function updateInsufficientGrades() {
+    subjects.forEach((subject, index) => {
+        const media = calc(index);
+        ins(index, media);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadInsufficientGrades();
+});
 
 function removeLastVote(subjectIndex) {
     if (!subjects[subjectIndex] || subjects[subjectIndex].voti.length === 0) {
@@ -237,6 +309,7 @@ function removeLastVote(subjectIndex) {
 
     // Calcola nuovamente la media totale
     calculateTotalAverage();
+    updateInsufficientGrades();
 }
 
 function addVoteToUI(subjectIndex, voto, peso, type, date) {
@@ -335,6 +408,30 @@ function addVotesToGradeContainer(votes) {
 
             gradeContainer.appendChild(gradeElement);
         });
+    }
+}
+
+function clearLocalStorageExceptSchedule() {
+    if(confirm(`Sei sicuro di volere eliminare TUTTE le materie, TUTTI i voti e TUTTI i dati (tranne l'orario)? Questa è un'azione irriversibile`)){
+        const keysToKeep = ['daySelect', 'selectedDay', 'scheduleList'];
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (!key.includes('orario') && !keysToKeep.includes(key)) {
+                localStorage.removeItem(key);
+            }
+        }
+
+        // Notifica per l'utente
+        const notification = document.getElementById('notification');
+        notification.textContent = 'Local storage pulito, ma i dati dell\'orario sono stati conservati!';
+        notification.classList.remove('hide');
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+            notification.classList.add('hide');
+        }, 1000);
+        location.reload();
     }
 }
 
@@ -509,6 +606,35 @@ function saveTotalAverage() {
     const mediaTotale = totalSommaPesi ? totalSommaVoti / totalSommaPesi : 0;
     localStorage.setItem('mediaTot', mediaTotale.toFixed(2));
 }
+
+function loadTotalAverage() {
+    var mediaTotale = parseFloat(localStorage.getItem('mediaTot'));
+    var mediaF = document.getElementById('media-tot-index');
+
+    if (!mediaTotale || mediaTotale === 0) {
+        mediaF.textContent = "N.D.";
+        mediaF.style.backgroundColor = "";
+        mediaF.style.color = "";
+        return;
+    }
+
+    mediaF.textContent = mediaTotale.toFixed(2);
+
+    if (mediaTotale >= 6) {
+        mediaF.style.backgroundColor = "var(--bg-green)";
+        mediaF.style.color = "var(--color-green)";
+    } else if (mediaTotale < 5) {
+        mediaF.style.backgroundColor = "var(--bg-red)";
+        mediaF.style.color = "var(--color-red)";
+    } else if (mediaTotale < 6) {
+        mediaF.style.backgroundColor = "var(--bg-orange)";
+        mediaF.style.color = "var(--color-orange)";
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadTotalAverage();
+});
 
 function loadSubjects() {
     const storedSubjects = localStorage.getItem('subjects');

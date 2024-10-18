@@ -149,6 +149,53 @@ input, select {
     border-radius: 50%;
 }
 
+details summary{
+    font-size:12px;
+    text-decoration: underline;
+    color: var(--color-blue);
+    text-align: center;
+    width: 70%;
+    margin-inline: 15%;
+    padding-bottom: 15px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 50px; /* Posizione iniziale in basso */
+    left: 25px;
+    right: 25px;
+    border-radius: 50px;
+    background-color: #4CAF50; /* Colore di sfondo verde */
+    color: white; /* Colore del testo bianco */
+    padding: 10px;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Aggiunta della transizione per la trasformazione */
+    opacity: 0; /* Inizialmente invisibile */
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateY(0px); /* Posizione iniziale senza traslazione */
+}
+
+.notification.show {
+    opacity: 0.75; /* Opacità quando visibile */
+    transform: translateY(-50px); /* Sposta verso l'alto quando appare */
+}
+
+.notification.hide {
+    opacity: 0; /* Invisibile durante la scomparsa */
+    transform: translateY(50px); /* Sposta verso il basso quando scompare */
+}
+
+.clear{
+    width: 50%;
+    margin-inline: 25%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background-color:#393A50;
+    border-radius: 10px;
+}
+
 .scegli {
     background-color: var(--bg-blue);
     color: var(--color-blue);

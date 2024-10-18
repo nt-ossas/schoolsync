@@ -269,6 +269,9 @@ button.canc, button.add, button.calc-needed, button.remove-all{
     border-radius: 50%;
     margin-inline: 25%;
     margin-top: -10px;
+    background-color: var(--bg-blue);
+    color: var(--color-blue);
+    font-weight: bold;
 }
 
 i {
