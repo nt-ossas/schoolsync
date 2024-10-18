@@ -81,101 +81,23 @@ daySelect.addEventListener('change', (e) => {
 // Carica l'orario di oggi all'avvio
 loadSchedule(currentDay.charAt(0).toUpperCase() + currentDay.slice(1));
 
+const schedule3MInformatica = {
+    lunedì: { hour1: 'Telecomunicazioni', class1: '21.2', hour2: 'Informatica', class2: 'T6.5', hour3: 'Storia', class3: '12.1', hour4: 'Sistemi', class4: '12.1', hour5: 'Italiano', class5: '12.1', hour6: '', class6: '' },
+    martedì: { hour1: 'Matematica', class1: '10.1', hour2: 'Telecomunicazioni', class2: 'T4.1', hour3: 'Telecomunicazioni', class3: 'T4.1', hour4: 'Inglese', class4: '31.o', hour5: 'Italiano', class5: '31.o', hour6: 'Informatica', class6: '31.o' },
+    mercoledì: { hour1: 'Motoria', class1: 'Pala-Pascal', hour2: 'Motoria', class2: 'Pala-Pascal', hour3: 'Org. Aziendale', class3: '72.p', hour4: 'Matematica', class4: '37.o', hour5: 'Inglese', class5: '37.o', hour6: '', class6: '' },
+    giovedì: { hour1: 'Religione', class1: '55.e', hour2: 'Inglese', class2: '43.b', hour3: 'Italiano', class3: '43.b', hour4: 'Italiano', class4: '43.b', hour5: 'Tepsit', class5: 'T2.1', hour6: 'Sistemi', class6: 'T2.1' },
+    venerdì: { hour1: 'Matematica', class1: '10.1', hour2: 'Informatica', class2: 'T3.1', hour3: 'Informatica', class3: 'T3.1', hour4: 'Tepsit', class4: 'T2.1', hour5: 'Sistemi', class5: 'T2.1', hour6: '', class6: '' },
+    sabato: { hour1: 'Italiano', class1: '31.o', hour2: 'Matematica', class2: '31.o', hour3: 'Inglese', class3: 'L1.o', hour4: 'Org. Aziendale', class4: 'A1.t', hour5: 'Informatica', class5: 'T2.1', hour6: '', class6: '' }
+};
+
 function load3m(){
-    if(confirm(`Sei sicuro di voler carica l'orario della 3M Informatico della scuola Blaise Pascal?`))
-        load3MInformaticaSchedule(currentDay);
+    if(confirm(`Sei sicuro di voler caricare l'orario della 3M Informatico della scuola Blaise Pascal?`)) {
+        load3MInformaticaWeek();
+    }
 }
 
 function load3MInformaticaSchedule(day) {
-    console.log('carico orario di ' + day);
-    const schedule3MInformatica = {
-        lunedì: {
-            hour1: 'Telecomunicazioni',
-            class1: '21.2',
-            hour2: 'Informatica',
-            class2: 'T6.5',
-            hour3: 'Storia',
-            class3: '12.1',
-            hour4: 'Sistemi',
-            class4: '12.1',
-            hour5: 'Italiano',
-            class5: '12.1',
-            hour6: '',
-            class6: ''
-        },
-        martedì: {
-            hour1: 'Matematica',
-            class1: '10.1',
-            hour2: 'Telecomunicazioni',
-            class2: 'T4.1',
-            hour3: 'Telecomunicazioni',
-            class3: 'T4.1',
-            hour4: 'Inglese',
-            class4: '31.o',
-            hour5: 'Italiano',
-            class5: '31.o',
-            hour6: 'Informatica',
-            class6: '31.o'
-        },
-        mercoledì: {
-            hour1: 'Motoria',
-            class1: 'Pala-Pascal',
-            hour2: 'Motoria',
-            class2: 'Pala-Pascal',
-            hour3: 'Org. Aziendale',
-            class3: '72.p',
-            hour4: 'Matematica',
-            class4: '37.o',
-            hour5: 'Inglese',
-            class5: '37.o',
-            hour6: '',
-            class6: ''
-        },
-        giovedì: {
-            hour1: 'Religione',
-            class1: '55.e',
-            hour2: 'Inglese',
-            class2: '43.b',
-            hour3: 'Italiano',
-            class3: '43.b',
-            hour4: 'Italiano',
-            class4: '43.b',
-            hour5: 'Tepsit',
-            class5: 'T2.1',
-            hour6: 'Sistemi',
-            class6: 'T2.1'
-        },
-        venerdì: {
-            hour1: 'Matematica',
-            class1: '10.1',
-            hour2: 'Informatica',
-            class2: 'T3.1',
-            hour3: 'Informatica',
-            class3: 'T3.1',
-            hour4: 'Tepsit',
-            class4: 'T2.1',
-            hour5: 'Sistemi',
-            class5: 'T2.1',
-            hour6: '',
-            class6: ''
-        },
-        sabato: {
-            hour1: 'Italiano',
-            class1: '31.o',
-            hour2: 'Matematica',
-            class2: '31.o',
-            hour3: 'Inglese',
-            class3: 'L1.o',
-            hour4: 'Org. Aziendale',
-            class4: 'A1.t',
-            hour5: 'Informatica',
-            class5: 'T2.1',
-            hour6: '',
-            class6: ''
-        }
-    };    
-
-    const schedule = schedule3MInformatica[day] || {};
+    const schedule = schedule3MInformatica[day.toLowerCase()] || {};
     document.getElementById('hour1').value = schedule.hour1 || '';
     document.getElementById('class1').value = schedule.class1 || '';
     document.getElementById('hour2').value = schedule.hour2 || '';
@@ -188,13 +110,17 @@ function load3MInformaticaSchedule(day) {
     document.getElementById('class5').value = schedule.class5 || '';
     document.getElementById('hour6').value = schedule.hour6 || '';
     document.getElementById('class6').value = schedule.class6 || '';
+}
 
+function load3MInformaticaWeek() {
+    ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'].forEach(day => {
+        localStorage.setItem(day, JSON.stringify(schedule3MInformatica[day.toLowerCase()]));
+    });
+    loadSchedule(daySelect.value);
     const notification = document.getElementById('notification');
-    notification.textContent = `Caricato l'orario della 3M Informatico con successo`;
+    notification.textContent = `Caricato l'orario della 3M Informatico per l'intera settimana con successo`;
     notification.classList.remove('hide');
     notification.classList.add('show');
-
-    // Hide the notification after 3 seconds
     setTimeout(() => {
         notification.classList.remove('show');
         notification.classList.add('hide');
