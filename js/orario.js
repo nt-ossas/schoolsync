@@ -1,87 +1,202 @@
 const daySelect = document.getElementById('daySelect');
-        const selectedDay = document.getElementById('selectedDay');
-        const scheduleList = document.getElementById('scheduleList');
-        
-        const today = new Date();
-        const options = { weekday: 'long' };
-        const currentDay = today.toLocaleDateString('it-IT', options);
-        
-        // Aggiungi il sabato
-        const daysOfWeek = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-        
-        // Popolamento del menu a discesa con i giorni della settimana
-        daysOfWeek.forEach(day => {
-            const option = document.createElement('option');
-            option.value = day;
-            option.textContent = day;
-            daySelect.appendChild(option);
-        });
-        
-        // Imposta il giorno di oggi nel select
-        daySelect.value = currentDay.charAt(0).toUpperCase() + currentDay.slice(1); // Corregge il formato in modo che la prima lettera sia maiuscola
-        
-        // Carica l'orario dal local storage e visualizzalo nell'elenco
-        function loadSchedule(day) {
-            const schedule = JSON.parse(localStorage.getItem(day)) || {};
-            const hours = [
-                {subject: schedule.hour1 || '', classroom: schedule.class1 || ''},
-                {subject: schedule.hour2 || '', classroom: schedule.class2 || ''},
-                {subject: schedule.hour3 || '', classroom: schedule.class3 || ''},
-                {subject: schedule.hour4 || '', classroom: schedule.class4 || ''},
-                {subject: schedule.hour5 || '', classroom: schedule.class5 || ''},
-                {subject: schedule.hour6 || '', classroom: schedule.class6 || ''}
-            ];
+const selectedDay = document.getElementById('selectedDay');
+const scheduleList = document.getElementById('scheduleList');
 
-            // Pulisce l'elenco precedente
-            scheduleList.innerHTML = '';
+const today = new Date();
+const options = { weekday: 'long' };
+const currentDay = today.toLocaleDateString('it-IT', options);
 
-            // Aggiunge le materie all'elenco
-            hours.forEach((item, index) => {
-                if (item.subject || item.classroom) {
-                    const li = document.createElement('li');
-                    li.textContent = `${item.subject} - ${item.classroom}`;
-                    scheduleList.appendChild(li);
-                }
-            });
+// Include Sunday in the days of the week
+const daysOfWeek = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+
+// Populate the dropdown menu with the days of the week
+daysOfWeek.forEach(day => {
+    const option = document.createElement('option');
+    option.value = day;
+    option.textContent = day;
+    daySelect.appendChild(option);
+});
+
+// Set today's day in the select element
+daySelect.value = currentDay.charAt(0).toUpperCase() + currentDay.slice(1); // Ensure the first letter is capitalized
+
+// Function to load the schedule from localStorage and display it in the list
+function loadSchedule(day) {
+    const schedule = JSON.parse(localStorage.getItem(day)) || {};
+
+    // Carica i valori salvati negli input
+    document.getElementById('hour1').value = schedule.hour1 || '';
+    document.getElementById('class1').value = schedule.class1 || '';
+    document.getElementById('hour2').value = schedule.hour2 || '';
+    document.getElementById('class2').value = schedule.class2 || '';
+    document.getElementById('hour3').value = schedule.hour3 || '';
+    document.getElementById('class3').value = schedule.class3 || '';
+    document.getElementById('hour4').value = schedule.hour4 || '';
+    document.getElementById('class4').value = schedule.class4 || '';
+    document.getElementById('hour5').value = schedule.hour5 || '';
+    document.getElementById('class5').value = schedule.class5 || '';
+    document.getElementById('hour6').value = schedule.hour6 || '';
+    document.getElementById('class6').value = schedule.class6 || '';
+}
+
+// Event listener for saving the schedule
+document.getElementById('saveBtn').addEventListener('click', () => {
+    const day = daySelect.value;
+    const schedule = {
+        hour1: document.getElementById('hour1').value,
+        class1: document.getElementById('class1').value,
+        hour2: document.getElementById('hour2').value,
+        class2: document.getElementById('class2').value,
+        hour3: document.getElementById('hour3').value,
+        class3: document.getElementById('class3').value,
+        hour4: document.getElementById('hour4').value,
+        class4: document.getElementById('class4').value,
+        hour5: document.getElementById('hour5').value,
+        class5: document.getElementById('class5').value,
+        hour6: document.getElementById('hour6').value,
+        class6: document.getElementById('class6').value
+    };
+    localStorage.setItem(day, JSON.stringify(schedule));
+
+    // Show notification
+    const notification = document.getElementById('notification');
+    notification.textContent = 'Orario salvato per ' + day;
+    notification.classList.remove('hide');
+    notification.classList.add('show');
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+    }, 1000);
+    
+    loadSchedule(day); // Load the schedule immediately after saving
+});
+
+// Event listener for changing the selected day
+daySelect.addEventListener('change', (e) => {
+    loadSchedule(e.target.value);
+});
+
+// Carica l'orario di oggi all'avvio
+loadSchedule(currentDay.charAt(0).toUpperCase() + currentDay.slice(1));
+
+function load3m(){
+    if(confirm(`Sei sicuro di voler carica l'orario della 3M Informatico della scuola Blaise Pascal?`))
+        load3MInformaticaSchedule(currentDay);
+}
+
+function load3MInformaticaSchedule(day) {
+    console.log('carico orario di ' + day);
+    const schedule3MInformatica = {
+        lunedì: {
+            hour1: 'Telecomunicazioni',
+            class1: '21.2',
+            hour2: 'Informatica',
+            class2: 'T6.5',
+            hour3: 'Storia',
+            class3: '12.1',
+            hour4: 'Sistemi',
+            class4: '12.1',
+            hour5: 'Italiano',
+            class5: '12.1',
+            hour6: '',
+            class6: ''
+        },
+        martedì: {
+            hour1: 'Matematica',
+            class1: '10.1',
+            hour2: 'Telecomunicazioni',
+            class2: 'T4.1',
+            hour3: 'Telecomunicazioni',
+            class3: 'T4.1',
+            hour4: 'Inglese',
+            class4: '31.o',
+            hour5: 'Italiano',
+            class5: '31.o',
+            hour6: 'Informatica',
+            class6: '31.o'
+        },
+        mercoledì: {
+            hour1: 'Motoria',
+            class1: 'Pala-Pascal',
+            hour2: 'Motoria',
+            class2: 'Pala-Pascal',
+            hour3: 'Org. Aziendale',
+            class3: '72.p',
+            hour4: 'Matematica',
+            class4: '37.o',
+            hour5: 'Inglese',
+            class5: '37.o',
+            hour6: '',
+            class6: ''
+        },
+        giovedì: {
+            hour1: 'Religione',
+            class1: '55.e',
+            hour2: 'Inglese',
+            class2: '43.b',
+            hour3: 'Italiano',
+            class3: '43.b',
+            hour4: 'Italiano',
+            class4: '43.b',
+            hour5: 'Tepsit',
+            class5: 'T2.1',
+            hour6: 'Sistemi',
+            class6: 'T2.1'
+        },
+        venerdì: {
+            hour1: 'Matematica',
+            class1: '10.1',
+            hour2: 'Informatica',
+            class2: 'T3.1',
+            hour3: 'Informatica',
+            class3: 'T3.1',
+            hour4: 'Tepsit',
+            class4: 'T2.1',
+            hour5: 'Sistemi',
+            class5: 'T2.1',
+            hour6: '',
+            class6: ''
+        },
+        sabato: {
+            hour1: 'Italiano',
+            class1: '31.o',
+            hour2: 'Matematica',
+            class2: '31.o',
+            hour3: 'Inglese',
+            class3: 'L1.o',
+            hour4: 'Org. Aziendale',
+            class4: 'A1.t',
+            hour5: 'Informatica',
+            class5: 'T2.1',
+            hour6: '',
+            class6: ''
         }
-        
-        document.getElementById('saveBtn').addEventListener('click', () => {
-            const day = daySelect.value;
-            const schedule = {
-                hour1: document.getElementById('hour1').value,
-                class1: document.getElementById('class1').value,
-                hour2: document.getElementById('hour2').value,
-                class2: document.getElementById('class2').value,
-                hour3: document.getElementById('hour3').value,
-                class3: document.getElementById('class3').value,
-                hour4: document.getElementById('hour4').value,
-                class4: document.getElementById('class4').value,
-                hour5: document.getElementById('hour5').value,
-                class5: document.getElementById('class5').value,
-                hour6: document.getElementById('hour6').value,
-                class6: document.getElementById('class6').value
-            };
-            localStorage.setItem(day, JSON.stringify(schedule));
-        
-            // Mostra la notifica
-            const notification = document.getElementById('notification');
-            notification.textContent = 'Orario salvato per ' + day;
-            notification.classList.remove('hide'); // Assicurati che sia visibile
-            notification.classList.add('show'); // Aggiungi la classe per mostrarla
-        
-            // Nascondi la notifica dopo 3 secondi
-            setTimeout(() => {
-                notification.classList.remove('show'); // Rimuovi la classe per nasconderla
-                notification.classList.add('hide'); // Aggiungi la classe per l'animazione di scomparsa
-            }, 1000);
-        
-            loadSchedule(day); // Carica subito l'orario dopo il salvataggio
-        });              
-        
-        // Carica l'orario del giorno selezionato
-        daySelect.addEventListener('change', (e) => {
-            loadSchedule(e.target.value);
-        });
-        
-        // Carica l'orario di oggi all'avvio
-        loadSchedule(currentDay.charAt(0).toUpperCase() + currentDay.slice(1)); // Assicura che la prima lettera sia maiuscola        
+    };    
+
+    const schedule = schedule3MInformatica[day] || {};
+    document.getElementById('hour1').value = schedule.hour1 || '';
+    document.getElementById('class1').value = schedule.class1 || '';
+    document.getElementById('hour2').value = schedule.hour2 || '';
+    document.getElementById('class2').value = schedule.class2 || '';
+    document.getElementById('hour3').value = schedule.hour3 || '';
+    document.getElementById('class3').value = schedule.class3 || '';
+    document.getElementById('hour4').value = schedule.hour4 || '';
+    document.getElementById('class4').value = schedule.class4 || '';
+    document.getElementById('hour5').value = schedule.hour5 || '';
+    document.getElementById('class5').value = schedule.class5 || '';
+    document.getElementById('hour6').value = schedule.hour6 || '';
+    document.getElementById('class6').value = schedule.class6 || '';
+
+    const notification = document.getElementById('notification');
+    notification.textContent = `Caricato l'orario della 3M Informatico con successo`;
+    notification.classList.remove('hide');
+    notification.classList.add('show');
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+    }, 1000);
+}

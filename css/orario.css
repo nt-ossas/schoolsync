@@ -1,6 +1,6 @@
 .moduli{
     padding: 5px 25px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 select#daySelect{
     font-size: 18px;
@@ -27,6 +27,16 @@ input.aula{
     width: 40%;
     padding-block: 10px;
     margin-inline: 30%;
+}
+#orario3m{
+    background-color: #28293D;
+    border: 0;
+    border-radius: 10px;
+    color: cornsilk;
+    width: 70%;
+    margin-top: 15px;
+    padding-block: 10px;
+    margin-inline: 15%;
 }
 #scheduleList{
     list-style: none;

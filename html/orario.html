@@ -30,6 +30,7 @@
         <ul id="scheduleList"></ul>
     </div>
     <div class="moduli">
+        <div id="specialMessage" class="hidden">Oggi è domenica, nessuna lezione!</div>
         <div id="schedule">
             <div>
                 <label for="hour1" style="margin-right: .2em;"> 1° Ora:</label>
@@ -64,6 +65,7 @@
         </div>
     </div>
     <button id="saveBtn">Salva Orario</button>
+    <button id="orario3m" onclick="load3m()">Carica Orario Pre-Impostato</button>
     <div id="notification" class="notification"></div>
     <script src="../js/orario.js"></script>
     <footer>

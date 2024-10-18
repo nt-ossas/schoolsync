@@ -2,9 +2,11 @@
     --bg-green:rgba(47, 255, 0, 0.5);
     --bg-red:rgba(254, 25, 25, 0.5);
     --bg-orange:rgba(255, 140, 0, 0.5);
+    --bg-blue: rgba(74,144,226, 0.5);
     --color-green:rgba(47, 255, 0, 1);
-    --color-red:rgba(254, 25, 25, 2);
+    --color-red:rgba(254, 25, 25, 1);
     --color-orange:rgba(255, 140, 0, 1);
+    --color-blue: rgba(74,144,226, 1);
 }
 
 body {
@@ -129,7 +131,7 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .grid-trio {
@@ -433,7 +435,7 @@ hr {
 
 footer {
     background-color: #28293D;
-    margin-block: 30px;
+    margin-block: 15px;
     border-radius: 10px;
     padding: 5px;
     padding-inline: 15px;
