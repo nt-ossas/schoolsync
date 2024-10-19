@@ -14,7 +14,6 @@
             integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-    <script src="js/script.js"></script>
     <script src="js/materie.js"></script>
     <script src="js/width.js"></script>
     <link rel="manifest" href="manifest.json">
@@ -45,7 +44,7 @@
     <!--- news -->
     <div class="scroll" id="scroll-1">
         <div class="news first column the-news" id="element-1" onclick="show(1)">
-            <h4>News</h4>
+            <h4>News - Offline</h4>
             <i class="fa-solid fa-circle-chevron-right"></i>
         </div>
     </div>
@@ -65,7 +64,7 @@
     <!--- input -->
     <div class="add">
         <!--news-->
-        <h5 class="avviso">Aggiungi News</h5>
+        <h5 class="avviso">Aggiungi News - Offline</h5>
         <div class="grid-trio">
             <input type="text" placeholder="News..." id="nomeNews" value="News">
             <select id="colorNews">
@@ -77,16 +76,41 @@
             <button type="submit" onclick="news()" class="add b-index"></button>
         </div>
         <!--event-->
-        <h5 class="avviso">Aggiungi evento</h5>
+        <h5 class="avviso" style="display: flex;">Aggiungi evento</h5>
         <div class="grid-trio">
-            <input type="text" id="nomeProva" name="nomeProva" placeholder="Materia..." value="Verifica">
+            <select id="verifica-interrogazione">
+                <option value="ver" selected>Verifica</option>
+                <option value="int">Interrogazione</option>
+            </select>
+            <input type="text" id="nomeProva" name="nomeProva" placeholder="Materia...">
             <input type="date" id="dataProva" name="dataProva">
             <button type="submit" onclick="verifica()" class="add b-index"></button>
         </div>
     </div>
+    <script src="js/script.js"></script>
+    <script src="js/info.js"></script>
     <footer>
+        <details class="novita">
+            <summary>Scopri le Novità</summary>
+            <ul>
+                <li><h5>Notifiche push per il calendario. <br>20/10/2024</h5></li>
+                <li><h5>Fix materie. <br>19/10/2024</h5></li>
+                <li><h5>Redesign grafico voti. <br>18/10/2024</h5></li>
+                <li><h5>Miglioramento orario. <br>18/10/2024</h5></li>
+                <li><h5>Redesign orario. <br>18/10/2024</h5></li>
+                <li><h5>Aggiunta <a href="/schoolsync/html/todo"> To-Do List</a>. <br>04/08/2024</h5></li>
+                <li><h5>Aggiunto <a href="/schoolsync/html/classmap"> ClassMap</a>. <br>29/07/2024</h5></li>
+                <li><h5>Aggiunto <a href="/schoolsync/html/orario.html"> Orario</a>. <br>21/07/2024</h5></li>
+                <li><h5>Primo collegamento tra pagine. <br>11/07/2024</h5></li>
+                <li><h5>Aggiunto <a href="/schoolsync/html/about.html"> About</a>. <br>04/07/2024</h5></li>
+                <li><h5>Prima versione Web-App <br>21/06/2024</h5></li>
+                <li><h5>Aggiunto <a href="/schoolsync/html/materie.html"> Materie</a>. <br>20/06/2024</h5></li>
+                <li><h5>Prima versione SchoolSync. <br>19/06/2024</h5></li>
+                <li><h5>Prima versione: "Calcola la tua media". <br>15/05/2024</h5></li>
+            </ul>
+        </details>
         <h3>Note:</h3>
-        <h5>Arriveranno presto le notifiche push per il Calendario e le News.</h5>
+        <h5>Arriverà presto un Re-Work per le News</h5>
         <h6 style="text-align: center;">&copy; 2024 SchoolSync - All Rights Reserved - Ossas</h6>
     </footer>
 </body>

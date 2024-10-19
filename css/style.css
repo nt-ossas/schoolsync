@@ -141,7 +141,20 @@ footer {
 }
 
 .grid-trio input, .grid-trio select {
-    width: 40%;
+    width: 25%;
+}
+
+details.novita summary{
+    font-weight: bold;
+    list-style: none;
+    text-decoration: underline;
+    text-align: center;
+    color: var(--color-blue);
+    padding-top: 15px;
+}
+
+details.novita li{
+    margin-block: -15px;
 }
 
 .box {
