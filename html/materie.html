@@ -33,9 +33,8 @@
         </div>
         <div class="box">
             <!--- grade -->
-            <h4 class="presentation">Offline</h4>
-            <h4 id="avviso" style="color: #8f8b85;margin-top: 25px !important;">Offline</h4>
-            <div class="grade-container scroll-2" id="grade-container"></div>
+            <h5 style="margin-bottom: -7.5px;">Clicca se il sito presenta qualche bug o errore</h5>
+            <button onclick="clearLocalStorageExceptSchedule()" class="clear">Clear All</button>
         </div>
     </div>
     <!-- aside -->
@@ -45,10 +44,6 @@
             <button onclick="materia()" class="add"></button>
             <button onclick="mat()" class="canc">-</button>
         </div>
-        <details>
-            <summary>Clicca se hai problemi</summary>
-            <button onclick="clearLocalStorageExceptSchedule()" class="clear">Clear All</button>
-        </details>
     </aside>
     <!--- materie -->
     <div id="body">

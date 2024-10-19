@@ -149,16 +149,6 @@ input, select {
     border-radius: 50%;
 }
 
-details summary{
-    font-size:12px;
-    text-decoration: underline;
-    color: var(--color-blue);
-    text-align: center;
-    width: 70%;
-    margin-inline: 15%;
-    padding-bottom: 15px;
-}
-
 .notification {
     position: fixed;
     bottom: 50px; /* Posizione iniziale in basso */

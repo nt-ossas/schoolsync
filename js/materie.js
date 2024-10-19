@@ -171,8 +171,8 @@ function add(subjectIndex) {
         var month = ("0" + (today.getMonth() + 1)).slice(-2);
         date = today.getFullYear() + "-" + month + "-" + day;
     }
-    if (peso < 0 || peso > 100) {
-        alert("L'intervallo deve andare da 0 a 100!");
+    if (peso < 1 || peso > 100) {
+        alert("L'intervallo deve andare da 1 a 100!");
         return;
     }
     if (isNaN(peso)) {
@@ -275,12 +275,6 @@ function addVoteToUI(subjectIndex, voto, peso, type, date) {
         tdVoto.style.color = "var(--color-green)";
         tdPeso.style.color = "var(--color-green)";
     }
-    if(peso === 0){
-        tdVoto.style.backgroundColor = "var(--bg-blue)";
-        tdPeso.style.backgroundColor = "var(--bg-blue)";
-        tdVoto.style.color = "var(--color-blue)";
-        tdPeso.style.color = "var(--color-blue)";
-    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -288,7 +282,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const pesi = JSON.parse(localStorage.getItem('totalPesi')) || []; // Assicurati di avere i pesi salvati in localStorage
     addVotesToGradeContainer(votes, pesi);
 });
-
 
 function addVotesToGradeContainer(votes, pesi) {
     const gradeContainer = document.getElementById("grade-container-index");
@@ -306,7 +299,7 @@ function addVotesToGradeContainer(votes, pesi) {
         avviso.id = 'avviso';
         gradeContainer.appendChild(avviso);
     } else {
-        votes.reverse().forEach((vote, index) => {
+        votes.reverse().forEach((vote) => {
             const gradeElement = document.createElement('div');
             gradeElement.classList.add('grade');
             let displayText = vote.toFixed(2);
@@ -321,7 +314,6 @@ function addVotesToGradeContainer(votes, pesi) {
                 displayText = displayText.replace('.00', '');
             }
             gradeElement.textContent = displayText;
-            const peso = pesi[index];
             if (vote < 5) {
                 gradeElement.style.backgroundColor = "var(--bg-red)";
                 gradeElement.style.color = "var(--color-red)";
@@ -331,10 +323,6 @@ function addVotesToGradeContainer(votes, pesi) {
             } else {
                 gradeElement.style.backgroundColor = "var(--bg-green)";
                 gradeElement.style.color = "var(--color-green)";
-            }
-            if (peso === 0) {
-                gradeElement.style.backgroundColor = "var(--bg-blue)";
-                gradeElement.style.color = "var(--color-blue)";
             }
             gradeContainer.appendChild(gradeElement);
         });
