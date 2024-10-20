@@ -1,6 +1,5 @@
 // Funzione per caricare gli elementi dalla memoria
 function loadItems() {
-    if (window.innerWidth >) { //rompe if, non so perche ma funziona
         var items = JSON.parse(localStorage.getItem('todoItems')) || [];
         var ul = document.getElementById("todo-list");
         ul.innerHTML = '';
@@ -34,15 +33,10 @@ function loadItems() {
                 li.classList.add("completed");
             }
         });
-    }
 }
 
 // Funzione per aggiungere un elemento
 function addItem() {
-    if (window.innerWidth > 600) {
-        return; // Non aggiungere elementi se lo schermo è grande
-    }
-
     var input = document.getElementById("todo-input").value;
     if (input === '') {
         alert("Scrivi qualcosa non fare il comunista");
@@ -74,10 +68,6 @@ function addItem() {
 
 // Funzione per spostare l'elemento selezionato in cima alla lista e poi in basso quando viene deselezionato
 function toggleItem() {
-    if (window.innerWidth > 600) {
-        return; // Non gestire il toggle se lo schermo è grande
-    }
-
     var ul = document.getElementById("todo-list");
     var selectedItem = this;
 
@@ -94,10 +84,6 @@ function toggleItem() {
 
 // Funzione per salvare gli elementi nella memoria
 function saveItems() {
-    if (window.innerWidth > 600) {
-        return; // Non salvare se lo schermo è grande
-    }
-
     var ul = document.getElementById("todo-list");
     var items = [];
     for (var i = 0; i < ul.children.length; i++) {
@@ -111,19 +97,7 @@ function saveItems() {
 
 // Carica gli elementi al caricamento della pagina
 window.onload = function() {
-    if (window.innerWidth > 600) {
-        document.body.style.display = 'none';        
-        const div = document.createElement('div');
-        div.innerHTML = `
-            <div class="e404">
-                <h2>404</h2>
-                <h1>404 ERROR - DEVICE NOT SUPPORTED</h1>
-                <h3>Try on something with a smaller screen</h3>
-            </div>`;
-        document.body.appendChild(div);
-    } else {
         loadItems();
-    }
 };
 
 document.getElementById("todo-input").addEventListener("keypress", addOnEnter);
