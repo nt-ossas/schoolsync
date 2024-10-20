@@ -116,7 +116,7 @@ function createSubject(index) {
                 </select>
                 <input type="date" id="date-grade-${index}" class="piccolo" placeholder="Data">
             </div>
-            <div class="grid-trio" style="margin-left:38px;">
+            <div class="grid-trio">
                 <button onclick="add(${index})" class="add" id="add-${index}" title="Aggiungi un voto"></button>
                 <button onclick="calculateNeededGrade(${index})" class="calc-needed" id="calc-needed-${index}" title="Calcola che voti devi prendere per avere  la media del 6">6</button>
                 <button onclick="removeLastVote(${index})" class="remove-all" id="remove-all-${index}" title="Rimuovi tutti i voti di questa materia">-</button>

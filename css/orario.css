@@ -20,19 +20,19 @@ input.aula{
     width: 25% !important;
 }
 #saveBtn{
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     border: 0;
     border-radius: 10px;
-    color: cornsilk;
+    color: var(--text-color);
     width: 40%;
     padding-block: 10px;
     margin-inline: 30%;
 }
 #orario3m{
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     border: 0;
     border-radius: 10px;
-    color: cornsilk;
+    color: var(--text-color);
     width: 70%;
     margin-top: 15px;
     padding-block: 10px;
@@ -44,7 +44,7 @@ input.aula{
 }
 #scheduleList li{
     margin-bottom: 10px;
-    border-bottom: 2px solid #4A90E2;
+    border-bottom: 2px solid var(--color-blue);
 }
 #scheduleList li:last-child{
     border-bottom: 0;
@@ -57,7 +57,7 @@ input.aula{
     right: 25px;
     border-radius: 50px;
     background-color: #4CAF50; /* Colore di sfondo verde */
-    color: white; /* Colore del testo bianco */
+    color: var(--text-color); /* Colore del testo bianco */
     padding: 10px;
     z-index: 1000;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Aggiunta della transizione per la trasformazione */

@@ -10,8 +10,8 @@ aside ul {
 .menu {
     width: 80%;
     border-radius: 25px;
-    background-color: #28293D;
-    border: 2px solid #4A90E2;
+    background-color: var(--secondary-bg-color);
+    border: 2px solid var(--color-blue);
     margin-inline: 10%;
 }
 
@@ -20,7 +20,7 @@ aside ul {
 }
 
 .menu:hover{
-    background-color: #4A90E2;
+    background-color: var(--color-blue);
 }
 
 li {
@@ -37,7 +37,7 @@ main {
 
 input[type="date"].piccolo{
     font-size:12px;
-    color: cornsilk !important;
+    color: var(--text-color) !important;
 }
 
 .piccolo{
@@ -57,7 +57,7 @@ input[type="date"].piccolo{
     margin-inline: -20%;
     padding: -20%;
     border-radius: 10px;
-    background: #28293D;
+    background: var(--secondary-bg-color);
     z-index: 1000;
     transition: .3s;
 }
@@ -85,7 +85,7 @@ button {
     height: 50px;
     border: 0;
     border-radius: 50%;
-    color: cornsilk;
+    color: var(--text-color);
     font-weight: bold;
     margin: 15px;
     text-align: center;
@@ -93,8 +93,8 @@ button {
 }
 
 input, select {
-    background-color: #28293D;
-    color: cornsilk;
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
     width: 250px;
     margin-block: 25px;
     border: 0;
@@ -107,7 +107,7 @@ input, select {
 
 .materia{
     transition: .3s;
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     border-radius: 10px;
     padding-bottom: 5px;
     position: absolute;
@@ -118,8 +118,8 @@ input, select {
 }
 
 .spessore{
-    color: #1E1E2E;
-    background-color: #1E1E2E;
+    color: var(--bg-color);
+    background-color: var(--bg-color);
     margin-top: 30px;
     position: absolute;
     width: 100%;
@@ -127,7 +127,7 @@ input, select {
 }
 
 .materia input, .materia select{
-    border: 2px solid #393A50;
+    border: 2px solid var(--nav-color);
     width: 100px;
     margin-left: 35px;
 }
@@ -138,7 +138,7 @@ input, select {
 
 .back{
     font-size: 30px !important;
-    border: 2px solid #393A50;
+    border: 2px solid var(--nav-color);
     width: 35px;
     height: 35px;
     padding: 5px;
@@ -156,7 +156,7 @@ input, select {
     right: 25px;
     border-radius: 50px;
     background-color: #4CAF50; /* Colore di sfondo verde */
-    color: white; /* Colore del testo bianco */
+    color: var(--text-color); /* Colore del testo bianco */
     padding: 10px;
     z-index: 1000;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Aggiunta della transizione per la trasformazione */
@@ -182,7 +182,7 @@ input, select {
     height: 45px;
     line-height: 45px;
     text-align: center;
-    background-color:#393A50;
+    background-color:var(--nav-color);
     border-radius: 10px;
 }
 
@@ -193,22 +193,22 @@ input, select {
 }
 
 .add {
-    background-color: #393A50;
+    background-color: var(--nav-color);
     font-size: 25px;
 }
 
 .canc {
-    background-color: #393A50;
+    background-color: var(--nav-color);
     font-size: 25px;
 }
 
 .calc-needed {
-    background-color: #393A50;
+    background-color: var(--nav-color);
     font-size: 25px;
 }
 
 .remove-all {
-    background-color: #393A50;
+    background-color: var(--nav-color);
     font-size: 25px;
 }
 
@@ -261,13 +261,13 @@ td,th{
     padding: 5px;
 }
 th{
-    border-bottom: 2px solid cornsilk;
+    border-bottom: 2px solid var(--text-color);
 }
 th:first-child{
-    border-right: 2px solid cornsilk !important;
+    border-right: 2px solid var(--text-color) !important;
 }
 tbody td:first-child{
-    border-right: 2px solid cornsilk;
+    border-right: 2px solid var(--text-color);
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
 }
@@ -282,6 +282,10 @@ tbody td:last-child{
     justify-content: center;
     text-align: center;
     align-items: center;
+}
+
+.grid-trio{
+    margin-left: 38px;
 }
 .comment{
     margin-inline: 25%;

@@ -1,14 +1,18 @@
-:root {
-    --background-color: #1E1E2E;
-    --text-color: cornsilk;
-    --button-bg-color: #28293D;
-    --li-bg-color: #393A50;
-    --delete-button-bg: #d32f2f;
+
+  :root{
+      --bg-color:#1E1E2E;
+      --secondary-bg-color:#28293D;
+      --text-color:cornsilk;
+      --secondary-text-color:#8f8b85;
+      --color-blue:#4A90E2;
+      --nav-color:#393A50;
+
+      --delete-button-bg:#d32f2f;
   }
   
   body {
     font-family: Arial, sans-serif;
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
     padding: 20px 25px;
   }
@@ -23,18 +27,18 @@
     width: 80%;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: var(--li-bg-color);
+    background-color: var(--nav-color);
     color: var(--text-color);
     border: 0;
   }
   
   input[type="text"]::placeholder {
-    color: var(--placeholder-color);
+    color: var(--secondary-text-color);
   }
   
   button {
     border-radius: 10px;
-    background-color: var(--button-bg-color);
+    background-color: var(--secondary-bg-color);
     color: white;
     border: none;
     cursor: pointer;
@@ -56,7 +60,7 @@
     position: relative;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: var(--li-bg-color);
+    background-color: var(--nav-color);
     border-radius: 10px;
     transition: background-color 0.3s ease;
   }
@@ -104,7 +108,7 @@
 
 
   nav {
-    background-color: #393A50;
+    background-color: var(--nav-color);
     margin-bottom: 30px;
     margin-inline: -15px;
     padding: 12px 10px;
@@ -122,7 +126,7 @@ nav a i {
 }
 
 nav a i.on {
-    color: #1E1E2E;
+    color: var(--bg-color);
     background-color: cornsilk;
     padding: 7px;
     margin: -7px;

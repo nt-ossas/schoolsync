@@ -1,23 +1,23 @@
 :root{
     --bg-color:#1E1E2E;
-    --color:cornsilk;
-    --title:#ffea96;
-    --title:#4A90E2;
+    --text-color:cornsilk;
+    --color-blue:#4A90E2;
+    --secondary-text-color:#8f8b85;
+    --secondary-bg-color:#28293D;
 }
 body{
     margin-top: 10px;
     background-color: var(--bg-color);
-    color: var(--color);
+    color: var(--text-color);
     padding: 20px 25px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Poppins', sans-serif;
     justify-content: center;
 }
 a{
-    color: var(--title);
-    text-decoration: none;
+    color: var(--color-blue);
 }
 h2.sub-title{
-    color: var(--title);
+    color: var(--color-blue);
     margin-top: -40px;
     margin-left: 3px;
 }
@@ -26,10 +26,10 @@ h1.title{
     font-size: 50px;
     margin-top: 0px;
     text-align: left;
-    color: var(--title);
+    color: var(--color-blue);
 }
 .box{
-    background-color: var(--title);
+    background-color: var(--color-blue);
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 5px;
@@ -39,7 +39,7 @@ h1.title{
     border-radius: 10px;
     border: 0;
     padding-inline: 10px;
-    background-color: var(--title);
+    background-color: var(--color-blue);
     color: var(--bg-color);
     font-weight: bold;
 }
@@ -58,7 +58,7 @@ select#class{
     margin-bottom: 20px;
     padding: 2.5px 5px;
     background-color: var(--bg-box);
-    color: var(--color);
+    color: var(--text-color);
     appearance: none;
 }
 option{
@@ -114,14 +114,6 @@ h4.piano{
     left: 0;
     top: 0;
 }
-footer{
-    opacity: .5;
-    width: 100%;
-    left: 0;
-    bottom: 10px;
-    text-align: center;
-    position: fixed;
-}
 
 nav {
     background-color: #393A50;
@@ -147,4 +139,13 @@ nav a i.on {
     padding: 7px;
     margin: -7px;
     border-radius: 50%;
+}
+
+footer {
+    background-color: var(--secondary-bg-color);
+    margin-block: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    padding-inline: 15px;
+    color: var(--secondary-text-color);
 }

@@ -1,6 +1,6 @@
 // Funzione per caricare gli elementi dalla memoria
 function loadItems() {
-    if (window.innerWidth <= 600) { // Solo per schermi piccoli
+    if (window.innerWidth >) { //rompe if, non so perche ma funziona
         var items = JSON.parse(localStorage.getItem('todoItems')) || [];
         var ul = document.getElementById("todo-list");
         ul.innerHTML = '';

@@ -13,7 +13,7 @@ function aula() {
 
     if(value == 0){
         stampaContainer.classList.add('hidden');
-        root.style.setProperty('--title', '#4A90E2');
+        root.style.setProperty('--color-blue', '#4A90E2');
         return;
     }
 
@@ -33,7 +33,7 @@ function aula() {
 
     if (selectedOption.id.includes('centrale')) {
         stampa.classList.add('red');
-        root.style.setProperty('--title', '#D02727');
+        root.style.setProperty('--color-blue', '#D02727');
         if(value.slice(-1) == 1){
             centrale1.classList.remove('hidden');
         } else if(value.slice(-1) == 2){
@@ -43,7 +43,7 @@ function aula() {
         }
     } else if (selectedOption.id.includes('ospedale')) {
         stampa.classList.add('green');
-        root.style.setProperty('--title', 'green');
+        root.style.setProperty('--color-blue', 'green');
         if(value.slice(-1) == 1){
             ospedale1.classList.remove('hidden');
         } else{
@@ -51,19 +51,19 @@ function aula() {
         }
     } else if (selectedOption.id.includes('erigendo')) {
         stampa.classList.add('orange');
-        root.style.setProperty('--title', 'orange');
+        root.style.setProperty('--color-blue', 'orange');
         erigendo.classList.remove('hidden');
     } else if (selectedOption.id.includes('bunker')) {
         stampa.classList.add('blue');
-        root.style.setProperty('--title', 'blue');
+        root.style.setProperty('--color-blue', 'blue');
         bunker.classList.remove('hidden');
     } else if (selectedOption.id.includes('scaruffi')) {
         stampa.classList.add('magenta');
-        root.style.setProperty('--title', '#EC22E3');
+        root.style.setProperty('--color-blue', '#EC22E3');
         scaruffi.classList.remove('hidden');
     } else if (selectedOption.id.includes('piramide')) {
         stampa.classList.add('ciano');
-        root.style.setProperty('--title', '#55E1FA');
+        root.style.setProperty('--color-blue', '#55E1FA');
         piramide.classList.remove('hidden');
     }
 }

@@ -1,4 +1,10 @@
 :root{
+    --bg-color:#1E1E2E;
+    --secondary-bg-color:#28293D;
+    --text-color:cornsilk;
+    --secondary-text-color:#8f8b85;
+    --nav-color:#393A50;
+    
     --bg-green:rgba(47, 255, 0, 0.5);
     --bg-red:rgba(254, 25, 25, 0.5);
     --bg-orange:rgba(255, 140, 0, 0.5);
@@ -10,8 +16,8 @@
 }
 
 body {
-    background-color: #1E1E2E;
-    color: cornsilk;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     align-items: center;
     justify-content: center;
     margin-inline: 15px;
@@ -20,7 +26,7 @@ body {
 }
 
 aside {
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     transition: .3s;
     border-radius: 10px;
 }
@@ -29,13 +35,13 @@ select#orario-select{
     width: 100px;
     text-align: center;
     margin-inline: 35%;
-    border-bottom: 2px solid #393A50;
-    box-shadow: 0px 0px 10px #393A50;
+    border-bottom: 2px solid var(--nav-color);
+    box-shadow: 0px 0px 10px var(--nav-color);
 }
 
 nav {
-    background-color: #28293D;
-    color: #4A90E2;
+    background-color: var(--secondary-bg-color);
+    color: var(--color-blue);
     margin-bottom: 30px;
     margin-inline: 3px;
     padding: 10px;
@@ -48,13 +54,13 @@ nav {
 }
 
 nav a i {
-    color: cornsilk;
+    color: var(--text-color);
     font-size: 20px !important;
 }
 
 nav a i.on {
-    color: #1E1E2E;
-    background-color: cornsilk;
+    color: var(--bg-color);
+    background-color: var(--text-color);
     padding: 7px;
     margin: -7px;
     border-radius: 50%;
@@ -69,7 +75,7 @@ nav a i.on {
 }
 
 .description {
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     border-radius: 10px;
     margin-top: 20px;
     padding: 5px;
@@ -80,17 +86,8 @@ hr {
     margin-block: 0px;
 }
 
-footer {
-    background-color: #28293D;
-    margin-top: 20px;
-    border-radius: 10px;
-    padding: 5px;
-    padding-inline: 15px;
-    color: #8f8b85;
-}
-
 .document {
-    color: #8f8b85;
+    color: var(--secondary-text-color);
 }
 
 .small {
@@ -151,6 +148,7 @@ details.novita summary{
     text-align: center;
     color: var(--color-blue);
     padding-top: 15px;
+    cursor: pointer;
 }
 
 details.novita li{
@@ -160,7 +158,7 @@ details.novita li{
 .box {
     width: 160px;
     height: 150px;
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     padding: 5px;
     border-radius: 10px;
     text-align: center;
@@ -191,8 +189,8 @@ details.novita li{
     height: 150px;
     margin-right: 10px;
     margin-left: 2px;
-    background: #393A50;
-    color: cornsilk;
+    background: var(--nav-color);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -211,7 +209,7 @@ details.novita li{
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -226,8 +224,8 @@ details.novita li{
     height: 150px;
     margin-right: 10px;
     margin-left: 2px;
-    background: #393A50;
-    color: cornsilk;
+    background: var(--nav-color);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -243,14 +241,14 @@ select {
     border-radius: 10px;
     border: 0;
     margin-block: 10px;
-    background-color: #28293D;
-    color: cornsilk;
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
     font-weight: bold;
     appearance: none;
 }
 
 button.add {
-    background-color: #393A50;
+    background-color: var(--nav-color);
     border: 0;
     width: 50px;
     height: 50px;
@@ -260,7 +258,7 @@ button.add {
 button.add::before {
     content: "+";
     font-size: 30px;
-    color: cornsilk;
+    color: var(--text-color);
 }
 
 button.canc, button.add, button.calc-needed, button.remove-all{
@@ -344,7 +342,7 @@ i {
 i.mini {
     font-size: 20px;
     margin-top: 5px;
-    color: #28293D;
+    color: var(--secondary-bg-color);
 }
 
 .presentation {
@@ -352,7 +350,7 @@ i.mini {
 }
 
 .avviso {
-    color: #8f8b85;
+    color: var(--secondary-text-color);
     text-align: center;
     margin-left: 50px;
 }
@@ -366,13 +364,13 @@ h5.avviso {
 .modulo input {
     margin-inline: 15%;
     width: 70%;
-    border: 2px solid #1E1E2E;
+    border: 2px solid var(--bg-color);
     border-radius: 15px;
     padding: 5px;
 }
 
 .moduli {
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     border-radius: 10px;
     padding-block: 30px;
 }
@@ -382,11 +380,11 @@ h5.avviso {
     top: 5%;
     right: 10%;
     border: 0;
-    color: cornsilk;
+    color: var(--text-color);
 }
 
 .head {
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     margin-top: -4px;
     margin-left: -200px;
     font-size: 30px;
@@ -402,7 +400,7 @@ h5.avviso {
 nav {
     margin-bottom: 30px;
     margin-inline: 3px;
-    background-color: #393A50;
+    background-color: var(--nav-color);
     padding: 10px;
     padding-inline: 25px;
     border-radius: 25px;
@@ -413,13 +411,13 @@ nav {
 }
 
 nav a i {
-    color: cornsilk;
+    color: var(--text-color);
     font-size: 20px !important;
 }
 
 nav a i.on {
-    color: #1E1E2E;
-    background-color: cornsilk;
+    color: var(--bg-color);
+    background-color: var(--text-color);
     padding: 7px;
     margin: -7px;
     border-radius: 50%;
@@ -430,7 +428,7 @@ nav a i.on {
 }
 
 a {
-    color: #4A90E2;
+    color: var(--color-blue);
 }
 
 .description h4 {
@@ -438,7 +436,7 @@ a {
 }
 
 .description {
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     border-radius: 10px;
     margin-top: 20px;
     padding: 5px;
@@ -450,21 +448,21 @@ hr {
 }
 
 footer {
-    background-color: #28293D;
+    background-color: var(--secondary-bg-color);
     margin-block: 15px;
     border-radius: 10px;
     padding: 5px;
     padding-inline: 15px;
-    color: #8f8b85;
+    color: var(--secondary-text-color);
 }
 
 .document {
-    color: #8f8b85;
+    color: var(--secondary-text-color);
 }
 
 .btn{
-    color: cornsilk;
-    background-color: #393A50;
+    color: var(--text-color);
+    background-color: var(--nav-color);
     border: 0;
     width: 50px;
     height: 50px;

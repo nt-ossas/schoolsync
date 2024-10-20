@@ -4,12 +4,12 @@
         align-items: center;
         justify-content: center;
     }
-    nav{
-        margin-inline: 30%;
-    }
     .box{
         scale: 1.5;
         margin: 50px;
+    }
+    .grid input,.grid select{
+        margin-left: 30%;
     }
     .grid-duo{
         display: flex;
@@ -17,13 +17,36 @@
         align-items: center;
         justify-content: center;
     }
+    .grid-trio{
+        margin-left: 25%;
+    }
     .valutazioni{
         height: 120px;
-        background-color: #28293D;
+        background-color: var(--secondary-bg-color);
         padding: 15px;
+        padding-bottom: 45px;
         margin-bottom: 30px;
         margin-right: 20px;
         border-radius: 10px;
+    }
+    main.materia{
+        top: 385px;
+        margin-inline: 29%;
+    }
+    #materia{
+        margin-left: 20%;
+    }
+    .flex{
+        margin-left: 35%;
+    }
+    .translate{
+        transform:translateX(-200%);
+    }
+    .off {
+        transform: translateX(-200%);
+    }
+    .mediaf {
+        margin-inline: 40.75%;
     }
     footer h4{
         font-size: 25px;
