@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SchoolSync</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/schoolsync_logo_500.png"/>
+    <meta name="keywords" content="media, calcola, ossas, registro, schoolsync, school, scuola, sync">
+    <meta name="description" content="Il tuo registro elettronico personale">
+    <meta name="author" content="Ossas">
+    <meta name="theme-color" content="#28293D">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <script src="js/tepsit.js"></script>
+    <link rel="apple-touch-icon" href="img/schoolsync_logo_500.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tepsit.css">
+    <link rel="stylesheet" href="css/desktop.css">
+</head>
+<body>
+    <nav>
+        <a href="/schoolsync"><i class="fa-solid fa-house"></i></a>
+        <a href="/schoolsync/html/materie"><i class="fa-solid fa-list"></i></a>
+        <a href="/schoolsync/html/classmap"><i class="fa-solid fa-map"></i></a>
+        <a href="/schoolsync/html/todo"><i class="fa-solid fa-check"></i></a>
+        <a href="/schoolsync/html/about"><i class="fa-regular fa-address-card"></i></a>
+    </nav>
+    <div class="box">
+        <h3>Converti i tuoi numeri</h3>
+        <h5 class="secondary">Inserisci un numero da convertire</h5>
+        <div class="duo">
+            <label for="h">Esadecimale</label>
+            <input type="text" class="number" id="h" placeholder="Esadecimale..." onchange="convert('h')">
+        </div>
+        <div class="duo">
+            <label for="d">Decimale</label>
+            <input type="text" class="number" id="d" placeholder="Decimale..." onchange="convert('d')">
+        </div>
+        <div class="duo">
+            <label for="o">Ottale</label>
+            <input type="text" class="number" id="o" placeholder="Ottale..." onchange="convert('o')">
+        </div>
+        <div class="duo">
+            <label for="b">Binario</label>
+            <input type="text" class="number" id="b" placeholder="Binario..." onchange="convert('b')">
+        </div>
+    </div>
+    <footer>
+        <h6 style="text-align: center;">&copy; 2024 SchoolSync - All Rights Reserved - Ossas</h6>
+    </footer>
+</body>
+</html>

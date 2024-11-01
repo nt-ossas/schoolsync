@@ -1,0 +1,24 @@
+.box{
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+}
+h5.secondary{
+    color: var(--secondary-text-color);
+    margin-top: -15px;
+}
+input{
+    border: 1px solid var(--secondary-text-color);
+}
+.duo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    text-align: right;
+    gap: 10px;
+    max-width: 100%;
+}
+label{
+    margin-top: 13.5px;
+    font-size: smaller;
+}
