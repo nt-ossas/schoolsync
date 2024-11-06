@@ -1,0 +1,24 @@
+.box{
+    height: 75px;
+    line-height: 75px;
+    font-weight: bolder;
+}
+.box a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    text-decoration: underline;
+    text-decoration-color: var(--color-blue);
+}
+.box a i{
+    font-size: 13px;
+    text-decoration: underline;
+    color: var(--color-blue);
+}
+.grid-duo{
+    margin-top: -15px;
+    margin-bottom: 30px;
+}
+footer{
+    margin-top: -15px;
+}

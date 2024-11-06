@@ -200,7 +200,7 @@ function add(subjectIndex) {
     to6.textContent = '';
     addVoteToUI(subjectIndex, voto, peso, type, date);
     calc(subjectIndex);
-    addVotesToGradeContainer(voto, totalPesi);  // Passa anche i pesi alla funzione
+    addVotesToGradeContainer(voto);
     calculateTotalAverage();
 }
 
@@ -280,10 +280,10 @@ function addVoteToUI(subjectIndex, voto, peso, type, date) {
 document.addEventListener("DOMContentLoaded", function() {
     const votes = JSON.parse(localStorage.getItem('totalVotes')) || [];
     const pesi = JSON.parse(localStorage.getItem('totalPesi')) || []; // Assicurati di avere i pesi salvati in localStorage
-    addVotesToGradeContainer(votes, pesi);
+    addVotesToGradeContainer(votes);
 });
 
-function addVotesToGradeContainer(votes, pesi) {
+function addVotesToGradeContainer(votes) {
     const gradeContainer = document.getElementById("grade-container-index");
     if (!gradeContainer) {
         console.error("Grade container element not found!");
