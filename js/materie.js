@@ -119,7 +119,7 @@ function createSubject(index) {
             <div class="grid-trio">
                 <button onclick="add(${index})" class="add" id="add-${index}" title="Aggiungi un voto"></button>
                 <button onclick="calculateNeededGrade(${index})" class="calc-needed" id="calc-needed-${index}" title="Calcola che voti devi prendere per avere  la media del 6">6</button>
-                <button onclick="removeLastVote(${index})" class="remove-all" id="remove-all-${index}" title="Rimuovi tutti i voti di questa materia">-</button>
+                <button onclick="removeLastVote(${index})" class="remove-all" id="remove-all-${index}" title="Rimuovi tutti i voti di questa materia"><i class="fa-solid fa-trash"></i></button>
             </div>
             <table class="media">
                 <thead>
