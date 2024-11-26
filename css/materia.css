@@ -308,3 +308,6 @@ tbody td:last-child{
 #foot{
     transition: .3s;
 }
+.fa-trash{
+    font-size: 10px;
+}
