@@ -309,5 +309,6 @@ tbody td:last-child{
     transition: .3s;
 }
 .fa-trash{
-    font-size: 10px;
+    margin-top:20px;
+    font-size:25px;
 }
