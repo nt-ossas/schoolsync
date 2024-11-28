@@ -293,22 +293,35 @@ tbody td:last-child{
 .grade{
     margin-right: -35px;
 }
-.sub{
-    transition: .3s;
+aside {
+    background-color: transparent;
 }
-.sub input{
+.sub {
+    transition: .3s;
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+    width: 135%;
+    left: -16%;
+    position: relative;
+}
+.sub input {
     width: 120px !important;
     margin-left: 5%;
     text-align: left;
-    border-radius: 50px;
     padding: 10px;
     padding-left: 20px;
     font-weight: normal;
+}
+ul li{
+    margin-bottom: 15px;
+}
+ul#materia li:last-child{
+    margin-bottom: 0;
 }
 #foot{
     transition: .3s;
 }
 .fa-trash{
-    margin-top:17.5px;
-    font-size:22.5px;
+    margin-top:15px;
+    font-size:20px;
 }

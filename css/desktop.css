@@ -57,4 +57,12 @@
     footer h6{
         font-size: 14px;
     }
+    .sub {
+        transition: .3s;
+        background-color: var(--secondary-bg-color);
+        border-radius: 10px;
+        width: 147.5%;
+        left: -37.5%;
+        position: relative;
+    }
 }
