@@ -13,8 +13,8 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/voto.css">
     <link rel="stylesheet" href="../css/desktop.css">
-    <script src="../js/voto.js"></script>
 </head>
 <body>
     <nav>
@@ -27,19 +27,20 @@
     <section id="calcolo-voto">
             <h1>Calcola il tuo voto</h1>
             <form id="votoForm">
-                <h4 style="margin-bottom:-15px;">Punteggio massimo:</h4>
-                <input type="number" id="punteggioMassimo" name="punteggioMassimo" required>
+                <h4 style="margin-bottom:-10px;">Punteggio massimo:</h4>
+                <input style="margin-bottom:-100px;" type="number" id="punteggioMassimo" name="punteggioMassimo" required>
                 
-                <h4 style="margin-bottom:-15px;">Punteggio ottenuto:</h4>
-                <input type="number" id="punteggioFatto" name="punteggioFatto" required>
+                <h4 style="margin-bottom:-10px;">Punteggio ottenuto:</h4>
+                <input style="margin-bottom:-100px;" type="number" id="punteggioFatto" name="punteggioFatto" required>
                 
-                <h4 style="margin-bottom:-15px;">Percentuale corrispondente al 6:</h4>
-                <input type="number" id="percentuale6" name="percentuale6" required>
+                <h4 style="margin-bottom:-10px;">Percentuale corrispondente al 6:</h4>
+                <input style="margin-bottom:-100px;" type="number" id="percentuale6" name="percentuale6" required>
                 
                 <button type="button" id="calcolaVoto">Calcola</button>
             </form>
-        <p id="risultato">text</p>
+        <div id="risultato"></div>
     </section>
+    <script src="../js/voto.js"></script>
     <footer id="foot">
         <h3>Note:</h3>
         <h5>Arriveranno presto opzioni più rapide e funzioni più avanzate, per richieste <a href="https://discord.gg/mAQhAh5W"> contattate</a>.</h5>

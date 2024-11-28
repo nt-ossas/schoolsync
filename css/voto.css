@@ -1,0 +1,21 @@
+#calcolaVoto{
+    width: 100px;
+    background-color: var(--nav-color);
+    height: 25px;
+    border: 0;
+    color: var(--text-color);
+    border-radius: 10px;
+}
+#risultato div{
+    margin-top: 15px;
+    width: 65px !important;
+    height: 65px !important;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    margin-inline: 35.5%;
+    font-weight: 1000;
+}

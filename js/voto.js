@@ -22,7 +22,30 @@ document.getElementById('calcolaVoto').addEventListener('click', function () {
     // Mostra il risultato
     if (voto >= 0) {
         document.getElementById('risultato').textContent = `Il tuo voto è: ${voto.toFixed(2)}`;
+        addVoteToUi(voto.toFixed(2));
     } else {
         document.getElementById('risultato').textContent = 'Errore nel calcolo, verifica i dati inseriti.';
     }
 });
+
+function addVoteToUi(voto){
+    var tbody = document.getElementById("risultato");
+    var tdVoto = document.createElement("div");
+
+    tbody.innerHTML = "";
+
+    tdVoto.textContent = voto;
+
+    tbody.appendChild(tdVoto);
+
+    if (voto < 5) {
+        tdVoto.style.backgroundColor = "var(--bg-red)";
+        tdVoto.style.color = "var(--color-red)";
+    } else if (voto < 6) {
+        tdVoto.style.backgroundColor = "var(--bg-orange)";
+        tdVoto.style.color = "var(--color-orange)";
+    } else {
+        tdVoto.style.backgroundColor = "var(--bg-green)";
+        tdVoto.style.color = "var(--color-green)";
+    }
+}
