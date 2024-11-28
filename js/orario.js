@@ -90,10 +90,35 @@ const schedule3MInformatica = {
     sabato   : { hour1: 'Italiano', class1: '31.o', hour2: 'Matematica', class2: '31.o', hour3: 'Inglese', class3: 'L1.o', hour4: 'Org. Aziendale', class4: 'A1.t', hour5: 'Informatica', class5: 'T2.1', hour6: '', class6: '' }
 };
 
-function load3m(){
-    if(confirm(`Sei sicuro di voler caricare l'orario della 3M Informatico della scuola Blaise Pascal?`)) {
-        load3MInformaticaWeek();
-    }
+const schedule3QGrafico = {
+    lunedì   : { hour1: 'Motoria', class1: 'Pala-Pascal', hour2: 'Motoria', class2: 'Pala-Pascal', hour3: 'Discipline Grafiche', class3: 'G2.2', hour4: 'Discipline Grafiche', class4: 'G2.2', hour5: "Storia dell'Arte", class5: '22.2', hour6: 'Matematica', class6: '22.2' },
+    martedì  : { hour1: 'Discipline Geometriche', class1: 'D1.2', hour2: 'Discipline Geometriche', class2: 'D1.2', hour3: 'Storia / Filosofia', class3: '34.o', hour4: 'Inglese', class4: 'L2.o', hour5: "Storia dell'Arte", class5: '46.b', hour6: 'Religione', class6: 'A3.t' },
+    mercoledì: { hour1: 'Laboratorio Grafica', class1: 'G2.2', hour2: 'Laboratorio Grafica', class2: 'G2.2', hour3: 'Inglese', class3: '20.2', hour4: 'Matematica', class4: '73.p', hour5: 'Storia / Filosofia', class5: '73.p', hour6: 'Italiano', class6: '73.p' },
+    giovedì  : { hour1: 'Italiano', class1: '84.r', hour2: 'Italiano', class2: '84.r', hour3: 'Matematica', class3: '84.r', hour4: 'Inglese', class4: '84.r', hour5: 'Storia / Filosofia', class5: '84.r', hour6: 'Chimica', class6: '84.r' },
+    venerdì  : { hour1: 'Discipline Geometriche', class1: 'D1.2', hour2: 'Matematica', class2: '20.2', hour3: 'Laboratorio Grafica', class3: 'G2.2', hour4: 'Laboratorio Grafica', class4: 'G2.2', hour5: 'Italiano', class5: '20.2', hour6: "Storia dell'Arte", class6: '20.2' },
+    sabato   : { hour1: 'Chimica', class1: 'S3.t', hour2: 'Chimica', class2: 'S3.t', hour3: 'Discipline Grafiche', class3: 'G2.2', hour4: 'Discipline Grafiche', class4: 'G2.2', hour5: 'Storia / Filosofia', class5: '22.2', hour6: 'Inglese', class6: '22.2' }
+};
+
+function alertOrario() {
+    Swal.fire({
+        title: 'Scegli l\'orario da caricare:',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: '3M Informatico',
+        denyButtonText: '3Q Grafico',
+        customClass: {
+            popup: 'custom-popup',
+            title: 'custom-title',
+            confirmButton: 'custom-confirm-button',
+            denyButton: 'custom-deny-button',
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            load3MInformaticaWeek();
+        } else if (result.isDenied) {
+            load3QGraficoWeek();
+        }
+    });
 }
 
 function load3MInformaticaSchedule(day) {
@@ -118,7 +143,38 @@ function load3MInformaticaWeek() {
     });
     loadSchedule(daySelect.value);
     const notification = document.getElementById('notification');
-    notification.textContent = `Caricato l'orario della 3M Informatico per l'intera settimana con successo`;
+    notification.textContent = `Orario 3M Informatico caricato`;
+    notification.classList.remove('hide');
+    notification.classList.add('show');
+    setTimeout(() => {
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+    }, 1000);
+}
+
+function load3QGraficoSchedule(day) {
+    const schedule = schedule3QGrafico[day.toLowerCase()] || {};
+    document.getElementById('hour1').value = schedule.hour1 || '';
+    document.getElementById('class1').value = schedule.class1 || '';
+    document.getElementById('hour2').value = schedule.hour2 || '';
+    document.getElementById('class2').value = schedule.class2 || '';
+    document.getElementById('hour3').value = schedule.hour3 || '';
+    document.getElementById('class3').value = schedule.class3 || '';
+    document.getElementById('hour4').value = schedule.hour4 || '';
+    document.getElementById('class4').value = schedule.class4 || '';
+    document.getElementById('hour5').value = schedule.hour5 || '';
+    document.getElementById('class5').value = schedule.class5 || '';
+    document.getElementById('hour6').value = schedule.hour6 || '';
+    document.getElementById('class6').value = schedule.class6 || '';
+}
+
+function load3QGraficoWeek() {
+    ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'].forEach(day => {
+        localStorage.setItem(day, JSON.stringify(schedule3QGrafico[day.toLowerCase()]));
+    });
+    loadSchedule(daySelect.value);
+    const notification = document.getElementById('notification');
+    notification.textContent = `Orario 3Q Grafico caricato`;
     notification.classList.remove('hide');
     notification.classList.add('show');
     setTimeout(() => {
