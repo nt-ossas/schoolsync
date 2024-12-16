@@ -33,6 +33,7 @@ main li {
 
 main {
     padding-top: 25px;
+    
 }
 
 input[type="date"].piccolo{
@@ -107,14 +108,18 @@ input, select {
 
 .materia{
     transition: .3s;
-    background-color: var(--secondary-bg-color);
-    border-radius: 10px;
-    padding-bottom: 5px;
     position: absolute;
-    top: 285px;
+    top: 335px;
     right: 15px;
     left: 15px;
-    padding-bottom: 30px !important;
+}
+
+.main{
+    position: relative;
+    background-color: var(--secondary-bg-color);
+    top: -75px;
+    border-radius: 10px;
+    padding-block: 30px !important;
 }
 
 .spessore{
@@ -124,6 +129,10 @@ input, select {
     position: absolute;
     width: 100%;
 
+}
+
+.noDisplay{
+    display: none;
 }
 
 .materia input, .materia select{
@@ -136,17 +145,31 @@ input, select {
     width: 175px;
 }
 
-.back{
-    font-size: 30px !important;
+.linea{
     border: 2px solid var(--nav-color);
     width: 35px;
     height: 35px;
     padding: 5px;
-    line-height: 35px;
-    margin-inline: 42%;
     text-align: center;
     margin-bottom: 20px;
-    border-radius: 50%;
+    border-radius: 50px;
+    display: flex;
+    width: 80%;
+    margin-inline: 10%;
+}
+
+#nomeMateria{
+    text-align: right;
+    width: 100%;
+    line-height: 0px;
+    padding-right: 20px;
+    text-decoration: underline;
+}
+
+.back{
+    line-height: 40px;
+    padding-left: 20px;
+    font-size: 30px !important;
 }
 
 .notification {
@@ -285,7 +308,7 @@ tbody td:last-child{
 }
 
 .grid-trio{
-    margin-left: 38px;
+    margin-left: 45px;
 }
 .comment{
     margin-inline: 25%;
@@ -305,7 +328,7 @@ aside {
     position: relative;
 }
 .sub input {
-    width: 120px !important;
+    width: 200px !important;
     margin-left: 5%;
     text-align: left;
     padding: 10px;

@@ -68,7 +68,10 @@ function createSubject(index) {
 
     nuovaMateria.innerHTML = `
         <div class="main">
-            <i class="fa-solid fa-list-ul back" onclick="cambio(${index})"></i>
+            <div class="linea" onclick="cambio(${index})">
+                <i class="fa-solid fa-list-ul back" ></i>
+                <h3 id="nomeMateria"></h3>
+            </div>
             <div class="grid">
                 <label>Scegli il voto</label>
                 <label>Scegli il peso</label>
@@ -134,7 +137,7 @@ function createSubject(index) {
             <h1 class="mediaf" id="mediaf-${index}">N.D.</h1>
             <h5 class="comment" id="comment-${index}"></h5>
             <h5 id="to6-${index}" style="text-align:center;"></h5>
-            <div class="spessore">zao</div>
+            <div class="spessore"></div>
         </div>
     `;
 
@@ -155,7 +158,19 @@ function cambio(subjectIndex) {
     console.log("cambio " + (subjectIndex + 1));
     
     var aside = document.getElementById("aside");
-    aside.classList.toggle("translate");
+    if(aside.classList.contains("translate")){
+        setTimeout(() => {
+            aside.classList.remove("noDisplay");
+        }, 150);
+        aside.classList.remove('translate');
+    }else{
+        setTimeout(() => {
+            aside.classList.add("noDisplay");
+        }, 300);
+        aside.classList.add('translate');
+    }
+        
+    
 }
 
 function add(subjectIndex) {
@@ -560,7 +575,8 @@ function loadSubjects() {
         subjects = JSON.parse(storedSubjects);
         subjects.forEach((subject, index) => {
             createSubject(index);
-            document.getElementById(`i${index + 1}`).value = subject.name || `Materia ${index + 1}`; // Carica il nome
+            document.getElementById(`i${index + 1}`).value = subject.name || `Materia ${index + 1}`;
+            document.getElementById('nomeMateria').innerText = subjects[0].name || `Materia ${index + 1}`;
             subject.voti.forEach((voto, votoIndex) => {
                 const peso = subject.pesi[votoIndex];
                 const type = subject.tipologie[votoIndex];
@@ -579,5 +595,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function updateSubjectName(subjectIndex) {
     var newName = document.getElementById(`i${subjectIndex + 1}`).value;
     subjects[subjectIndex].name = newName;
-    saveSubjects(); // Salva il nuovo nome nel local storage
+    document.getElementById('nomeMateria').innerText = newName;
+    saveSubjects();
 }
