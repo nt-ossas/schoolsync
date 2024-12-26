@@ -19,6 +19,8 @@
     <link rel="apple-touch-icon" href="img/schoolsync_logo_500.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/desktop.css">
+    <script src="js/mode.js" defer></script>
+    <script src="js/auth.js" defer></script>
 </head>
 <body>
     <nav>
@@ -28,6 +30,22 @@
         <a href="/schoolsync/html/others"><i class="fa-solid fa-globe"></i></a>
         <a href="/schoolsync/html/about"><i class="fa-regular fa-address-card"></i></a>
     </nav>
+    <h1>Welcome to SchoolSync</h1>
+    <div id="user-data"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                const res = await fetch('/api/auth/me', {
+                    headers: { 'x-auth-token': token }
+                });
+                const user = await res.json();
+                document.getElementById('user-data').innerText = `Hello, ${user.username}`;
+            } else {
+                document.getElementById('user-data').innerText = 'Please log in';
+            }
+        });
+    </script>
     <div class="grid-duo">
         <!--- media -->
         <div class="box">
