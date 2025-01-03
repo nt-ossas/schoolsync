@@ -257,19 +257,19 @@ button.add::before {
 button.add-voto::before {
     content: "Aggiungi Voto";
     font-size: 10px;
-    line-height: 0.5;
+    line-height: 1;
 }
 
 button.calc-needed::before {
     content: "Calcola suff.";
     font-size: 10px;
-    line-height: 0.5;
+    line-height: 1;
 }
 
 button.remove-all::before {
     content: "Rimuovi voto";
     font-size: 10px;
-    line-height: 0.5;
+    line-height: 1;
 }
 
 button.canc::before {
