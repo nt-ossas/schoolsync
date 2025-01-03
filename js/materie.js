@@ -69,6 +69,7 @@ function createSubject(index) {
     nuovaMateria.innerHTML = `
         <div class="main">
             <div class="linea" onclick="cambio(${index})">
+                <i class="fa-solid fa-list-ul back" ></i>
                 <h3 id="nomeMateria"></h3>
             </div>
             <div class="grid">
@@ -575,9 +576,8 @@ function loadSubjects() {
         subjects = JSON.parse(storedSubjects);
         subjects.forEach((subject, index) => {
             createSubject(index);
-            const subjectName = subject.name || `Materia ${index + 1}`;
-            document.getElementById(`i${index + 1}`).value = subjectName;
-            document.getElementById(`nomeMateria-${index}`).innerText = subjectName;
+            document.getElementById(`i${index + 1}`).value = subject.name || `Materia ${index + 1}`;
+            document.getElementById('nomeMateria').innerText = subjects[0].name || `Materia ${index + 1}`;
             subject.voti.forEach((voto, votoIndex) => {
                 const peso = subject.pesi[votoIndex];
                 const type = subject.tipologie[votoIndex];
