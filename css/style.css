@@ -133,14 +133,13 @@ hr {
 
 .grid-trio {
     display: flex;
-    gap: 10px;
     margin-bottom: 30px;
     width: calc(100% - 30px);
     margin-inline: 15px;
 }
 
 .grid-trio button{
-    max-width: 100%;
+    max-width: 90%;
     margin-inline: 0;
 }
 
