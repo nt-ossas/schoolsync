@@ -256,20 +256,20 @@ button.add::before {
 
 button.add-voto::before {
     content: "Aggiungi Voto";
-    font-size: 10px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1.65;
 }
 
 button.calc-needed::before {
     content: "Calcola suff.";
-    font-size: 10px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1.65;
 }
 
 button.remove-all::before {
     content: "Rimuovi voto";
-    font-size: 10px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1.65;
 }
 
 button.canc::before {
