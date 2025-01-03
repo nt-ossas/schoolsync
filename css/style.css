@@ -254,32 +254,10 @@ select {
     appearance: none;
 }
 
-
 button.add::before {
     content: "Aggiungi Materia";
     font-size: 14px;
     color: var(--text-color);
-}
-
-button.add-voto::before {
-    content: "Aggiungi Voto";
-    font-size: 14px;
-    line-height: 20px;
-    padding-top: 5px;
-}
-
-button.calc-needed::before {
-    content: "Calcola suff.";
-    font-size: 14px;
-    line-height: 20px;
-    padding-top: 5px;
-}
-
-button.remove-all::before {
-    content: "Rimuovi voto";
-    font-size: 14px;
-    line-height: 20px;
-    padding-top: 5px;
 }
 
 button.canc::before {
@@ -303,6 +281,29 @@ button.canc, button.add, button.calc-needed, button.remove-all{
     height: 50px;
     border-radius: 10px;
     margin-inline: 0;
+}
+
+button.add-voto::before {
+    max-width: 100%;
+    display: block;
+    content: "Aggiungi Voto";
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 5px;
+}
+
+button.calc-needed::before {
+    content: "Calcola suff.";
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 5px;
+}
+
+button.remove-all::before {
+    content: "Rimuovi voto";
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 5px;
 }
 
 button.add-index{
