@@ -117,3 +117,7 @@ input.aula{
 .custom-deny-button:hover {
     background-color: #444; /* Colore di default per hover */
 }
+
+button, input, select, .linea, .media-tot, .mediaf {
+    box-shadow: none;
+}

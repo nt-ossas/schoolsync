@@ -256,19 +256,19 @@ button.add::before {
 
 button.add-voto::before {
     content: "Aggiungi Voto";
-    font-size: 10px;
+    font-size: 8px;
     color: var(--text-color);
 }
 
 button.calc-needed::before {
     content: "Calcola suff.";
-    font-size: 10px;
+    font-size: 8px;
     color: var(--text-color);
 }
 
 button.remove-all::before {
     content: "Rimuovi voto";
-    font-size: 10px;
+    font-size: 8px;
     color: var(--text-color);
 }
 
@@ -300,6 +300,7 @@ button.add-index{
     height: 25px;
     margin-top:10px;
     border:0;
+    fontweight:lighter;
 }
 
 .media-tot {
