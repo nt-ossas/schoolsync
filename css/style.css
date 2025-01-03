@@ -134,14 +134,13 @@ hr {
 .grid-trio {
     display: flex;
     gap: 10px;
-    margin-bottom: 30px;
+    margin:0 !important;
     max-width: 100%;
-    margin-inline: 15px;
+    padding:15px;
 }
 
 .grid-trio button{
-    max-width: 90%;
-    margin-inline: 0;
+    margin: 0;
 }
 
 .grid-trio input, .grid-trio select {

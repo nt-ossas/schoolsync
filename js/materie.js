@@ -69,7 +69,6 @@ function createSubject(index) {
     nuovaMateria.innerHTML = `
         <div class="main">
             <div class="linea" onclick="cambio(${index})">
-                <i class="fa-solid fa-list-ul back" ></i>
                 <h3 id="nomeMateria"></h3>
             </div>
             <div class="grid">
