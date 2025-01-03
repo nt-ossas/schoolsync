@@ -240,6 +240,7 @@ select {
     padding: 5px;
     border-radius: 10px;
     border: 0;
+    text-align: center;
     margin-block: 10px;
     background-color: var(--secondary-bg-color);
     color: var(--text-color);
@@ -257,19 +258,19 @@ button.add::before {
 button.add-voto::before {
     content: "Aggiungi Voto";
     font-size: 14px;
-    line-height: 1.65;
+    line-height:3;
 }
 
 button.calc-needed::before {
     content: "Calcola suff.";
     font-size: 14px;
-    line-height: 1.65;
+    line-height:3;
 }
 
 button.remove-all::before {
     content: "Rimuovi voto";
     font-size: 14px;
-    line-height: 1.65;
+    line-height:3;
 }
 
 button.canc::before {
