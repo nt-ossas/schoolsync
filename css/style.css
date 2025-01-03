@@ -256,27 +256,35 @@ button.add::before {
 
 button.add-voto::before {
     content: "Aggiungi Voto";
-    font-size: 12px;
+    font-size: 10px;
     color: var(--text-color);
 }
 
 button.calc-needed::before {
     content: "Calcola suff.";
-    font-size: 12px;
+    font-size: 10px;
     color: var(--text-color);
 }
 
 button.remove-all::before {
     content: "Rimuovi voto";
-    font-size: 12px;
+    font-size: 10px;
     color: var(--text-color);
 }
 
 button.canc::before {
-    content: "Aggiungi Materia";
+    content: "Cancella Materia";
     font-size: 14px;
     color: var(--text-color);
 }
+
+button.add-index::before {
+    content: "+";
+    font-size: 30px;
+    line-height: 25px;
+    color: var(--text-color);
+}
+
 
 button.canc, button.add, button.calc-needed, button.remove-all{
     display: flex;
@@ -288,10 +296,10 @@ button.canc, button.add, button.calc-needed, button.remove-all{
     margin-inline: 0;
 }
 
-.b-index{
-    width: 50px !important;
-    height: 50px !important;
-    line-height: 50px;
+button.add-index{
+    height: 25px;
+    margin-top:10px;
+    border:0;
 }
 
 .media-tot {
