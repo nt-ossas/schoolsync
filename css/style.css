@@ -133,6 +133,7 @@ hr {
 
 .grid-trio {
     display: flex;
+    gap: 10px;
     margin-bottom: 30px;
     width: calc(100% - 30px);
     margin-inline: 15px;
