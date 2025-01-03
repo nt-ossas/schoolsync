@@ -135,6 +135,13 @@ hr {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
+    width: calc(100% - 30px);
+    margin-inline: auto;
+}
+
+.grid-trio button{
+    max-width: 100%;
+    margin-inline: 0;
 }
 
 .grid-trio input, .grid-trio select {
@@ -258,19 +265,19 @@ button.add::before {
 button.add-voto::before {
     content: "Aggiungi Voto";
     font-size: 14px;
-    line-height: 30px;
+    line-height: 20px;
 }
 
 button.calc-needed::before {
     content: "Calcola suff.";
     font-size: 14px;
-    line-height: 30px;
+    line-height: 20px;
 }
 
 button.remove-all::before {
     content: "Rimuovi voto";
     font-size: 14px;
-    line-height: 30px;
+    line-height: 20px;
 }
 
 button.canc::before {
