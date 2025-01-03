@@ -1,4 +1,3 @@
-// filepath: /c:/Users/utente/Desktop/GitHub/schoolsync/backend/models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 

@@ -69,7 +69,6 @@ function createSubject(index) {
     nuovaMateria.innerHTML = `
         <div class="main">
             <div class="linea" onclick="cambio(${index})">
-                <i class="fa-solid fa-list-ul back" ></i>
                 <h3 id="nomeMateria"></h3>
             </div>
             <div class="grid">
@@ -114,15 +113,16 @@ function createSubject(index) {
                 <label class="piccolo" style="margin-right:10px;">Tipologia</label>
                 <label class="piccolo">Data</label>
                 <select id="type-${index}" class="piccolo">
-                    <option value="1"><i class="fa-solid fa-pen"></i> Scritto</option>
-                    <option value="2"><i class="fa-solid fa-ear-listen"></i> Orale</option>
+                    <option value="Scritto" selected>Scritto</option>
+                    <option value="Orale">Orale</option>
+                    <option value="Pratico">Pratico</option>
                 </select>
                 <input type="date" id="date-grade-${index}" class="piccolo" placeholder="Data">
             </div>
             <div class="grid-trio">
-                <button onclick="add(${index})" class="add" id="add-${index}" title="Aggiungi un voto"></button>
-                <button onclick="calculateNeededGrade(${index})" class="calc-needed" id="calc-needed-${index}" title="Calcola che voti devi prendere per avere  la media del 6">6</button>
-                <button onclick="removeLastVote(${index})" class="remove-all" id="remove-all-${index}" title="Rimuovi tutti i voti di questa materia"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="add(${index})" class="add add-voto" id="add-${index}" title="Aggiungi un voto"></button>
+                <button onclick="calculateNeededGrade(${index})" class="calc-needed" id="calc-needed-${index}" title="Calcola che voti devi prendere per avere  la media del 6"></button>
+                <button onclick="removeLastVote(${index})" class="remove-all" id="remove-all-${index}" title="Rimuovi l'ultimo voto di questa materia"></button>
             </div>
             <table class="media">
                 <thead>
@@ -260,7 +260,7 @@ function addVoteToUI(subjectIndex, voto, peso, type, date) {
 
     tdVoto.textContent = voto;
     tdPeso.textContent = peso + "%";
-    tdType.textContent = type === '1' ? "Scritto" : "Orale";
+    tdType.textContent = type;
     tdDate.textContent = date;
 
     tr.appendChild(tdVoto);
@@ -382,7 +382,7 @@ function showPopup(event) {
 
     document.getElementById("popup-voto").textContent = "Voto: " + voto;
     document.getElementById("popup-peso").textContent = "Peso: " + peso + "%";
-    document.getElementById("popup-tipologia").textContent = "Tipologia: " + (type === '1' ? "Scritto" : "Orale");
+    document.getElementById("popup-tipologia").textContent = "Tipologia: " + type;
     document.getElementById("popup-data").textContent = "Data: " + date;
 
     popup.style.display = "block";

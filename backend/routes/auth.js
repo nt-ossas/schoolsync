@@ -1,47 +1,58 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const router = express.Router();
 
-const users = [];
-const JWT_SECRET = 'diobello2024'; 
+const JWT_SECRET = 'your_jwt_secret'; // Replace with a secure secret in production
 
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
-    const existingUser = users.find(user => user.email === email);
-    if (existingUser) {
-        return res.status(400).send('User already exists');
+    try {
+        const user = new User({ username, email, password });
+        await user.save();
+        res.status(201).send('User registered');
+    } catch (error) {
+        res.status(400).send(error.message);
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = { username, email, password: hashedPassword };
-    users.push(user);
-    res.status(201).send('User registered');
 });
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    const user = users.find(user => user.email === email);
-    if (!user) {
-        return res.status(400).send('Invalid credentials');
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).send('Invalid credentials');
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).send('Invalid credentials');
+        const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    } catch (error) {
+        res.status(400).send(error.message);
     }
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-        return res.status(400).send('Invalid credentials');
-    }
-    const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token });
 });
 
-router.get('/me', (req, res) => {
+router.get('/me', async (req, res) => {
     const token = req.header('x-auth-token');
-    if (!token) {
-        return res.status(401).send('No token, authorization denied');
-    }
+    if (!token) return res.status(401).send('No token, authorization denied');
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        const user = users.find(user => user.email === decoded.email);
-        res.json({ username: user.username, email: user.email });
+        const user = await User.findById(decoded.id).select('-password');
+        res.json(user);
+    } catch (error) {
+        res.status(400).send('Token is not valid');
+    }
+});
+
+router.post('/save-data', async (req, res) => {
+    const token = req.header('x-auth-token');
+    if (!token) return res.status(401).send('No token, authorization denied');
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        const user = await User.findById(decoded.id);
+        user.data = req.body.data;
+        await user.save();
+        res.send('Data saved');
     } catch (error) {
         res.status(400).send('Token is not valid');
     }

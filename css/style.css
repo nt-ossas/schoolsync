@@ -26,9 +26,8 @@ body {
 }
 
 aside {
-    background-color: var(--secondary-bg-color);
+    background-color: trasparent;
     transition: .3s;
-    background: linear-gradient(135deg, #1A1A33, #26264D);
     border-radius: 10px;
 }
 
@@ -248,23 +247,45 @@ select {
     appearance: none;
 }
 
-button.add {
-    background-color: var(--nav-color);
-    border: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
 
 button.add::before {
-    content: "+";
-    font-size: 30px;
+    content: "Aggiungi Materia";
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+button.add-voto::before {
+    content: "Aggiungi Voto";
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+button.calc-needed::before {
+    content: "Calcola suff.";
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+button.remove-all::before {
+    content: "Rimuovi voto";
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+button.canc::before {
+    content: "Aggiungi Materia";
+    font-size: 14px;
     color: var(--text-color);
 }
 
 button.canc, button.add, button.calc-needed, button.remove-all{
     display: flex;
     justify-content: center;
+    background-color: var(--nav-color);
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    margin-inline: 0;
 }
 
 .b-index{
@@ -493,4 +514,10 @@ input[type="time"]{
 .e404 h2{
     margin-bottom: -30px;
     font-size: 100px;
+}
+
+/* Aggiunta di leggere ombre a tutti i bottoni, input e select */
+button, input, select, .linea, .media-tot, .mediaf {
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }

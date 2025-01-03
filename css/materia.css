@@ -101,7 +101,7 @@ input, select {
     border: 0;
     padding: 7.5px;
     border-radius: 25px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     appearance: none;
 }
@@ -154,16 +154,16 @@ input, select {
     margin-bottom: 20px;
     border-radius: 50px;
     display: flex;
-    width: 80%;
-    margin-inline: 10%;
+    justify-content: center;
+    width: 70%;
+    margin-inline: auto;
 }
 
 #nomeMateria{
-    text-align: right;
+    text-align: center;
     width: 100%;
     line-height: 0px;
-    padding-right: 20px;
-    text-decoration: underline;
+    font-weight: lighter;
 }
 
 .back{
@@ -257,8 +257,10 @@ input, select {
 
 .flex{
     display: flex;
-    margin-inline: 25%;
-    gap: 5%;
+    width: 100%;
+    gap: 10px;
+    margin-block: -15px;
+    margin-inline: 0;
 }
 
 .flex-3{
@@ -299,16 +301,30 @@ tbody td:last-child{
     border-bottom-right-radius: 15px;
 }
 
-.grid{
+.grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     text-align: center;
     align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.grid label, .grid select, .grid input {
+    justify-self: center;
+    width: 75%;
+    margin-inline: 0;
+    box-sizing: border-box;
+}
+
+.grid select, .grid input {
+    margin-top:-10px;
+    height: 35px;
 }
 
 .grid-trio{
-    margin-left: 45px;
+    margin-inline: 15px;
 }
 .comment{
     margin-inline: 25%;
@@ -321,7 +337,7 @@ aside {
 }
 .sub {
     transition: .3s;
-    background-color: var(--secondary-bg-color);
+    background-color: var(--nav-color);
     border-radius: 10px;
     width: 135%;
     left: -16%;
