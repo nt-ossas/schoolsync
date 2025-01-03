@@ -575,8 +575,9 @@ function loadSubjects() {
         subjects = JSON.parse(storedSubjects);
         subjects.forEach((subject, index) => {
             createSubject(index);
-            document.getElementById(`i${index + 1}`).value = subject.name || `Materia ${index + 1}`;
-            document.getElementById('nomeMateria').innerText = subjects[0].name || `Materia ${index + 1}`;
+            const subjectName = subject.name || `Materia ${index + 1}`;
+            document.getElementById(`i${index + 1}`).value = subjectName;
+            document.getElementById(`nomeMateria-${index}`).innerText = subjectName;
             subject.voti.forEach((voto, votoIndex) => {
                 const peso = subject.pesi[votoIndex];
                 const type = subject.tipologie[votoIndex];
