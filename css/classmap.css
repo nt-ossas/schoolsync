@@ -1,11 +1,21 @@
-:root{
-    --bg-color:#1E1E2E;
-    --text-color:cornsilk;
-    --color-blue:#4A90E2;
-    --secondary-text-color:#8f8b85;
-    --secondary-bg-color:#28293D;
+:root {
+    --bg-color: #0D0D1A;
+    --secondary-bg-color: #1A1A33;
+    --text-color: #E0E0FF;
+    --secondary-text-color: #B3B3CC;
+    --nav-color: #26264D;
+    
+    --bg-green: rgba(47, 255, 0, 0.5);
+    --bg-red: rgba(254, 25, 25, 0.5);
+    --bg-orange: rgba(255, 140, 0, 0.5);
+    --bg-blue: rgba(74, 144, 226, 0.5);
+    --color-green: rgba(47, 255, 0, 1);
+    --color-red: rgba(254, 25, 25, 1);
+    --color-orange: rgba(255, 140, 0, 1);
+    --color-blue: rgba(74, 144, 226, 1);
 }
-body{
+
+body {
     margin-top: 10px;
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -13,28 +23,33 @@ body{
     font-family: 'Poppins', sans-serif;
     justify-content: center;
 }
-a{
+
+a {
     color: var(--color-blue);
 }
-h2.sub-title{
+
+h2.sub-title {
     color: var(--color-blue);
     margin-top: -40px;
     margin-left: 3px;
 }
-h1.title{
+
+h1.title {
     text-transform: uppercase;
     font-size: 50px;
     margin-top: 0px;
     text-align: left;
     color: var(--color-blue);
 }
-.box{
+
+.box {
     background-color: var(--color-blue);
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 5px;
 }
-.not button{
+
+.not button {
     height: 35px;
     border-radius: 10px;
     border: 0;
@@ -43,46 +58,53 @@ h1.title{
     color: var(--bg-color);
     font-weight: bold;
 }
-.not button i{
+
+.not button i {
     margin-left: 1em;
 }
-.not h6{
+
+.not h6 {
     margin-top: 0px;
-    margin-left:10px;
+    margin-left: 10px;
 }
-select#class{
+
+select#class {
     text-transform: capitalize;
     width: 50%;
     margin-inline: 25%;
     border-radius: 10px;
     margin-bottom: 20px;
     padding: 2.5px 5px;
-    background-color: var(--bg-box);
+    background-color: var(--secondary-bg-color);
     color: var(--text-color);
     appearance: none;
 }
-option{
+
+option {
     background-color: var(--bg-color);
 }
-.label{
+
+.label {
     margin-bottom: 15px;
 }
-.hidden{
+
+.hidden {
     display: none;
 }
-.red{background-color: #D02727;}
-.orange{background-color: orange;}
-.magenta{background-color: #EC22E3;}
-.blue{background-color: blue;}
-.green{background-color: green;}
-.ciano{background-color: #55E1FA;}
 
-.red::after{content:' - Centrale'}
-.orange::after{content:' - Erigendo'}
-.magenta::after{content:' - Scaruffi'}
-.blue::after{content:' - Bunker'}
-.green::after{content:' - Ospedale'}
-.ciano::after{content:' - Piramide'}
+.red { background-color: #D02727; }
+.orange { background-color: orange; }
+.magenta { background-color: #EC22E3; }
+.blue { background-color: blue; }
+.green { background-color: green; }
+.ciano { background-color: #55E1FA; }
+
+.red::after { content: ' - Centrale'; }
+.orange::after { content: ' - Erigendo'; }
+.magenta::after { content: ' - Scaruffi'; }
+.blue::after { content: ' - Bunker'; }
+.green::after { content: ' - Ospedale'; }
+.ciano::after { content: ' - Piramide'; }
 
 img {
     max-width: 100%;
@@ -90,15 +112,17 @@ img {
     transition: .3s;
 }
 
-iframe{
+iframe {
     max-width: 100%;
     max-height: 250px;
     border-radius: 10px;
 }
-h4.piano{
+
+h4.piano {
     font-size: 25px;
 }
-.clicked{
+
+.clicked {
     position: absolute;
     width: 95%;
     left: 2.5%;
@@ -106,7 +130,8 @@ h4.piano{
     transition: .3s;
     z-index: 2;
 }
-.overlay{
+
+.overlay {
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     width: 100%;
@@ -116,7 +141,7 @@ h4.piano{
 }
 
 nav {
-    background-color: #393A50;
+    background-color: var(--nav-color);
     margin-bottom: 30px;
     margin-inline: -15px;
     padding: 12px 10px;
@@ -129,13 +154,13 @@ nav {
 }
 
 nav a i {
-    color: cornsilk;
+    color: var(--text-color);
     font-size: 20px !important;
 }
 
 nav a i.on {
-    color: #1E1E2E;
-    background-color: cornsilk;
+    color: var(--bg-color);
+    background-color: var(--text-color);
     padding: 7px;
     margin: -7px;
     border-radius: 50%;

@@ -4,7 +4,7 @@ const scheduleList = document.getElementById('scheduleList');
 
 const today = new Date();
 const options = { weekday: 'long' };
-const currentDay = today.toLocaleDateString('it-IT', options);
+let currentDay = today.toLocaleDateString('it-IT', options);
 
 // Include Sunday in the days of the week
 const daysOfWeek = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
@@ -16,6 +16,17 @@ daysOfWeek.forEach(day => {
     option.textContent = day;
     daySelect.appendChild(option);
 });
+
+// Function to get the next day
+function getNextDay(day) {
+    const index = daysOfWeek.indexOf(day);
+    return daysOfWeek[(index + 1) % daysOfWeek.length];
+}
+
+// Check if the current time is after 15:00
+if (today.getHours() >= 15) {
+    currentDay = getNextDay(currentDay.charAt(0).toUpperCase() + currentDay.slice(1));
+}
 
 // Set today's day in the select element
 daySelect.value = currentDay.charAt(0).toUpperCase() + currentDay.slice(1); // Ensure the first letter is capitalized
@@ -38,6 +49,9 @@ function loadSchedule(day) {
     document.getElementById('hour6').value  = schedule.hour6 || '';
     document.getElementById('class6').value = schedule.class6 || '';
 }
+
+// Load the schedule for the current day
+loadSchedule(daySelect.value);
 
 // Event listener for saving the schedule
 document.getElementById('saveBtn').addEventListener('click', () => {

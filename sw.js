@@ -4,9 +4,9 @@ self.addEventListener("install", e => {
             return cache.addAll([
                 ".",
                 "./html/about.html", 
+                "./html/classmap.html", 
                 "./html/materie.html", 
                 "./html/orario.html", 
-                "./html/classmap.html", 
                 "./html/todo.html", 
                 "./html/tepsit.html", 
                 "./html/others.html", 
@@ -20,7 +20,6 @@ self.addEventListener("install", e => {
                 "./css/others.css", 
                 "./css/todo.css", 
                 "./css/voto.css", 
-                "./js/auth.js",
                 "./js/classmap.js",
                 "./js/down.js",
                 "./js/info.js",
@@ -42,7 +41,8 @@ self.addEventListener("install", e => {
                 "./img/o.2.png",
                 "./img/b.1.png",
                 "./img/p.1.png",
-                "./img/e.1.png"
+                "./img/e.1.png",
+                "./img/s.1.png"
             ]);
         }
     ))
