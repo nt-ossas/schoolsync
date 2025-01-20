@@ -9,7 +9,7 @@
         margin: 50px;
     }
     .grid input,.grid select{
-        margin-left: 30%;
+        margin-left: 0;
     }
     .grid-duo{
         display: flex;
@@ -30,7 +30,7 @@
         border-radius: 10px;
     }
     main.materia{
-        top: 385px;
+        top: 435px;
         margin-inline: 29%;
     }
     #materia{
@@ -64,5 +64,16 @@
         width: 147.5%;
         left: -37.5%;
         position: relative;
+    }
+    .flex{
+        margin-left: 0;
+    }
+    button{
+        transition: .3s;
+    }
+    button:hover{
+        cursor: pointer;
+        scale: 1.025;
+        transition: .3s;
     }
 }
